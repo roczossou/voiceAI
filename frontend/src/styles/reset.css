@@ -1,0 +1,114 @@
+/* Reset — spec promptDesign.txt §C.5, §C.10, ajusté sur retour client
+   (2026-07-30) : un léger arrondi (--r-sm) remplace le border-radius:0
+   strict de la spec. .pill (boutons principaux) reste pleinement arrondi.
+   .mark-square force le retour à 0 sur les petits carrés-signal (voyants,
+   puces de bornier, points aria-current) qui doivent rester nets, pas ronds.
+   Focus ring et reduced-motion sont posés ici une fois, globalement. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-radius: var(--r-sm);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--calque);
+  color: var(--graphite);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pill {
+  border-radius: var(--r-pill);
+}
+
+.mark-square {
+  border-radius: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Verrou de scroll — menu plein écran, modale, lightbox, recherche (spec §C.2) */
+html.scroll-locked {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Focus visible partout — sur fond jaune, l'anneau passe en graphite (spec §C.10) */
+:focus-visible {
+  outline: 2px solid var(--jaune-signal);
+  outline-offset: 3px;
+}
+
+.on-signal:focus-visible {
+  outline-color: var(--graphite);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

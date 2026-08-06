@@ -1,0 +1,96 @@
+/* Design tokens — spec promptDesign.txt §C.3–C.6, ajustés sur retour direct du
+   client (2026-07-30) : bleu de marque dérivé de #0055FF sur --bleu-atelier
+   (désaturé/assombri — le #0055FF brut a été jugé trop vif en aplat), bordures
+   plus fines/moins sombres via --bordure, léger arrondi via --r-sm. */
+
+:root {
+  /* Couleurs — thème clair (défaut) */
+  --calque: #E4EAEE;
+  --calque-clair: #F2F5F7;
+  --bleu-atelier: #1E4FB8;
+  --bleu-trait: #2B5C86;
+  --graphite: #14181C;
+  --jaune-signal: #F2C230;
+  --cuivre: #B96B3C;
+  --led-vert: #35C275;
+  --rouge-coupure: #D93A2B;
+  --blanc: #FFFFFF;
+  /* Bordures décoratives (boutons, cartes, cellules...) — volontairement plus
+     douce que --graphite, qui reste réservée au texte et aux aplats forts. */
+  --bordure: #B7C1CC;
+
+  /* Formes */
+  --r-pill: 62.5rem;
+  --r-sm: .25rem;
+  --bd: 1px;
+  --trait: 1px;
+
+  /* Typographie */
+  --font-display: 'Big Shoulders Display', sans-serif;
+  --font-display-stencil: 'Big Shoulders Stencil Display', sans-serif;
+  --font-body: 'Instrument Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --fs-mono: .6875rem;
+  --fs-mono-lg: .8125rem;
+  --fs-body: 1.0625rem;
+  --fs-body-lg: 1.25rem;
+  --fs-h3: 1.75rem;
+  --fs-h2: clamp(2.25rem, 4.2vw, 3.75rem);
+  --fs-h1: clamp(2.75rem, 7vw, 6rem);
+  --fs-giant: clamp(3.5rem, 8vw, 8rem);
+  /* La page d'accueil redéfinit --fs-h1 à 13vw localement (spec §C.3, §D.1) — pas ici. */
+
+  /* Échelle d'espacement — spec §C.6 */
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-14: 3.5rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Motif papier millimétré — usage réservé : hero, Parcours, bloc Contact (spec §C.4) */
+  --grille:
+    repeating-linear-gradient(0deg,  rgba(43,92,134,.20) 0 1px, transparent 1px 2.5rem),
+    repeating-linear-gradient(90deg, rgba(43,92,134,.20) 0 1px, transparent 1px 2.5rem),
+    repeating-linear-gradient(0deg,  rgba(43,92,134,.09) 0 1px, transparent 1px .5rem),
+    repeating-linear-gradient(90deg, rgba(43,92,134,.09) 0 1px, transparent 1px .5rem);
+}
+
+/* Thème sombre — appliqué via [data-theme="dark"] sur <html> (voir theme/theme.js) */
+[data-theme="dark"] {
+  --calque: #101418;
+  --calque-clair: #181D23;
+  --bleu-atelier: #16367E;
+  --bleu-trait: #4E86B8;
+  --graphite: #E4EAEE;
+  --cuivre: #D0865A;
+  --bordure: #384552;
+  /* --jaune-signal, --led-vert, --rouge-coupure : inchangés (spec §C.4) */
+
+  --grille:
+    repeating-linear-gradient(0deg,  rgba(43,92,134,.16) 0 1px, transparent 1px 2.5rem),
+    repeating-linear-gradient(90deg, rgba(43,92,134,.16) 0 1px, transparent 1px 2.5rem),
+    repeating-linear-gradient(0deg,  rgba(43,92,134,.07) 0 1px, transparent 1px .5rem),
+    repeating-linear-gradient(90deg, rgba(43,92,134,.07) 0 1px, transparent 1px .5rem);
+}
+
+/* Filet de repli si le script d'initialisation (index.html <head>) n'a pas pu s'exécuter */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --calque: #101418;
+    --calque-clair: #181D23;
+    --bleu-atelier: #16367E;
+    --bleu-trait: #4E86B8;
+    --graphite: #E4EAEE;
+    --cuivre: #D0865A;
+    --bordure: #384552;
+  }
+}

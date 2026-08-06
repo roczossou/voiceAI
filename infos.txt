@@ -1,0 +1,1645 @@
+DOCUMENT DE CONCEPTION FONCTIONNELLE ET STRATÉGIQUE
+
+Site Web Officiel de Chabel ANANOUNON
+
+Version : 1.0
+
+Porteur du projet : Chabel ANANOUNON
+
+Nature du projet : Développement d'un site web portfolio personnel, professionnel et institutionnel
+
+
+---
+
+PARTIE I : PRÉSENTATION GÉNÉRALE DU PROJET
+
+CHAPITRE 1 : PRÉSENTATION DU PROJET
+
+1.1 Contexte
+
+Dans un monde où la présence numérique est devenue un levier incontournable de crédibilité, de visibilité et d'influence, il est essentiel pour tout professionnel de disposer d'une plateforme officielle capable de refléter son identité, son parcours, ses compétences, ses réalisations et sa vision.
+
+Le présent projet vise la conception et le développement du site web officiel de Chabel ANANOUNON, une plateforme numérique moderne, performante et évolutive qui constituera le point central de son écosystème digital.
+
+Ce site ne sera pas uniquement un portfolio. Il représentera une véritable plateforme de marque personnelle (Personal Branding Platform), destinée à promouvoir son parcours, valoriser ses initiatives, présenter ses services, développer son réseau professionnel et renforcer son impact à l'échelle nationale et internationale.
+
+Le site devra refléter une image de professionnalisme, d'innovation, de leadership et d'engagement, tout en mettant en valeur les différents domaines d'intervention du porteur du projet.
+
+
+---
+
+1.2 Objectif général
+
+Concevoir une plateforme web professionnelle qui permette de construire, développer et renforcer durablement la marque personnelle de Chabel ANANOUNON, tout en facilitant la présentation de ses compétences, de ses réalisations, de ses projets et de ses ambitions.
+
+
+---
+
+1.3 Objectifs spécifiques
+
+Le site devra permettre de :
+
+présenter le parcours personnel et professionnel ;
+
+valoriser les compétences et expertises ;
+
+présenter les services proposés ;
+
+mettre en avant les projets réalisés ;
+
+promouvoir les initiatives entrepreneuriales ;
+
+développer la notoriété de la marque personnelle ;
+
+attirer de nouvelles opportunités professionnelles ;
+
+renforcer la crédibilité auprès des partenaires et institutions ;
+
+faciliter les prises de contact ;
+
+promouvoir les événements et les activités ;
+
+partager des contenus à forte valeur ajoutée ;
+
+développer une communauté autour de ses initiatives.
+
+
+
+---
+
+1.4 Finalités du site
+
+Le site devra remplir plusieurs fonctions :
+
+Portfolio professionnel
+
+Présenter l'ensemble des réalisations, compétences et expériences professionnelles.
+
+Vitrine personnelle
+
+Mettre en avant le parcours, les valeurs, la personnalité et la vision du porteur du projet.
+
+Plateforme de communication
+
+Centraliser toutes les informations officielles concernant les projets, les événements, les publications et les actualités.
+
+Plateforme de visibilité
+
+Améliorer la présence numérique et le référencement sur les moteurs de recherche.
+
+Plateforme de développement professionnel
+
+Créer un environnement favorisant les collaborations, les partenariats, les opportunités de carrière et les prestations de services.
+
+
+---
+
+1.5 Vision du projet
+
+Créer une plateforme de référence qui inspire, connecte et accompagne les jeunes, les entrepreneurs, les institutions et les organisations autour de projets innovants, du leadership et du développement du digital en Afrique.
+
+
+---
+
+1.6 Mission
+
+Utiliser ce site comme un outil stratégique afin de partager des connaissances, valoriser des initiatives, promouvoir les talents, développer des partenariats et contribuer à la transformation numérique de la jeunesse africaine.
+
+
+---
+
+1.7 Valeurs
+
+Le site devra transmettre les valeurs suivantes :
+
+Excellence
+
+Leadership
+
+Innovation
+
+Créativité
+
+Discipline
+
+Intégrité
+
+Engagement
+
+Impact
+
+Collaboration
+
+Responsabilité
+
+Vision
+
+Professionnalisme
+
+
+
+---
+
+CHAPITRE 2 : PRÉSENTATION DU PORTEUR DU PROJET
+
+2.1 Identité
+
+Nom
+
+Chabel ANANOUNON
+
+Nationalité
+
+Béninoise
+
+Pays
+
+République du Bénin
+
+Département
+
+Zou
+
+Domaine principal
+
+Leadership, Digital, Innovation et Entrepreneuriat.
+
+Fonctions
+
+Le site devra présenter clairement les différentes responsabilités exercées par le porteur du projet :
+
+Entrepreneur ;
+
+Fondateur de AndroCréa ;
+
+Promoteur des DIGIT'S CRÉA AWARDS ;
+
+Premier Adjoint au Maire des Jeunes de Covè ;
+
+Technicien Supérieur en Maintenance Industrielle ;
+
+Gestionnaire de Projet ;
+
+Planificateur d'Événements ;
+
+Designer Graphique ;
+
+Créatif Digital ;
+
+Formateur en créativité digitale mobile.
+
+
+
+---
+
+2.2 Présentation personnelle
+
+> Je suis Chabel ANANOUNON, entrepreneur, leader jeunesse, gestionnaire de projet, planificateur d'événements et créatif digital béninois. Ma passion pour l'innovation, la créativité et le leadership m'a conduit à développer plusieurs initiatives visant à accompagner les jeunes, promouvoir les talents et créer des opportunités durables grâce au numérique.
+
+
+
+> Convaincu que la jeunesse africaine constitue la plus grande richesse du continent, je mets mes compétences au service de projets innovants qui favorisent l'éducation, l'entrepreneuriat, la transformation digitale et le développement des compétences.
+
+
+
+> Mon ambition est de contribuer à bâtir une nouvelle génération de leaders capables d'utiliser la technologie, la créativité et l'innovation comme moteurs du développement économique et social.
+
+
+
+
+---
+
+2.3 Positionnement
+
+Le site devra présenter Chabel ANANOUNON comme un professionnel multidisciplinaire intervenant dans les domaines suivants :
+
+Leadership
+
+Gestion de projet
+
+Entrepreneuriat
+
+Planification d'événements
+
+Communication digitale
+
+Créativité
+
+Innovation
+
+Développement personnel
+
+Formation
+
+Accompagnement de la jeunesse
+
+
+
+---
+
+2.4 Proposition de valeur
+
+Le site devra mettre en évidence la valeur ajoutée apportée par Chabel ANANOUNON.
+
+À travers mes compétences en gestion de projet, communication digitale, planification d'événements, créativité et leadership, j'accompagne les organisations, les entreprises, les collectivités et les jeunes entrepreneurs dans la conception, la réalisation et la promotion de projets à fort impact.
+
+
+---
+
+CHAPITRE 3 : PARCOURS PROFESSIONNEL ET ACADÉMIQUE
+
+3.1 Parcours académique
+
+Le site devra présenter le parcours académique comme suit :
+
+Licence Professionnelle en Maintenance des Systèmes Industriels (Technicien Supérieur en Maintenance Industrielle) ;
+
+Baccalauréat Technique série F3 (Électricité) ;
+
+Certificat d'Aptitude Professionnelle (CAP) en Électricité ;
+
+Formations complémentaires et certifications professionnelles.
+
+
+
+---
+
+3.2 Compétences techniques
+
+Le site présentera les compétences acquises dans les domaines suivants :
+
+Maintenance industrielle
+
+Électricité industrielle
+
+Automatisation
+
+Systèmes photovoltaïques
+
+Maintenance préventive
+
+Maintenance corrective
+
+Diagnostic des équipements
+
+Bureautique
+
+Installation électrique
+
+Vidéosurveillance
+
+
+
+---
+
+3.3 Parcours entrepreneurial
+
+Le site devra expliquer l'évolution du parcours entrepreneurial, depuis les premières expériences jusqu'à la création d'AndroCréa et des DIGIT'S CRÉA AWARDS, en mettant en avant la volonté de transformer les idées en projets concrets au service de la jeunesse.
+
+
+---
+
+3.4 Parcours associatif et institutionnel
+
+Une section spécifique présentera :
+
+l'engagement en faveur de la jeunesse ;
+
+le rôle de Premier Adjoint au Maire des Jeunes de Covè ;
+
+les actions communautaires ;
+
+les initiatives citoyennes ;
+
+les partenariats institutionnels.
+
+
+
+---
+
+CHAPITRE 4 : VISION, MISSION ET POSITIONNEMENT
+
+Vision
+
+Être une référence africaine en matière de leadership, d'innovation, de créativité, de gestion de projet et de développement des talents.
+
+Mission
+
+Accompagner les jeunes, les organisations et les entreprises dans la création de projets innovants, le développement des compétences et la transformation digitale.
+
+Ambition
+
+Construire un écosystème capable de révéler les talents, créer des opportunités et contribuer durablement au développement de l'Afrique.
+
+Signature
+
+Je transforme le potentiel en puissance.
+
+
+---
+
+CHAPITRE 5 : PUBLIC CIBLE
+
+Le site devra être conçu pour répondre aux attentes des publics suivants :
+
+Institutions publiques
+
+Ministères
+
+Collectivités territoriales
+
+Mairies
+
+Institutions de jeunesse
+
+
+Organisations internationales
+
+ONG
+
+Agences de développement
+
+Organisations de coopération
+
+
+Entreprises
+
+PME
+
+Grandes entreprises
+
+Start-up
+
+Agences de communication
+
+
+Jeunesse
+
+Étudiants
+
+Jeunes entrepreneurs
+
+Porteurs de projets
+
+Créatifs
+
+Associations
+
+
+Partenaires
+
+Sponsors
+
+Investisseurs
+
+Incubateurs
+
+Organisateurs d'événements
+
+
+Médias
+
+Presse
+
+Télévision
+
+Radio
+
+Blogs
+
+Influenceurs
+
+PARTIE II : ARCHITECTURE FONCTIONNELLE DU SITE
+
+CHAPITRE 6 : ARBORESCENCE GÉNÉRALE DU SITE
+
+6.1 Objectif
+
+Le site devra être conçu selon une architecture claire, intuitive et évolutive, permettant aux visiteurs d'accéder rapidement aux informations essentielles. La navigation devra être fluide, responsive et optimisée pour tous les types d'appareils.
+
+6.2 Structure générale
+
+Le site comprendra les sections suivantes :
+
+1. Accueil
+
+
+2. À propos
+
+
+3. Mon parcours
+
+
+4. Mes domaines d'expertise
+
+
+5. Mes compétences
+
+
+6. Mes services
+
+
+7. Mes réalisations
+
+
+8. Mes projets
+
+
+9. AndroCréa
+
+
+10. DIGIT'S CRÉA AWARDS
+
+
+11. Leadership & Engagement
+
+
+12. Médias
+
+
+13. Galerie / Portfolio
+
+
+14. Blog / Actualités
+
+
+15. Ressources
+
+
+16. Témoignages
+
+
+17. Prendre rendez-vous
+
+
+18. Contact
+
+
+
+Le menu principal devra rester visible au défilement (Sticky Navigation) et inclure un bouton d'action rapide « Me contacter ».
+
+
+---
+
+CHAPITRE 7 : PAGE D'ACCUEIL
+
+7.1 Objectif
+
+La page d'accueil devra créer une première impression forte, moderne et professionnelle. En moins de dix secondes, le visiteur devra comprendre qui est Chabel ANANOUNON, ce qu'il fait et pourquoi il devrait poursuivre sa visite.
+
+7.2 Hero Section
+
+Cette section occupera toute la hauteur de l'écran.
+
+Elle devra comprendre :
+
+une photo portrait professionnelle en haute définition ;
+
+le nom complet : Chabel ANANOUNON ;
+
+le slogan : Je transforme le potentiel en puissance.
+
+un texte de présentation dynamique ;
+
+un arrière-plan animé discret.
+
+
+Titres dynamiques
+
+Le développeur devra intégrer un effet de texte animé affichant successivement :
+
+Entrepreneur
+
+Leader Jeunesse
+
+Gestionnaire de Projet
+
+Planificateur d'Événements
+
+Fondateur d'AndroCréa
+
+Promoteur des DIGIT'S CRÉA AWARDS
+
+Créatif Digital
+
+Formateur
+
+Technicien Supérieur en Maintenance Industrielle
+
+
+Boutons principaux
+
+Découvrir mon parcours
+
+Voir mes projets
+
+Télécharger mon CV
+
+Me contacter
+
+
+
+---
+
+7.3 Statistiques
+
+Une section de chiffres animés présentera notamment :
+
+projets réalisés ;
+
+événements organisés ;
+
+personnes formées ;
+
+années d'expérience ;
+
+partenaires ;
+
+distinctions.
+
+
+Les valeurs devront être administrables depuis le back-office.
+
+
+---
+
+7.4 Présentation rapide
+
+Une courte présentation introduira le visiteur à l'univers de Chabel ANANOUNON avec un lien vers la page « À propos ».
+
+
+---
+
+7.5 Domaines d'intervention
+
+Présentation sous forme de cartes interactives :
+
+Leadership
+
+Gestion de Projet
+
+Événementiel
+
+Digital
+
+Entrepreneuriat
+
+Formation
+
+Innovation
+
+Communication
+
+Développement personnel
+
+Maintenance industrielle
+
+
+Chaque carte renverra vers une page dédiée.
+
+
+---
+
+7.6 Projets mis en avant
+
+Affichage des principaux projets :
+
+AndroCréa
+
+DIGIT'S CRÉA AWARDS
+
+autres projets majeurs
+
+
+Chaque projet comprendra :
+
+image ;
+
+résumé ;
+
+technologies ou domaines ;
+
+bouton « En savoir plus ».
+
+
+
+---
+
+7.7 Témoignages
+
+Affichage d'un carrousel de témoignages avec :
+
+photo ;
+
+nom ;
+
+fonction ;
+
+commentaire.
+
+
+
+---
+
+7.8 Call To Action
+
+Une section invitera les visiteurs à :
+
+collaborer ;
+
+demander un devis ;
+
+réserver une formation ;
+
+proposer un partenariat.
+
+
+
+---
+
+CHAPITRE 8 : PAGE À PROPOS
+
+Objectif
+
+Présenter ton histoire, ton parcours, tes motivations, tes valeurs et ta vision.
+
+Contenu
+
+Mon histoire
+
+Raconter ton parcours depuis tes premières passions pour la technologie jusqu'à la création de tes initiatives entrepreneuriales.
+
+Ma vision
+
+Expliquer ta vision du développement de la jeunesse africaine à travers le digital, le leadership et l'innovation.
+
+Ma mission
+
+Présenter ta mission de transformation et d'accompagnement des jeunes et des organisations.
+
+Mes valeurs
+
+Illustrer chacune des valeurs :
+
+Excellence
+
+Innovation
+
+Discipline
+
+Leadership
+
+Créativité
+
+Intégrité
+
+Impact
+
+Engagement
+
+
+Mon manifeste
+
+Un texte inspirant expliquant pourquoi tu fais ce que tu fais et l'impact que tu souhaites laisser.
+
+
+---
+
+CHAPITRE 9 : PAGE MON PARCOURS
+
+Objectif
+
+Présenter ton évolution de manière chronologique.
+
+Structure
+
+Le développeur devra intégrer une timeline interactive.
+
+Parcours académique
+
+CAP Électricité
+
+BAC Technique F3
+
+Licence Professionnelle en Maintenance des Systèmes Industriels (Technicien Supérieur en Maintenance Industrielle)
+
+
+Formations complémentaires
+
+Photovoltaïque
+
+Maintenance
+
+Bureautique
+
+Communication
+
+Design graphique
+
+Gestion de projet
+
+Autres certifications
+
+
+Expériences professionnelles
+
+Chaque expérience devra comporter :
+
+période ;
+
+structure ;
+
+poste ;
+
+missions ;
+
+compétences développées ;
+
+résultats obtenus.
+
+
+
+---
+
+CHAPITRE 10 : PAGE DOMAINES D'EXPERTISE
+
+Cette page présentera les domaines dans lesquels tu interviens.
+
+Leadership
+
+Développement du leadership, gouvernance jeunesse, engagement citoyen.
+
+Gestion de Projet
+
+Planification, coordination, suivi-évaluation, gestion des risques.
+
+Événementiel
+
+Conception, organisation, coordination, logistique, communication événementielle.
+
+Digital
+
+Communication digitale, design graphique, branding, création de contenu, marketing digital.
+
+Entrepreneuriat
+
+Création d'entreprises, innovation, accompagnement de projets.
+
+Formation
+
+Animation de formations, accompagnement, ateliers pratiques.
+
+Maintenance Industrielle
+
+Diagnostic, maintenance préventive, maintenance corrective, installations techniques.
+
+Chaque domaine comprendra :
+
+description ;
+
+compétences associées ;
+
+réalisations ;
+
+galerie d'illustrations.
+
+
+
+---
+
+CHAPITRE 11 : PAGE COMPÉTENCES
+
+Les compétences seront classées par catégories.
+
+Compétences digitales
+
+Design graphique
+
+Branding
+
+Communication digitale
+
+Création de contenu
+
+Community Management
+
+Marketing digital
+
+Stratégie digitale
+
+
+Compétences en gestion
+
+Gestion de projet
+
+Gestion d'équipe
+
+Organisation
+
+Planification
+
+Coordination
+
+Leadership
+
+
+Compétences techniques
+
+Maintenance industrielle
+
+Électricité industrielle
+
+Photovoltaïque
+
+Automatisation
+
+Diagnostic industriel
+
+
+Soft Skills
+
+Créativité
+
+Adaptabilité
+
+Résolution de problèmes
+
+Esprit d'équipe
+
+Communication
+
+Prise de parole
+
+Esprit d'initiative
+
+
+Les compétences seront présentées sous forme de cartes avec icônes et niveaux de maîtrise (ou descriptions qualitatives plutôt que des pourcentages arbitraires).
+
+
+---
+
+CHAPITRE 12 : PAGE SERVICES
+
+Le site présentera les prestations disponibles.
+
+Services digitaux
+
+Design graphique
+
+Identité visuelle
+
+Branding
+
+Création de contenu
+
+Communication digitale
+
+Supports de communication
+
+
+Gestion de projet
+
+Élaboration de projets
+
+Planification
+
+Coordination
+
+Suivi
+
+Évaluation
+
+
+Événementiel
+
+Organisation d'événements
+
+Planification
+
+Coordination générale
+
+Gestion logistique
+
+Accompagnement
+
+
+Formation
+
+Design graphique mobile
+
+Communication digitale
+
+Gestion de projet
+
+Leadership
+
+Créativité
+
+
+Conseil
+
+Stratégie de communication
+
+Branding
+
+Positionnement
+
+Développement de projets
+
+
+Chaque service devra disposer d'un bouton « Demander un devis » ou « Prendre rendez-vous ».
+
+
+PARTIE III : PROJETS, CONTENUS, FONCTIONNALITÉS AVANCÉES ET PARCOURS UTILISATEUR
+
+
+---
+
+CHAPITRE 13 : PAGE « MES RÉALISATIONS »
+
+13.1 Objectif
+
+Cette page devra mettre en évidence les résultats obtenus, les projets réalisés et l'impact généré.
+
+L'objectif est de démontrer la crédibilité du porteur du projet à travers des réalisations concrètes.
+
+
+---
+
+13.2 Structure
+
+La page sera organisée autour des rubriques suivantes :
+
+Réalisations professionnelles
+
+Présentation des principaux projets réalisés :
+
+Identités visuelles
+
+Logos
+
+Affiches publicitaires
+
+Flyers
+
+Supports de communication
+
+Campagnes digitales
+
+Sites web
+
+Supports événementiels
+
+
+
+---
+
+Réalisations entrepreneuriales
+
+Présentation des initiatives créées :
+
+AndroCréa
+
+DIGIT'S CRÉA AWARDS
+
+Programmes de formation
+
+Événements organisés
+
+Initiatives communautaires
+
+
+
+---
+
+Réalisations institutionnelles
+
+Présentation des actions menées dans le cadre de tes fonctions :
+
+projets jeunesse
+
+activités communautaires
+
+sensibilisations
+
+formations
+
+actions citoyennes
+
+
+
+---
+
+Indicateurs d'impact
+
+Cette section devra être dynamique.
+
+Exemples :
+
+Nombre de projets réalisés
+
+Nombre d'événements organisés
+
+Nombre de personnes formées
+
+Nombre de partenaires
+
+Nombre de créations graphiques
+
+Nombre de conférences
+
+Nombre de distinctions
+
+
+Les chiffres devront être modifiables depuis le panneau d'administration.
+
+
+---
+
+CHAPITRE 14 : PAGE « MES PROJETS »
+
+Objectif
+
+Présenter l'ensemble des projets personnels et professionnels.
+
+Chaque projet devra posséder sa propre fiche.
+
+
+---
+
+Structure d'une fiche projet
+
+Chaque projet devra comprendre :
+
+Bannière
+
+Logo
+
+Galerie
+
+Présentation
+
+Objectifs
+
+Contexte
+
+Public cible
+
+Résultats
+
+Difficultés rencontrées
+
+Solutions apportées
+
+Galerie photo
+
+Galerie vidéo
+
+Témoignages
+
+Partenaires
+
+Bouton "Découvrir"
+
+
+
+---
+
+Projet : AndroCréa
+
+Le site devra consacrer une page entière à AndroCréa.
+
+Cette page présentera :
+
+Histoire
+
+Pourquoi AndroCréa a été créé.
+
+Mission
+
+Former une nouvelle génération de créatifs capables d'utiliser les technologies numériques pour développer leur carrière.
+
+Vision
+
+Faire d'AndroCréa une référence africaine dans la formation aux métiers du digital.
+
+Domaines
+
+Design graphique
+
+Communication digitale
+
+Créativité mobile
+
+Développement web
+
+Montage vidéo
+
+Marketing digital
+
+Intelligence artificielle
+
+
+Services
+
+Présentation détaillée de tous les services proposés.
+
+Formations
+
+Catalogue des formations disponibles.
+
+Galerie
+
+Photos et vidéos.
+
+
+---
+
+Projet : DIGIT'S CRÉA AWARDS
+
+Une seconde page sera entièrement consacrée aux DIGIT'S CRÉA AWARDS.
+
+Elle présentera :
+
+Historique
+
+Objectifs
+
+Catégories
+
+Jury
+
+Déroulement
+
+Lauréats
+
+Partenaires
+
+Médias
+
+Galerie
+
+Actualités
+
+
+Prévoir une évolution future permettant d'intégrer un système de vote, de candidature et de gestion des éditions.
+
+
+---
+
+CHAPITRE 15 : PAGE « LEADERSHIP & ENGAGEMENT »
+
+Objectif
+
+Présenter l'engagement communautaire et institutionnel.
+
+
+---
+
+Rubriques
+
+Leadership jeunesse
+
+Présentation du rôle de Premier Adjoint au Maire des Jeunes de Covè.
+
+Développement communautaire
+
+Présentation des activités réalisées au profit de la jeunesse.
+
+Citoyenneté
+
+Actions sociales.
+
+Conférences
+
+Interventions publiques.
+
+Formations
+
+Sessions de renforcement de capacités.
+
+Vision
+
+Vision du leadership.
+
+
+---
+
+CHAPITRE 16 : PAGE « GALERIE / PORTFOLIO »
+
+Cette page devra mettre en valeur les réalisations visuellement.
+
+
+---
+
+Catégories
+
+Design graphique
+
+Branding
+
+Logos
+
+Flyers
+
+Affiches
+
+Badges
+
+Mockups
+
+Bannières
+
+Réalisations techniques
+
+Photographies
+
+Événements
+
+Coulisses
+
+Vidéos
+
+
+
+---
+
+Fonctionnalités
+
+Le visiteur pourra :
+
+filtrer les projets ;
+
+rechercher ;
+
+agrandir une image ;
+
+visionner des vidéos ;
+
+partager une réalisation.
+
+
+
+---
+
+CHAPITRE 17 : PAGE « MÉDIAS »
+
+Objectif :
+
+Regrouper toutes les apparitions publiques.
+
+
+---
+
+Rubriques
+
+Interviews
+
+Podcasts
+
+Conférences
+
+Reportages
+
+Télévision
+
+Radio
+
+Articles de presse
+
+Publications officielles
+
+Communiqués
+
+Galerie vidéo
+
+
+
+---
+
+CHAPITRE 18 : PAGE « BLOG »
+
+Le blog sera un pilier important du référencement naturel.
+
+
+---
+
+Catégories
+
+Leadership
+
+Entrepreneuriat
+
+Innovation
+
+Intelligence artificielle
+
+Communication
+
+Marketing
+
+Digital
+
+Développement personnel
+
+Gestion de projet
+
+Événementiel
+
+Jeunesse
+
+Technologie
+
+
+
+---
+
+Fonctionnalités
+
+Chaque article devra permettre :
+
+commentaires (optionnels) ;
+
+partage sur les réseaux sociaux ;
+
+lecture estimée ;
+
+auteur ;
+
+date de publication ;
+
+suggestions d'articles similaires.
+
+
+Le blog devra être administrable depuis le back-office.
+
+
+---
+
+CHAPITRE 19 : PAGE « RESSOURCES »
+
+Objectif :
+
+Partager gratuitement des ressources utiles.
+
+
+---
+
+Types de ressources
+
+e-books
+
+guides
+
+check-lists
+
+modèles
+
+templates
+
+présentations
+
+supports de formation
+
+outils recommandés
+
+livres
+
+applications
+
+
+Le téléchargement pourra être libre ou conditionné à l'inscription à la newsletter.
+
+
+---
+
+CHAPITRE 20 : PAGE « TÉMOIGNAGES »
+
+Objectif :
+
+Renforcer la confiance.
+
+
+---
+
+Types
+
+clients
+
+partenaires
+
+participants
+
+collaborateurs
+
+institutions
+
+bénéficiaires
+
+
+Chaque témoignage comprendra :
+
+photo
+
+nom
+
+fonction
+
+entreprise
+
+texte
+
+note
+
+
+Prévoir un système d'ajout/modération via le back-office.
+
+
+---
+
+CHAPITRE 21 : PAGE « PRENDRE RENDEZ-VOUS »
+
+Le visiteur pourra choisir :
+
+Consultation
+
+Réunion
+
+Accompagnement
+
+Coaching (à terme)
+
+Formation
+
+Conférence
+
+Partenariat
+
+Demande de devis
+
+
+Le formulaire devra proposer :
+
+nom ;
+
+organisation ;
+
+email ;
+
+téléphone ;
+
+objet ;
+
+date souhaitée ;
+
+message.
+
+
+Une notification sera envoyée par e-mail à l'administrateur.
+
+
+---
+
+CHAPITRE 22 : PAGE « CONTACT »
+
+Cette page comprendra :
+
+formulaire de contact ;
+
+adresse e-mail ;
+
+numéro WhatsApp ;
+
+téléphone ;
+
+liens vers les réseaux sociaux ;
+
+carte de localisation (si souhaitée) ;
+
+horaires de disponibilité.
+
+
+Le formulaire devra inclure une protection anti-spam.
+
+
+---
+
+CHAPITRE 23 : PARCOURS UTILISATEURS (USER JOURNEYS)
+
+Le site devra être conçu pour plusieurs profils de visiteurs.
+
+Recruteur
+
+Objectif :
+
+Découvrir rapidement le profil.
+
+Parcours :
+
+Accueil → À propos → Parcours → Compétences → CV → Contact
+
+
+---
+
+Client
+
+Objectif :
+
+Découvrir les services.
+
+Parcours :
+
+Accueil → Services → Réalisations → Témoignages → Demande de devis
+
+
+---
+
+Partenaire
+
+Objectif :
+
+Évaluer les projets.
+
+Parcours :
+
+Accueil → AndroCréa → DIGIT'S CRÉA AWARDS → Leadership → Contact
+
+
+---
+
+Journaliste
+
+Objectif :
+
+Trouver des informations et des médias.
+
+Parcours :
+
+Accueil → Médias → Biographie → Photos → Contact
+
+
+---
+
+Étudiant ou jeune entrepreneur
+
+Objectif :
+
+S'inspirer et apprendre.
+
+Parcours :
+
+Accueil → Blog → Ressources → Formations → Contact
+
+
+---
+
+CHAPITRE 24 : FONCTIONNALITÉS AVANCÉES
+
+Le site devra intégrer les fonctionnalités suivantes :
+
+Front-end
+
+Mode sombre / clair
+
+Multilingue (prévoir l'architecture pour une future traduction)
+
+Animations modernes
+
+Recherche globale
+
+Newsletter
+
+Bouton WhatsApp flottant
+
+Bouton "Retour en haut"
+
+Partage sur les réseaux sociaux
+
+Téléchargement du CV
+
+Visionneuse PDF intégrée
+
+Lecteur vidéo
+
+Galerie interactive
+
+
+Back-end
+
+Gestion des pages
+
+Gestion des articles
+
+Gestion des projets
+
+Gestion des médias
+
+Gestion des témoignages
+
+Gestion des statistiques
+
+Gestion des formulaires
+
+Gestion des téléchargements
+
+Gestion des utilisateurs (si plusieurs administrateurs)

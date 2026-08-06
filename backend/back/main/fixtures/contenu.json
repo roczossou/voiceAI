@@ -1,0 +1,811 @@
+[
+{
+  "model": "main.formation",
+  "pk": 1,
+  "fields": {
+    "titre": "DÉMO — Design graphique sur mobile",
+    "slug": "demo-design-graphique-sur-mobile",
+    "programme": "androcrea",
+    "duree": "4 semaines",
+    "format": "Présentiel",
+    "public": "Débutants et créatifs",
+    "description": "Contenu de démonstration destiné à vérifier la mise en page du catalogue de formations. Il ne décrit aucune formation réelle.",
+    "prochaine_session": "2026-09-17"
+  }
+},
+{
+  "model": "main.formation",
+  "pk": 2,
+  "fields": {
+    "titre": "DÉMO — Communication digitale",
+    "slug": "demo-communication-digitale",
+    "programme": "androcrea",
+    "duree": "3 semaines",
+    "format": "Hybride",
+    "public": "Entrepreneurs et associations",
+    "description": "Contenu de démonstration destiné à vérifier la mise en page du catalogue de formations. Il ne décrit aucune formation réelle.",
+    "prochaine_session": "2026-09-17"
+  }
+},
+{
+  "model": "main.formation",
+  "pk": 3,
+  "fields": {
+    "titre": "DÉMO — Gestion de projet",
+    "slug": "demo-gestion-de-projet",
+    "programme": "site",
+    "duree": "5 jours",
+    "format": "Distanciel",
+    "public": "Porteurs de projets",
+    "description": "Contenu de démonstration destiné à vérifier la mise en page du catalogue de formations. Il ne décrit aucune formation réelle.",
+    "prochaine_session": "2026-09-17"
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 1,
+  "fields": {
+    "libelle": "Design graphique",
+    "categorie": "digitale",
+    "niveau": null,
+    "ordre": 0
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 2,
+  "fields": {
+    "libelle": "Branding",
+    "categorie": "digitale",
+    "niveau": null,
+    "ordre": 1
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 3,
+  "fields": {
+    "libelle": "Communication digitale",
+    "categorie": "digitale",
+    "niveau": null,
+    "ordre": 2
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 4,
+  "fields": {
+    "libelle": "Création de contenu",
+    "categorie": "digitale",
+    "niveau": null,
+    "ordre": 3
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 5,
+  "fields": {
+    "libelle": "Community Management",
+    "categorie": "digitale",
+    "niveau": null,
+    "ordre": 4
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 6,
+  "fields": {
+    "libelle": "Marketing digital",
+    "categorie": "digitale",
+    "niveau": null,
+    "ordre": 5
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 7,
+  "fields": {
+    "libelle": "Stratégie digitale",
+    "categorie": "digitale",
+    "niveau": null,
+    "ordre": 6
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 8,
+  "fields": {
+    "libelle": "Gestion de projet",
+    "categorie": "gestion",
+    "niveau": null,
+    "ordre": 0
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 9,
+  "fields": {
+    "libelle": "Gestion d'équipe",
+    "categorie": "gestion",
+    "niveau": null,
+    "ordre": 1
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 10,
+  "fields": {
+    "libelle": "Organisation",
+    "categorie": "gestion",
+    "niveau": null,
+    "ordre": 2
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 11,
+  "fields": {
+    "libelle": "Planification",
+    "categorie": "gestion",
+    "niveau": null,
+    "ordre": 3
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 12,
+  "fields": {
+    "libelle": "Coordination",
+    "categorie": "gestion",
+    "niveau": null,
+    "ordre": 4
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 13,
+  "fields": {
+    "libelle": "Leadership",
+    "categorie": "gestion",
+    "niveau": null,
+    "ordre": 5
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 14,
+  "fields": {
+    "libelle": "Maintenance industrielle",
+    "categorie": "technique",
+    "niveau": null,
+    "ordre": 0
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 15,
+  "fields": {
+    "libelle": "Électricité industrielle",
+    "categorie": "technique",
+    "niveau": null,
+    "ordre": 1
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 16,
+  "fields": {
+    "libelle": "Photovoltaïque",
+    "categorie": "technique",
+    "niveau": null,
+    "ordre": 2
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 17,
+  "fields": {
+    "libelle": "Automatisation",
+    "categorie": "technique",
+    "niveau": null,
+    "ordre": 3
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 18,
+  "fields": {
+    "libelle": "Diagnostic industriel",
+    "categorie": "technique",
+    "niveau": null,
+    "ordre": 4
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 19,
+  "fields": {
+    "libelle": "Créativité",
+    "categorie": "soft",
+    "niveau": null,
+    "ordre": 0
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 20,
+  "fields": {
+    "libelle": "Adaptabilité",
+    "categorie": "soft",
+    "niveau": null,
+    "ordre": 1
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 21,
+  "fields": {
+    "libelle": "Résolution de problèmes",
+    "categorie": "soft",
+    "niveau": null,
+    "ordre": 2
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 22,
+  "fields": {
+    "libelle": "Esprit d'équipe",
+    "categorie": "soft",
+    "niveau": null,
+    "ordre": 3
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 23,
+  "fields": {
+    "libelle": "Communication",
+    "categorie": "soft",
+    "niveau": null,
+    "ordre": 4
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 24,
+  "fields": {
+    "libelle": "Prise de parole",
+    "categorie": "soft",
+    "niveau": null,
+    "ordre": 5
+  }
+},
+{
+  "model": "main.competence",
+  "pk": 25,
+  "fields": {
+    "libelle": "Esprit d'initiative",
+    "categorie": "soft",
+    "niveau": null,
+    "ordre": 6
+  }
+},
+{
+  "model": "main.partenaire",
+  "pk": 1,
+  "fields": {
+    "nom": "DÉMO — Structure partenaire A",
+    "logo": "",
+    "url": "",
+    "type": "Institution",
+    "visible": true
+  }
+},
+{
+  "model": "main.partenaire",
+  "pk": 2,
+  "fields": {
+    "nom": "DÉMO — Structure partenaire B",
+    "logo": "",
+    "url": "",
+    "type": "Entreprise",
+    "visible": true
+  }
+},
+{
+  "model": "main.partenaire",
+  "pk": 3,
+  "fields": {
+    "nom": "DÉMO — Structure partenaire C",
+    "logo": "",
+    "url": "",
+    "type": "Organisation internationale",
+    "visible": true
+  }
+},
+{
+  "model": "main.partenaire",
+  "pk": 4,
+  "fields": {
+    "nom": "DÉMO — Structure partenaire D",
+    "logo": "",
+    "url": "",
+    "type": "Association",
+    "visible": true
+  }
+},
+{
+  "model": "main.experience",
+  "pk": 1,
+  "fields": {
+    "groupe": "pro",
+    "periode_debut": "2022-01-01",
+    "periode_fin": null,
+    "structure": "DÉMO — Structure de démonstration",
+    "poste": "Poste de démonstration",
+    "missions": [
+      "Mission de démonstration destinée à tester la liste à puces.",
+      "Seconde mission de démonstration, un peu plus longue, pour vérifier le retour à la ligne dans la colonne de droite."
+    ],
+    "resultats": "Résultats de démonstration : ce texte n’a qu’un but de mise en page.",
+    "competences": [
+      1,
+      8,
+      14,
+      19
+    ]
+  }
+},
+{
+  "model": "main.experience",
+  "pk": 2,
+  "fields": {
+    "groupe": "pro",
+    "periode_debut": "2019-06-01",
+    "periode_fin": "2021-12-01",
+    "structure": "DÉMO — Autre structure de démonstration",
+    "poste": "Poste précédent de démonstration",
+    "missions": [
+      "Mission de démonstration destinée à tester la liste à puces.",
+      "Seconde mission de démonstration, un peu plus longue, pour vérifier le retour à la ligne dans la colonne de droite."
+    ],
+    "resultats": "Résultats de démonstration : ce texte n’a qu’un but de mise en page.",
+    "competences": [
+      1,
+      8,
+      14,
+      19
+    ]
+  }
+},
+{
+  "model": "main.experience",
+  "pk": 3,
+  "fields": {
+    "groupe": "institutionnel",
+    "periode_debut": "2021-03-01",
+    "periode_fin": null,
+    "structure": "DÉMO — Mandat de démonstration",
+    "poste": "Fonction de démonstration",
+    "missions": [
+      "Mission de démonstration destinée à tester la liste à puces.",
+      "Seconde mission de démonstration, un peu plus longue, pour vérifier le retour à la ligne dans la colonne de droite."
+    ],
+    "resultats": "Résultats de démonstration : ce texte n’a qu’un but de mise en page.",
+    "competences": [
+      1,
+      8,
+      14,
+      19
+    ]
+  }
+},
+{
+  "model": "main.service",
+  "pk": 1,
+  "fields": {
+    "groupe": "services_digitaux",
+    "titre": "Design graphique",
+    "slug": "services_digitaux-design-graphique",
+    "ordre": 0
+  }
+},
+{
+  "model": "main.service",
+  "pk": 2,
+  "fields": {
+    "groupe": "services_digitaux",
+    "titre": "Identité visuelle",
+    "slug": "services_digitaux-identite-visuelle",
+    "ordre": 1
+  }
+},
+{
+  "model": "main.service",
+  "pk": 3,
+  "fields": {
+    "groupe": "services_digitaux",
+    "titre": "Branding",
+    "slug": "services_digitaux-branding",
+    "ordre": 2
+  }
+},
+{
+  "model": "main.service",
+  "pk": 4,
+  "fields": {
+    "groupe": "services_digitaux",
+    "titre": "Création de contenu",
+    "slug": "services_digitaux-creation-de-contenu",
+    "ordre": 3
+  }
+},
+{
+  "model": "main.service",
+  "pk": 5,
+  "fields": {
+    "groupe": "services_digitaux",
+    "titre": "Communication digitale",
+    "slug": "services_digitaux-communication-digitale",
+    "ordre": 4
+  }
+},
+{
+  "model": "main.service",
+  "pk": 6,
+  "fields": {
+    "groupe": "services_digitaux",
+    "titre": "Supports de communication",
+    "slug": "services_digitaux-supports-de-communication",
+    "ordre": 5
+  }
+},
+{
+  "model": "main.service",
+  "pk": 7,
+  "fields": {
+    "groupe": "gestion_de_projet",
+    "titre": "Élaboration de projets",
+    "slug": "gestion_de_projet-elaboration-de-projets",
+    "ordre": 0
+  }
+},
+{
+  "model": "main.service",
+  "pk": 8,
+  "fields": {
+    "groupe": "gestion_de_projet",
+    "titre": "Planification",
+    "slug": "gestion_de_projet-planification",
+    "ordre": 1
+  }
+},
+{
+  "model": "main.service",
+  "pk": 9,
+  "fields": {
+    "groupe": "gestion_de_projet",
+    "titre": "Coordination",
+    "slug": "gestion_de_projet-coordination",
+    "ordre": 2
+  }
+},
+{
+  "model": "main.service",
+  "pk": 10,
+  "fields": {
+    "groupe": "gestion_de_projet",
+    "titre": "Suivi",
+    "slug": "gestion_de_projet-suivi",
+    "ordre": 3
+  }
+},
+{
+  "model": "main.service",
+  "pk": 11,
+  "fields": {
+    "groupe": "gestion_de_projet",
+    "titre": "Évaluation",
+    "slug": "gestion_de_projet-evaluation",
+    "ordre": 4
+  }
+},
+{
+  "model": "main.service",
+  "pk": 12,
+  "fields": {
+    "groupe": "evenementiel",
+    "titre": "Organisation d'événements",
+    "slug": "evenementiel-organisation-devenements",
+    "ordre": 0
+  }
+},
+{
+  "model": "main.service",
+  "pk": 13,
+  "fields": {
+    "groupe": "evenementiel",
+    "titre": "Planification",
+    "slug": "evenementiel-planification",
+    "ordre": 1
+  }
+},
+{
+  "model": "main.service",
+  "pk": 14,
+  "fields": {
+    "groupe": "evenementiel",
+    "titre": "Coordination générale",
+    "slug": "evenementiel-coordination-generale",
+    "ordre": 2
+  }
+},
+{
+  "model": "main.service",
+  "pk": 15,
+  "fields": {
+    "groupe": "evenementiel",
+    "titre": "Gestion logistique",
+    "slug": "evenementiel-gestion-logistique",
+    "ordre": 3
+  }
+},
+{
+  "model": "main.service",
+  "pk": 16,
+  "fields": {
+    "groupe": "evenementiel",
+    "titre": "Accompagnement",
+    "slug": "evenementiel-accompagnement",
+    "ordre": 4
+  }
+},
+{
+  "model": "main.service",
+  "pk": 17,
+  "fields": {
+    "groupe": "formation",
+    "titre": "Design graphique mobile",
+    "slug": "formation-design-graphique-mobile",
+    "ordre": 0
+  }
+},
+{
+  "model": "main.service",
+  "pk": 18,
+  "fields": {
+    "groupe": "formation",
+    "titre": "Communication digitale",
+    "slug": "formation-communication-digitale",
+    "ordre": 1
+  }
+},
+{
+  "model": "main.service",
+  "pk": 19,
+  "fields": {
+    "groupe": "formation",
+    "titre": "Gestion de projet",
+    "slug": "formation-gestion-de-projet",
+    "ordre": 2
+  }
+},
+{
+  "model": "main.service",
+  "pk": 20,
+  "fields": {
+    "groupe": "formation",
+    "titre": "Leadership",
+    "slug": "formation-leadership",
+    "ordre": 3
+  }
+},
+{
+  "model": "main.service",
+  "pk": 21,
+  "fields": {
+    "groupe": "formation",
+    "titre": "Créativité",
+    "slug": "formation-creativite",
+    "ordre": 4
+  }
+},
+{
+  "model": "main.service",
+  "pk": 22,
+  "fields": {
+    "groupe": "conseil",
+    "titre": "Stratégie de communication",
+    "slug": "conseil-strategie-de-communication",
+    "ordre": 0
+  }
+},
+{
+  "model": "main.service",
+  "pk": 23,
+  "fields": {
+    "groupe": "conseil",
+    "titre": "Branding",
+    "slug": "conseil-branding",
+    "ordre": 1
+  }
+},
+{
+  "model": "main.service",
+  "pk": 24,
+  "fields": {
+    "groupe": "conseil",
+    "titre": "Positionnement",
+    "slug": "conseil-positionnement",
+    "ordre": 2
+  }
+},
+{
+  "model": "main.service",
+  "pk": 25,
+  "fields": {
+    "groupe": "conseil",
+    "titre": "Développement de projets",
+    "slug": "conseil-developpement-de-projets",
+    "ordre": 3
+  }
+},
+{
+  "model": "main.projet",
+  "pk": 1,
+  "fields": {
+    "titre": "Mon projet",
+    "slug": "mon-projet",
+    "nature": "professionnel",
+    "types": [],
+    "banniere": "projets/bannieres/Capture_décran_du_2026-07-30_18-05-27.png",
+    "logo": "",
+    "resume": "La pluie battait contre le vitrail de la vieille bibliothèque de la rue Saint-Antoine. Éléonore feuilletait un ouvrage relié en cuir râpé quand un fin morceau de parchemin en est tombé.",
+    "presentation": "Dessus, une unique phrase écrite d'une encre violette, presque effacée :\r\n\r\n« Si vous lisez ceci, la porte du sous-sol n’est plus verrouillée. Ne descendez pas sans la clé en cuivre. »\r\n\r\nÉléonore leva les yeux. Au fond de la pièce, derrière les étagères de botanique, la porte en bois massif qu'elle avait toujours vue fermée à double tour était... entrouverte d'un centimètre. Et sur le bureau en chêne juste à côté d'elle, quelque chose brillait doucement sous la lampe : une petite clé en cuivre oxydé.",
+    "contexte": "",
+    "objectifs": [],
+    "public_cible": "Jeunes",
+    "resultats": "",
+    "difficultes": "Dessus, une unique phrase écrite d'une encre violette, presque effacée :\r\n\r\n« Si vous lisez ceci, la porte du sous-sol n’est plus verrouillée. Ne descendez pas sans la clé en cuivre. »",
+    "solutions": "Dessus, une unique phrase écrite d'une encre violette, presque effacée :\r\n\r\n« Si vous lisez ceci, la porte du sous-sol n’est plus verrouillée. Ne descendez pas sans la clé en cuivre. »",
+    "mis_en_avant": true,
+    "ordre": 0,
+    "partenaires": []
+  }
+},
+{
+  "model": "main.projetimage",
+  "pk": 1,
+  "fields": {
+    "projet": 1,
+    "contexte": "projet",
+    "image": "galerie/Capture_décran_du_2026-07-27_23-38-42.png",
+    "legende": "legende",
+    "ordre": 0
+  }
+},
+{
+  "model": "main.projetimage",
+  "pk": 2,
+  "fields": {
+    "projet": 1,
+    "contexte": "projet",
+    "image": "galerie/Capture_décran_du_2026-07-27_18-25-52.png",
+    "legende": "ledenge",
+    "ordre": 0
+  }
+},
+{
+  "model": "main.article",
+  "pk": 1,
+  "fields": {
+    "titre": "DÉMO — Premier article de démonstration",
+    "slug": "demo-article-1",
+    "categorie": "leadership",
+    "chapo": "Chapô de démonstration : une ou deux phrases qui résument l’article et testent l’affichage de la carte.",
+    "corps": "Ce texte est un contenu de démonstration. Il sert uniquement à vérifier la lisibilité du corps d’article : longueur de ligne, interlignage, et comportement de la colonne de lecture.\n\nUn deuxième paragraphe permet de contrôler l’espacement vertical entre les blocs, ainsi que le calcul automatique de la durée de lecture, qui se base sur le nombre de mots à raison de deux cents mots par minute.\n\nUn troisième paragraphe complète l’ensemble afin que la fiche article soit testée avec un volume de texte proche d’une publication réelle.",
+    "image": "",
+    "auteur": "Chabel ANANOUNON",
+    "date_publication": "2026-08-03",
+    "commentaires_ouverts": false,
+    "likes": 0,
+    "articles_lies": []
+  }
+},
+{
+  "model": "main.article",
+  "pk": 2,
+  "fields": {
+    "titre": "DÉMO — Deuxième article de démonstration",
+    "slug": "demo-article-2",
+    "categorie": "entrepreneuriat",
+    "chapo": "Chapô de démonstration : une ou deux phrases qui résument l’article et testent l’affichage de la carte.",
+    "corps": "Ce texte est un contenu de démonstration. Il sert uniquement à vérifier la lisibilité du corps d’article : longueur de ligne, interlignage, et comportement de la colonne de lecture.\n\nUn deuxième paragraphe permet de contrôler l’espacement vertical entre les blocs, ainsi que le calcul automatique de la durée de lecture, qui se base sur le nombre de mots à raison de deux cents mots par minute.\n\nUn troisième paragraphe complète l’ensemble afin que la fiche article soit testée avec un volume de texte proche d’une publication réelle.",
+    "image": "",
+    "auteur": "Chabel ANANOUNON",
+    "date_publication": "2026-07-27",
+    "commentaires_ouverts": false,
+    "likes": 0,
+    "articles_lies": []
+  }
+},
+{
+  "model": "main.article",
+  "pk": 3,
+  "fields": {
+    "titre": "DÉMO — Troisième article de démonstration",
+    "slug": "demo-article-3",
+    "categorie": "innovation",
+    "chapo": "Chapô de démonstration : une ou deux phrases qui résument l’article et testent l’affichage de la carte.",
+    "corps": "Ce texte est un contenu de démonstration. Il sert uniquement à vérifier la lisibilité du corps d’article : longueur de ligne, interlignage, et comportement de la colonne de lecture.\n\nUn deuxième paragraphe permet de contrôler l’espacement vertical entre les blocs, ainsi que le calcul automatique de la durée de lecture, qui se base sur le nombre de mots à raison de deux cents mots par minute.\n\nUn troisième paragraphe complète l’ensemble afin que la fiche article soit testée avec un volume de texte proche d’une publication réelle.",
+    "image": "",
+    "auteur": "Chabel ANANOUNON",
+    "date_publication": "2026-07-20",
+    "commentaires_ouverts": false,
+    "likes": 0,
+    "articles_lies": []
+  }
+},
+{
+  "model": "main.article",
+  "pk": 4,
+  "fields": {
+    "titre": "DÉMO — Quatrième article de démonstration",
+    "slug": "demo-article-4",
+    "categorie": "digital",
+    "chapo": "Chapô de démonstration : une ou deux phrases qui résument l’article et testent l’affichage de la carte.",
+    "corps": "Ce texte est un contenu de démonstration. Il sert uniquement à vérifier la lisibilité du corps d’article : longueur de ligne, interlignage, et comportement de la colonne de lecture.\n\nUn deuxième paragraphe permet de contrôler l’espacement vertical entre les blocs, ainsi que le calcul automatique de la durée de lecture, qui se base sur le nombre de mots à raison de deux cents mots par minute.\n\nUn troisième paragraphe complète l’ensemble afin que la fiche article soit testée avec un volume de texte proche d’une publication réelle.",
+    "image": "",
+    "auteur": "Chabel ANANOUNON",
+    "date_publication": "2026-07-13",
+    "commentaires_ouverts": false,
+    "likes": 0,
+    "articles_lies": []
+  }
+},
+{
+  "model": "main.distinction",
+  "pk": 1,
+  "fields": {
+    "titre": "DÉMO — Distinction de démonstration",
+    "structure": "Organisme de démonstration",
+    "annee": 2024,
+    "description": "Entrée de démonstration servant à valider l’affichage des distinctions. Aucune distinction réelle n’est décrite ici."
+  }
+},
+{
+  "model": "main.distinction",
+  "pk": 2,
+  "fields": {
+    "titre": "DÉMO — Reconnaissance de démonstration",
+    "structure": "Institution de démonstration",
+    "annee": 2023,
+    "description": "Entrée de démonstration servant à valider l’affichage des distinctions. Aucune distinction réelle n’est décrite ici."
+  }
+},
+{
+  "model": "main.distinction",
+  "pk": 3,
+  "fields": {
+    "titre": "DÉMO — Mention de démonstration",
+    "structure": "Programme de démonstration",
+    "annee": 2022,
+    "description": "Entrée de démonstration servant à valider l’affichage des distinctions. Aucune distinction réelle n’est décrite ici."
+  }
+},
+{
+  "model": "main.stats",
+  "pk": 1,
+  "fields": {
+    "projets_realises": 50,
+    "evenements_organises": 15,
+    "personnes_formees": 100,
+    "annees_experience": 6,
+    "partenaires": 10,
+    "distinctions": 3,
+    "creations_graphiques": null,
+    "conferences": null
+  }
+}
+]

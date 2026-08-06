@@ -1,0 +1,69 @@
+.projet-detail-etat {
+  padding-block: var(--space-24);
+  font-family: var(--font-mono);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.projet-detail-banniere {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  border-bottom: var(--bd) solid var(--bordure);
+  overflow: hidden;
+}
+.projet-detail-banniere img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.projet-detail-header {
+  padding-block: var(--space-10) var(--space-8);
+}
+.projet-detail-logo {
+  height: 3rem;
+  margin-bottom: var(--space-4);
+}
+.projet-detail-header h1 {
+  font: 800 var(--fs-h2) var(--font-display);
+  line-height: .95;
+}
+.projet-detail-resume {
+  max-width: 44rem;
+  margin-top: var(--space-4);
+  font-size: var(--fs-body-lg);
+}
+
+.projet-detail article section,
+.projet-detail > .container > section {
+  max-width: 44rem;
+  padding-block: var(--space-8);
+  border-top: var(--trait) solid var(--bordure);
+}
+.projet-detail section h2 {
+  font: 600 var(--fs-mono-lg) var(--font-mono);
+  letter-spacing: .08em;
+  margin-bottom: var(--space-4);
+  color: var(--cuivre);
+}
+
+.projet-detail-partenaires {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  list-style: none;
+}
+.projet-detail-partenaires img {
+  height: 2.5rem;
+}
+
+.projet-detail-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-block: var(--space-10) var(--space-16);
+  border-top: var(--bd) solid var(--graphite);
+  font-family: var(--font-mono);
+}

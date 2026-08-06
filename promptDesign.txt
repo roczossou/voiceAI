@@ -1,0 +1,848 @@
+# KIT DE PROMPTS — Site officiel Chabel ANANOUNON (V2, périmètre complet)
+
+Ce document remplace le prompt one-page précédent. Il contient :
+**A.** la décision d'architecture · **B.** le phasage · **C.** le prompt maître
+(à coller en tête de **chaque** session) · **D.** les prompts de page ·
+**E.** le modèle de page réutilisable · **F.** le modèle de données du back-office ·
+**G.** ce que Chabel doit fournir avant de générer quoi que ce soit.
+
+---
+
+# A. DÉCISION D'ARCHITECTURE
+
+## A.1 Ce que le cahier des charges impose techniquement
+
+Trois exigences rendent le fichier HTML unique impossible :
+
+1. **Back-office** (gestion des pages, articles, projets, médias, témoignages,
+   statistiques, formulaires, téléchargements, utilisateurs).
+2. **Statistiques et témoignages administrables** — donc du contenu séparé du code.
+3. **Blog comme pilier SEO** — donc des URLs propres, des sitemaps, des pages
+   indexables individuellement.
+
+Un site statique mono-fichier ne peut ni l'un ni l'autre.
+
+## A.2 Trois options, et celle à retenir
+
+| Option | Ce que ça donne | Coût réel | Verdict |
+|---|---|---|---|
+| **1. WordPress + thème sur mesure** | Back-office complet immédiat, blog natif, médias, rôles utilisateurs, extensions anti-spam, multilingue via Polylang | Hébergement à maintenir, performances à surveiller, thème à coder | **Recommandé.** C'est la seule option où le back-office demandé existe le jour 1 sans le construire |
+| 2. Astro + Decap/Sanity | Performances excellentes, code propre | Il faut installer et configurer le CMS, former Chabel à un outil moins familier | Bon si un développeur assure la maintenance |
+| 3. HTML statique multi-fichiers | Rapide à produire | **Aucun back-office** : chaque modification de chiffre passe par le code | À refuser — contredit le cahier des charges |
+
+**Conséquence sur les prompts** : le balisage, le CSS et le JS décrits en partie C et D
+sont **identiques dans les trois cas**. Générer d'abord les pages en HTML/CSS/JS purs
+(une page = un fichier), puis les découper en template WordPress
+(`header.php`, `footer.php`, `front-page.php`, `single-projet.php`, etc.) en
+remplaçant les contenus par les champs listés en partie F. Ne jamais demander à un
+modèle de produire « le thème complet » d'un coup : page par page.
+
+## A.3 Consolidation : 18 entrées → 12 URLs
+
+18 pages, c'est un menu illisible et six pages qui resteront vides pendant un an.
+À fusionner :
+
+| Cahier des charges | Décision |
+|---|---|
+| Compétences | **Section** de la page Parcours (ancre `#competences`) |
+| Domaines d'expertise | Page hub conservée, avec 7 sous-pages générées par un même template |
+| Réalisations + Projets | **Une seule** page `/projets` avec filtres (professionnel / entrepreneurial / institutionnel) — les deux rubriques disent la même chose |
+| Galerie / Portfolio | **Onglet visuel** de `/projets`, pas une page séparée |
+| Témoignages | Section sur Accueil + bloc en pied de chaque fiche projet ; page dédiée seulement si ≥ 12 témoignages réels |
+| Prendre rendez-vous | Fusionné avec Contact en une page `/contact` à deux onglets : *Message* / *Rendez-vous* |
+
+URLs finales : `/` · `/a-propos` · `/parcours` · `/expertise` (+ 7 sous-pages) ·
+`/services` · `/projets` · `/androcrea` · `/digits-crea-awards` ·
+`/leadership` · `/blog` · `/ressources` · `/medias` · `/contact`.
+
+---
+
+# B. PHASAGE (à imposer, sinon le site ne sortira jamais)
+
+**V1 — mise en ligne (8 pages).** `/` · `/a-propos` · `/parcours` · `/services` ·
+`/projets` · `/androcrea` · `/digits-crea-awards` · `/contact`.
+Suffisant pour les cinq parcours utilisateurs du cahier des charges.
+
+**V2 — contenu et référencement.** `/blog` + article type · `/ressources` ·
+`/medias` · `/leadership` · `/expertise` + sous-pages · page Témoignages si le
+volume le justifie.
+
+**V3 — évolutions.** Système de candidature et de vote des DIGIT'S CRÉA AWARDS ·
+version anglaise · espace coaching · recherche globale indexée.
+
+Le mode sombre, le bouton WhatsApp, le retour en haut, le téléchargement du CV et la
+newsletter sont dans le **prompt maître**, donc présents dès la V1 sur toutes les pages.
+
+---
+
+# C. PROMPT MAÎTRE — à coller en tête de chaque session de génération
+
+> Tu es développeur front-end créatif expert. Tu construis **une page** du site
+> officiel de Chabel ANANOUNON. Le système de design ci-dessous est **figé** :
+> aucune couleur, police, forme, durée ou valeur ne peut être modifiée ou complétée
+> par toi. Tu produis du HTML/CSS/JS purs, une page = un fichier. Le CSS et le JS
+> partagés vont dans `assets/site.css` et `assets/site.js` — identiques d'une page à
+> l'autre, à générer une seule fois et à ne plus modifier ensuite sans que je le
+> demande.
+
+## C.1 Concept directeur (ne pas réinterpréter)
+
+Signature : **« Je transforme le potentiel en puissance. »** C'est du vocabulaire
+électrique, et Chabel ANANOUNON est technicien supérieur en maintenance industrielle.
+Le site est composé comme un **schéma d'installation** : fond papier millimétré,
+plaques signalétiques, borniers, voyants d'état, annotations en monospace, cotes de
+dessin technique. L'élément signature est **la ligne de puissance** : un conducteur
+SVG continu, en segments strictement horizontaux et verticaux (jamais de courbe,
+jamais de diagonale), qui descend chaque page, dérive vers chaque section et ferme un
+contact en s'allumant. Sur la page Parcours, ce conducteur **est** la timeline.
+
+## C.2 Librairies (aucune autre)
+
+```html
+<script type="importmap">
+{ "imports": {
+  "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm",
+  "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm",
+  "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js/+esm"
+}}
+</script>
+```
+
+```js
+gsap.registerPlugin(ScrollTrigger);
+const lenis = new Lenis({ smoothWheel: true, lerp: 0.09 });
+lenis.on("scroll", ScrollTrigger.update);
+gsap.ticker.add((t) => lenis.raf(t * 1000));
+gsap.ticker.lagSmoothing(0);
+```
+
+`lock()` / `unlock()` : `lenis.stop()` + `html { position:relative; overflow:hidden;
+height:100% }` pour le menu, la modale, la lightbox et la recherche.
+DrawSVG étant payant, tout tracé SVG passe par `stroke-dasharray` /
+`stroke-dashoffset` calculés depuis `path.getTotalLength()`.
+
+## C.3 Polices
+
+```
+https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Big+Shoulders+Stencil+Display:wght@700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap
+```
+
+| Rôle | Famille | Réglages |
+|---|---|---|
+| Display | `Big Shoulders Display` 800 | uppercase, `letter-spacing:.005em`, `line-height:.84` |
+| Texte | `Instrument Sans` 400/500/600 | `line-height:1.6` |
+| Technique | `IBM Plex Mono` 400/600 | uppercase, `letter-spacing:.1em` — repères, cotes, dates, libellés |
+| Pochoir | `Big Shoulders Stencil Display` 700 | **DIGIT'S CRÉA AWARDS uniquement, 2 occurrences max par page** |
+
+Échelle : `--fs-mono:.6875rem` · `--fs-mono-lg:.8125rem` · `--fs-body:1.0625rem` ·
+`--fs-body-lg:1.25rem` · `--fs-h3:1.75rem` · `--fs-h2:clamp(2.25rem,4.2vw,3.75rem)` ·
+`--fs-h1:clamp(2.75rem,7vw,6rem)` · `--fs-giant:clamp(3.5rem,8vw,8rem)`.
+(La page d'accueil seule utilise `--fs-h1:13vw`.)
+
+## C.4 Palette — thème clair et thème sombre
+
+```css
+:root{
+  --calque:#E4EAEE; --calque-clair:#F2F5F7; --bleu-atelier:#16324F;
+  --bleu-trait:#2B5C86; --graphite:#14181C; --jaune-signal:#F2C230;
+  --cuivre:#B96B3C; --led-vert:#35C275; --rouge-coupure:#D93A2B; --blanc:#FFFFFF;
+  --r-pill:62.5rem; --bd:2px; --trait:1px;
+}
+[data-theme="dark"]{
+  --calque:#101418;        /* fond dominant : atelier de nuit */
+  --calque-clair:#181D23;  /* plaques, cartouches */
+  --bleu-atelier:#0C1B2B;  /* aplats massifs, plus profond */
+  --bleu-trait:#4E86B8;    /* traits de schéma, plus clair pour rester lisible */
+  --graphite:#E4EAEE;      /* INVERSION : le graphite devient la couleur de texte */
+  --cuivre:#D0865A;        /* remonté pour tenir le contraste sur fond sombre */
+  /* --jaune-signal, --led-vert, --rouge-coupure : inchangés */
+}
+```
+
+**Règles fermes**
+- Aucun `linear-gradient` décoratif, aucun `box-shadow` flou, aucun
+  `backdrop-filter`, aucun néon, aucun glassmorphism, dans les deux thèmes.
+- `--jaune-signal` ≤ **3 % de la surface visible** d'un écran. Trois usages
+  seulement : conducteur sous tension, état actif d'un contrôle, action principale.
+  Jamais en fond de bloc, jamais en couleur de texte courant, **jamais comme texte
+  sur `--calque` ou `--calque-clair`** (contraste insuffisant).
+- `--cuivre` : filets `1px` et conducteur uniquement. Jamais en aplat ni en titre.
+- Motif papier millimétré, déclaration unique, réservée au hero, au Parcours et au
+  bloc Contact :
+  ```css
+  --grille:
+    repeating-linear-gradient(0deg,  rgba(43,92,134,.20) 0 1px, transparent 1px 2.5rem),
+    repeating-linear-gradient(90deg, rgba(43,92,134,.20) 0 1px, transparent 1px 2.5rem),
+    repeating-linear-gradient(0deg,  rgba(43,92,134,.09) 0 1px, transparent 1px .5rem),
+    repeating-linear-gradient(90deg, rgba(43,92,134,.09) 0 1px, transparent 1px .5rem);
+  ```
+  En thème sombre, les deux valeurs d'alpha passent à `.16` et `.07`.
+
+## C.5 Formes
+
+`border-radius:0` sur **tout**. Deux dérogations : `var(--r-pill)` sur les voyants
+(disques ≤1rem) et sur les boutons d'action principaux. Aucune valeur intermédiaire.
+Filets : `var(--trait) solid var(--cuivre)` (schéma) ou
+`var(--bd) solid var(--graphite)` (cadres structurels). Rien d'autre.
+
+## C.6 Grille rem adaptative
+
+```css
+html{ font-size:16px }
+@media (max-width:1920px){ html{ font-size:.833333vw } }
+@media (max-width:1440px){ html{ font-size:1.111111vw } }
+@media (max-width:1024px){ html{ font-size:1.5625vw   } }
+@media (max-width:640px) { html{ font-size:4.444444vw } }
+```
+
+```js
+const FONT_BASE=16, BASE_W=1920, COEF=.6666;
+const reduction=((BASE_W-innerWidth)/BASE_W)*100*COEF;
+const size=FONT_BASE-(FONT_BASE*reduction)/100;
+if(size>FONT_BASE) html.style.fontSize=size+"px"; else html.style.removeProperty("font-size");
+```
+
+Grille de contenu : 12 colonnes, gouttière `1.5rem`, max `84rem`, centrée, padding
+latéral `1.5rem` / `2.5rem` (≥640px) / `4.5rem` (≥1440px). **La colonne 1 est
+réservée au conducteur** : le texte commence en colonne 2 au-delà de 1024px.
+Espacement : `2`=.5rem `3`=.75rem `4`=1rem `5`=1.25rem `6`=1.5rem `8`=2rem
+`10`=2.5rem `12`=3rem `14`=3.5rem `16`=4rem `20`=5rem `24`=6rem `32`=8rem.
+Ruptures : sm 640 · md 768 · lg 1024 · xl 1440.
+
+## C.7 Primitives de mouvement
+
+Ressort minimal, une seule boucle `gsap.ticker` :
+`v += (-tension*(x-target) - friction*v)*dt ; x += v*dt` (`dt` clampé à 1/30 s).
+Easings : `easeOutExpo` (masques), `easeOutQuart` (compteurs, fondus),
+`easeInOutCubic` (volets, tracés, ouvertures).
+
+1. **`revealMask`** — mot ou ligne dans une boîte `overflow:hidden;
+   padding-bottom:.14em` ; span interne `translateY(112%); opacity:0` → `0; 1`.
+   **880ms, easeOutExpo, stagger 80ms.** Rejouable au changement de contenu.
+2. **`revealRise`** — `{opacity:0,y:26}` → `{opacity:1,y:0}`, ressort
+   `{tension:195,friction:26}`, **une fois**, `IntersectionObserver threshold:.2`,
+   `delayIn` optionnel.
+3. **`revealTrace`** — `scaleX(0)` → `scaleX(1)`, `transform-origin:left`,
+   **520ms easeInOutCubic**. Bordures, dérivations, séparateurs.
+4. **`hoverSpring`** — enter → `to`, leave → `from`. **Inerte ≤768px.**
+5. **`countUp`** — **1200ms easeOutQuart, stagger 90ms**, `threshold:.4`.
+6. **`parallax`** — position du déclencheur (haut=bas d'écran → 0) mappée sur
+   `from`→`to` chaque frame. Réservée aux calques `--grille` : `y:0% → 6%`.
+
+## C.8 Composants partagés (identiques sur toutes les pages)
+
+### Header collant
+`position:fixed; inset-inline:0; top:0; z-index:60; background:var(--calque);
+border-bottom:var(--trait) solid var(--cuivre); height:4.5rem` ; **après 120px de
+scroll**, `height:3.5rem` en 220ms `easeInOutCubic` (classe `.is-compact`), et le
+monogramme seul reste à gauche. Contenu : monogramme (carré `2rem`,
+`background:var(--graphite); color:var(--calque)`, **CA** en Big Shoulders `1rem`) +
+nom en mono `letter-spacing:.18em` ; au centre `PARCOURS` / `PROJETS` / `SERVICES`
+(≥1024px) ; à droite le sélecteur de thème, le bouton **« ME CONTACTER »**
+(`background:var(--jaune-signal); color:var(--graphite);
+padding:.75rem 1.25rem; border-radius:var(--r-pill)`) et le bouton menu
+(carré `2.5rem`, `border:var(--bd) solid var(--graphite)`, trois barres
+`1rem × 1px`, gap `4px`).
+La page courante est signalée dans le menu par un carré `.375rem --jaune-signal`
+devant son libellé + `aria-current="page"`.
+
+### Menu plein écran (18 entrées, donc groupées)
+Overlay `position:fixed; inset:0; z-index:80; background:var(--graphite);
+color:var(--calque)`, ouverture **par trois volets horizontaux** descendants,
+`translateY(-100%)`→`0`, stagger 80ms, **520ms easeInOutCubic** ; fermeture inverse.
+Quatre colonnes (`grid-template-columns:repeat(4,1fr); gap:2.5rem`), chaque colonne
+coiffée d'un libellé mono `--fs-mono` `opacity:.5` et d'un filet
+`var(--trait) solid rgba(228,234,238,.3)` :
+
+| PROFIL | ACTIVITÉ | INITIATIVES | CONTENUS |
+|---|---|---|---|
+| À propos | Services | AndroCréa | Blog |
+| Mon parcours | Projets & réalisations | DIGIT'S CRÉA AWARDS | Ressources |
+| Domaines d'expertise | Galerie | Leadership & engagement | Médias |
+| Télécharger le CV | Prendre rendez-vous | — | Témoignages |
+
+Liens en Big Shoulders `clamp(1.25rem,2.2vw,1.75rem)`, `revealMask` stagger 45ms
+après les volets. Survol : les autres liens à `opacity:.35` (150ms), le survolé
+`x:1rem`. En pied d'overlay : coordonnées + réseaux en mono. Fermeture : bouton
+carré `2.5rem` bordé, croix `<path d="M6 6l12 12M18 6L6 18"/>` `stroke-width:2`,
+`Escape`, focus piégé, focus rendu au déclencheur.
+
+### Sélecteur de thème
+Bouton carré `2.5rem; border:var(--bd) solid var(--graphite)`, contenant **deux
+carrés de `.5rem`** côte à côte (l'un `--calque`, l'autre `--graphite`) dont
+l'ordre s'inverse au basculement (200ms `easeInOutCubic`). Pas d'icône soleil/lune.
+`aria-pressed`, libellé `aria-label="Basculer en thème sombre / clair"`.
+Persistance `localStorage` clé `ca-theme`, valeurs `light|dark`, initialisation
+**avant le premier paint** via un script inline en `<head>` lisant
+`prefers-color-scheme` en défaut.
+
+### Conducteur de page
+`<svg id="conducteur">` en `position:absolute; top:0; left:0; width:100%;
+height:100%; pointer-events:none; z-index:5; overflow:visible`, un `<path>` unique
+en segments orthogonaux dans la gouttière (`x=3.5rem` ≥1024px, `x=1rem` en dessous),
+avec une dérivation de `4rem` et un **bornier** (carré `.5rem`) par section.
+Deux tracés superposés : repos `stroke:var(--cuivre); stroke-width:1.5; opacity:.55` ;
+sous tension `stroke:var(--jaune-signal); stroke-width:2.5`, révélé par
+`stroke-dashoffset` en `scrub:.6` sur la hauteur du document. Bornier atteint →
+`fill:var(--jaune-signal)` en 160ms + repère mono à `opacity:1`. Les borniers sont
+des `<button aria-label="Aller à la section …">` (`pointer-events:auto`) →
+`lenis.scrollTo(section,{duration:1.1})`. Chemin recalculé au resize (débounce 120ms).
+≤768px : simple ligne `1px` à `left:.75rem`, sans dérivations ni repères.
+
+### Cartouche de section
+Ouvre **chaque** section : `display:flex; gap:1rem; align-items:baseline;
+border-top:var(--bd) solid var(--graphite); padding-top:1rem; margin-bottom:3.5rem`
+— repère mono (`R01`…), tiret cadratin, nom de section en mono `--fs-mono-lg`.
+`revealTrace` sur la bordure puis `revealMask` sur le libellé.
+
+### Boutons
+- **Principal** : `background:var(--jaune-signal); color:var(--graphite);
+  padding:1rem 2rem; border-radius:var(--r-pill); font:600 var(--fs-mono-lg) "IBM Plex Mono"`.
+  `hoverSpring {scale:1}→{scale:1.03}`, `{tension:300,friction:18}`.
+- **Secondaire** : `border:var(--bd) solid var(--graphite); padding:1rem 2rem;
+  background:transparent`. Survol : remplissage `--graphite` par calque
+  `scaleX(0)→1` origine gauche, **190ms cubic-bezier(.16,1,.3,1)**, texte `--calque`.
+- **Tertiaire (lien)** : mono + flèche SVG `1.25rem`
+  (`viewBox 0 0 24 24; fill:none; stroke:currentColor; stroke-width:1.8;
+  stroke-linecap:round; <path d="M5 12h14M13 6l6 6-6 6"/>`), `hoverSpring`
+  `{x:0}→{x:8}`, `{tension:300,friction:20}`.
+
+### Carte
+`background:var(--calque-clair); border:var(--bd) solid var(--graphite);
+padding:1.5rem`. Survol : `border-color:var(--jaune-signal)` en 120ms ; si la carte
+contient un visuel, celui-ci passe à `scale:1.03` (`hoverSpring
+{tension:240,friction:26}`, `overflow:hidden` sur son conteneur). Aucun
+`translateY`, aucune ombre.
+
+### Utilitaires flottants
+- **WhatsApp** : `position:fixed; bottom:1.25rem; right:1.25rem; z-index:70;
+  size:3.25rem; border-radius:var(--r-pill); background:var(--led-vert);
+  color:var(--graphite)`, glyphe SVG WhatsApp `1.5rem`, `aria-label="Écrire sur
+  WhatsApp"`, `href="https://wa.me/[]"`, `target="_blank" rel="noopener"`.
+  Entrée `revealRise` après 1200ms de présence sur la page.
+- **Retour en haut** : `position:fixed; bottom:1.25rem; right:5.25rem; z-index:70;`
+  carré `2.5rem; border:var(--bd) solid var(--graphite);
+  background:var(--calque)`, flèche haut `<path d="M12 19V5M6 11l6-6 6 6"/>`.
+  Apparaît au-delà de **1.5 × hauteur du viewport** (`opacity`+`y:8` en 200ms) →
+  `lenis.scrollTo(0,{duration:1.2})`.
+- **Recherche globale** : déclenchée par `Ctrl/⌘+K` et par une entrée du menu.
+  Overlay `background:rgba(20,24,28,.72)` + panneau `width:min(42rem,92vw);
+  background:var(--calque); border:var(--bd) solid var(--graphite)`, champ
+  `border-bottom:var(--bd) solid var(--graphite); padding:1rem 0; font-size:var(--fs-body-lg)`.
+  Résultats groupés par type (PAGE / PROJET / ARTICLE / RESSOURCE), libellé de groupe
+  en mono, navigation flèches + Entrée, `role="combobox"` + `aria-activedescendant`.
+  **V1 : index statique JSON généré à la main** (`assets/search-index.json`) ;
+  V3 : index côté serveur.
+- **Newsletter** : bande `background:var(--bleu-atelier); color:var(--calque);
+  padding:4rem 0` avant le footer, une phrase + champ e-mail inline + bouton
+  principal **« JE M'INSCRIS »**. `aria-live="polite"` pour le retour.
+
+### Pied de page
+`background:var(--graphite); color:var(--calque); padding:5rem 0 2rem`, quatre
+colonnes (mêmes groupes que le menu) + une colonne coordonnées, filets
+`rgba(228,234,238,.3)`. Ligne basse `border-top:var(--trait)`,
+`display:flex; justify-content:space-between`, mono `--fs-mono` :
+**« CHABEL ANANOUNON · COVÈ · RÉPUBLIQUE DU BÉNIN »** / **« 2026 »** /
+**« JE TRANSFORME LE POTENTIEL EN PUISSANCE »**. Tout en bas, une **cote de dessin**
+(trait `1px --cuivre` bordé de deux traits verticaux de `.5rem`, libellé centré sur
+fond opaque) portant **« FIN DU SCHÉMA »** — dernier bornier du conducteur.
+
+## C.9 SEO, méta, données structurées
+
+`<html lang="fr" data-theme>` · un seul `<h1>` par page · hiérarchie `h2`/`h3`
+continue · `<title>` de forme `[Page] — Chabel ANANOUNON | Bénin` ·
+`meta description` ≤155 caractères, propre à chaque page · Open Graph + Twitter Card
+(`og:image` 1200×630 par page) · `canonical` · fil d'Ariane visible (mono
+`--fs-mono`, séparateur `/`) **et** `schema.org/BreadcrumbList` ·
+`schema.org/Person` sur `/` et `/a-propos` (`name`, `nationality:BJ`, `jobTitle`,
+`address` Covè/Zou/Bénin, `alumniOf`, `knowsAbout`, `worksFor`→AndroCréa, `sameAs`) ·
+`schema.org/Article` sur les articles · `schema.org/Service` sur `/services` ·
+`sitemap.xml` + `robots.txt` · `hreflang="fr"` et `x-default` posés dès la V1 pour
+la future version anglaise (ne pas produire l'anglais).
+
+## C.10 Accessibilité et performance (plancher non négociable)
+
+- `prefers-reduced-motion: reduce` → aucune parallaxe, `ScrollTrigger` non
+  enregistré (donc aucun épinglage), révélations remplacées par l'état final,
+  rotation des titres du hero remplacée par la liste statique, compteurs affichant la
+  valeur finale, conducteur affiché entièrement sous tension, marquees arrêtés.
+- Lien d'évitement « Aller au contenu » premier élément focusable.
+- Focus visible partout : `:focus-visible { outline:2px solid var(--jaune-signal);
+  outline-offset:3px }` — et sur fond jaune, l'outline passe à `var(--graphite)`.
+- Contraste vérifié dans **les deux thèmes**. Aucun texte jaune sur fond clair.
+- Images : `loading="lazy"` sauf le portrait du hero (`fetchpriority="high"`),
+  `width`/`height` déclarés, `alt` descriptifs. Fichier manquant → aplat
+  `--calque-clair` encadré `--bd` avec le `alt` en mono `.7rem` centré, jamais une
+  icône de placeholder.
+- Vidéos : `<video>` natif avec `poster`, jamais d'autoplay sonore ; embeds YouTube
+  en `loading="lazy"` derrière une vignette cliquable (pas d'iframe au chargement).
+- PDF : visionneuse = `<object type="application/pdf">` avec, en repli, un lien de
+  téléchargement direct. Ne pas embarquer pdf.js.
+- Une seule boucle rAF. `will-change:transform` uniquement sur les pistes défilantes,
+  les cartes empilées et les calques `--grille`. Objectif Lighthouse ≥ 90 sur les
+  quatre axes, y compris en thème sombre.
+
+## C.11 Interdits (relire avant chaque livraison)
+
+Dégradés de fond, ombres floues, `backdrop-filter`, néon, glassmorphism · tout
+`border-radius` hors 0 et `--r-pill` sur voyants et boutons principaux · `--cuivre`
+ou `--jaune-signal` en aplat de bloc · fond crème `#F4F1EA` + serif contrasté +
+accent terracotta · fond noir avec un unique accent vert acide comme direction ·
+**barres de pourcentage de compétences** (le cahier des charges les écarte
+explicitement au profit de descriptions qualitatives) · **tout chiffre, date, nom,
+témoignage, logo partenaire ou distinction non fourni** : utiliser les valeurs
+`` définies en partie G · `opacity:0→1` comme seule révélation ·
+`translateY(40px)` appliqué indistinctement · emojis, icônes décoratives de
+bibliothèque, illustrations 3D · titres « Bienvenue sur mon site », « Mes services »,
+« À propos de moi ».
+
+## C.12 Méthode imposée à chaque page
+
+1. Écrire en commentaire de tête un plan de 8 lignes : sections, repères `R…`,
+   composants partagés réutilisés, ce qui est spécifique à cette page.
+2. Relire : toute partie qui conviendrait à n'importe quel site personnel est
+   corrigée, et le changement est noté en commentaire.
+3. Coder la page en suivant le plan.
+4. Vérifier : 360px sans débordement · focus visible sur tous les interactifs ·
+   `reduce-motion` intact · aucun rayon interdit · thème sombre lisible · zéro
+   contenu inventé · conducteur recalculé au resize.
+5. Retirer **un** effet décoratif inutile et dire lequel.
+
+---
+
+# D. PROMPTS DE PAGE
+
+## D.1 `/` — Accueil
+
+Sections et repères : `R00` Hero · `R01` Indicateurs · `R02` Présentation rapide ·
+`R03` Domaines · `R04` Projets en avant · `R05` Témoignages · `R06` Blog récent ·
+`R07` Appel à l'action · Newsletter · Footer.
+
+**R00 — Hero**, `min-height:100svh; padding-top:4.5rem; background:var(--calque)`,
+calque `--grille` parallaxé. Grille 12 colonnes :
+- Colonnes 2–7 : `<h1>` **CHABEL / ANANOUNON** en `--fs-h1:13vw`, Big Shoulders 800,
+  `line-height:.82`. Le mot ANANOUNON reçoit un soulignement plein : `<span
+  absolute; left:0; bottom:.12em; height:.09em; width:100%;
+  background:var(--jaune-signal); z-index:-1>` révélé par `revealTrace` après le mot.
+  `revealMask` mot par mot, **stagger 130ms, 1000ms, easeOutExpo**.
+- Sous le titre, le **bandeau de titres rotatifs** : hauteur fixe `2.75rem`,
+  `overflow:hidden`, précédé d'un carré `.375rem --jaune-signal`. Le titre courant
+  sort par `revealMask` inversé (`y:0`→`y:-112%`, 460ms) et le suivant entre
+  (`y:112%`→`0`, 460ms) ; **maintien 2200ms** par titre ; boucle infinie.
+  Séquence exacte, dans cet ordre : **Entrepreneur · Leader Jeunesse · Gestionnaire
+  de Projet · Planificateur d'Événements · Fondateur d'AndroCréa · Promoteur des
+  DIGIT'S CRÉA AWARDS · Créatif Digital · Formateur · Technicien Supérieur en
+  Maintenance Industrielle**. Typo : Big Shoulders `2rem`, `color:var(--bleu-atelier)`.
+  A11y : conteneur `aria-hidden="true"` + une liste `sr-only` contenant les neuf
+  titres en clair. En reduce-motion, la rotation est remplacée par les neuf titres
+  en bornes statiques (`border:var(--trait) solid var(--cuivre); padding:.5rem .875rem`).
+- Le **slogan** : « Je transforme le potentiel en puissance. » Instrument Sans 600
+  `--fs-body-lg`, `max-width:26rem`, `margin-top:1.5rem`.
+- Les **quatre boutons**, `display:flex; flex-wrap:wrap; gap:.75rem; margin-top:2rem` :
+  principal **« DÉCOUVRIR MON PARCOURS »** (`/parcours`) · secondaire **« VOIR MES
+  PROJETS »** (`/projets`) · secondaire **« TÉLÉCHARGER MON CV »**
+  (`cv/cv-chabel-ananounon.pdf`, `download`, avec une borne mono `PDF ·  Ko`) ·
+  tertiaire **« ME CONTACTER »** (ouvre la modale).
+- Colonnes 9–12 : le **portrait** `img/portrait.webp` en `aspect-ratio:3/4;
+  border:var(--bd) solid var(--graphite); object-fit:cover`, alt « Chabel ANANOUNON
+  de face, en tenue professionnelle », `fetchpriority="high"`. En surimpression basse,
+  une **plaque signalétique** `background:var(--calque-clair);
+  border:var(--bd) solid var(--graphite); margin:-3rem 1rem 0; padding:1.25rem` :
+  lignes libellé mono / valeur, séparées par `var(--trait) solid var(--cuivre)` —
+  `NATIONALITÉ` Béninoise · `DÉPARTEMENT` Zou · `MANDAT` 1er Adjoint au Maire des
+  Jeunes de Covè · `STATUT` Disponible pour collaboration (précédé d'un voyant
+  `--led-vert` pulsant, cycle 2200ms, supprimé en reduce-motion).
+- Bas de section : **cote de dessin** portant **« COVÈ · ZOU · BÉNIN »**.
+- `arrière-plan animé discret` du cahier des charges = **le calque `--grille`
+  parallaxé + le conducteur qui se met sous tension**. Rien d'autre : pas de
+  particules, pas de blobs, pas de vidéo de fond.
+
+**R01 — Indicateurs.** `background:var(--bleu-atelier); color:var(--calque);
+padding:5rem 0`. Six items en `grid-template-columns:repeat(6,1fr)`, séparés par
+`border-left:var(--trait) solid rgba(228,234,238,.35)` (items 2 à 6),
+`padding-inline:1.5rem`. Chaque item : valeur Big Shoulders `--fs-giant` puis libellé
+mono `--fs-mono` `opacity:.75`. `countUp` **stagger 90ms**. Libellés :
+`PROJETS RÉALISÉS` · `ÉVÉNEMENTS ORGANISÉS` · `PERSONNES FORMÉES` ·
+`ANNÉES D'EXPÉRIENCE` · `PARTENAIRES` · `DISTINCTIONS`.
+**Valeurs = champs de back-office** (`stats.*`, partie F). Tant qu'elles ne sont pas
+fournies, afficher `—` et **ne pas animer**. Aucune valeur inventée.
+≤1024px : 3 colonnes. ≤640px : 2 colonnes.
+
+**R02 — Présentation rapide.** `background:var(--calque); padding:7rem 0`.
+Colonnes 2–8 : deux paragraphes (extraits stricts du dossier, non réécrits) —
+« Je suis Chabel ANANOUNON, entrepreneur, leader jeunesse, gestionnaire de projet,
+planificateur d'événements et créatif digital béninois. […] » puis « Convaincu que la
+jeunesse africaine constitue la plus grande richesse du continent […] ».
+`revealMask` par ligne, stagger 65ms. Puis un lien tertiaire **« LIRE MON HISTOIRE
+COMPLÈTE »** → `/a-propos`.
+
+**R03 — Domaines.** `background:var(--calque-clair);
+border-block:var(--trait) solid var(--cuivre); padding:7rem 0`.
+`<h2>` **« DIX DOMAINES, UNE MÊME EXIGENCE »**. Grille
+`repeat(5,1fr)`, bordures `--trait --cuivre` en `border-top`+`border-left` sur le
+conteneur et `border-right`+`border-bottom` sur les cellules, cellules `min-height:9rem;
+padding:1.75rem 1.25rem`, numéro mono en haut, libellé Big Shoulders `1.5rem` en bas.
+Survol : `background:var(--bleu-atelier)`, texte `--calque`, numéro `--jaune-signal`,
+**110ms linéaire**, aucun `transform`. `revealRise delayIn = i×55ms`.
+Chaque cellule est un lien vers `/expertise/[slug]`. Libellés et slugs :
+LEADERSHIP `leadership` · GESTION DE PROJET `gestion-de-projet` · ÉVÉNEMENTIEL
+`evenementiel` · DIGITAL `digital` · ENTREPRENEURIAT `entrepreneuriat` · FORMATION
+`formation` · INNOVATION `innovation` · COMMUNICATION `communication` ·
+DÉVELOPPEMENT PERSONNEL `developpement-personnel` · MAINTENANCE INDUSTRIELLE
+`maintenance-industrielle`.
+
+**R04 — Projets en avant.** `background:var(--calque); padding:7rem 0`.
+Trois cartes `grid-template-columns:repeat(3,1fr); gap:1rem`, composant Carte, chacune :
+visuel `aspect-ratio:16/10` bordé bas `--bd`, corps `padding:1.5rem` avec bornes de
+domaines (mono, `border:var(--trait) solid var(--cuivre); padding:.25rem .625rem`),
+titre Big Shoulders `1.5rem` (celui des AWARDS en pochoir, occurrence 1/2), résumé
+`--fs-body`, lien tertiaire **« EN SAVOIR PLUS »**.
+1. **ANDROCRÉA** → `/androcrea` — domaines : FORMATION · DIGITAL · CRÉATIVITÉ MOBILE.
+2. **DIGIT'S CRÉA AWARDS** → `/digits-crea-awards` — ÉVÉNEMENTIEL · DIGITAL ·
+   VALORISATION DES TALENTS.
+3. **MAIRIE DES JEUNES DE COVÈ** → `/leadership` — LEADERSHIP · ENGAGEMENT CITOYEN.
+Résumés : reprendre ceux de la partie D.6/D.7 ; pour la troisième, « Mandat citoyen
+au service de la jeunesse de Covè : actions communautaires, initiatives citoyennes et
+dialogue avec les institutions. »
+
+**R05 — Témoignages.** `background:var(--bleu-atelier); color:var(--calque);
+padding:7rem 0`. Carrousel d'une carte visible, `width:min(46rem,100%)`, centré :
+`background:var(--calque); color:var(--graphite);
+border:var(--bd) solid var(--graphite); padding:2.5rem`. Contenu : citation
+`--fs-body-lg`, puis rangée `photo (carré 3rem, border --bd) + nom (Big Shoulders
+1rem) + fonction & structure (mono --fs-mono)`, puis la **note** en cinq carrés
+`.5rem` (remplis `--jaune-signal`, vides bordés `--cuivre`) — **affichée seulement si
+la note existe dans les données**.
+Contrôles : deux boutons carrés `2.75rem` bordés `--calque` (`‹` / `›`) + une rangée
+de puces carrées `.5rem`. Changement : sortie `{opacity:0,x:-24}` / entrée
+`{opacity:0,x:24}`→`{opacity:1,x:0}`, ressort `{tension:220,friction:24}`, puis
+`revealMask` rejouée sur la citation. Autoplay **6000ms**, en pause au survol, au
+focus clavier et en reduce-motion. `aria-live="polite"` sur le conteneur.
+**Aucun témoignage fictif** : si la collection est vide, la section entière n'est pas
+rendue.
+
+**R06 — Blog récent.** `background:var(--calque-clair); padding:7rem 0`. Trois
+dernières entrées en cartes (catégorie mono, titre Big Shoulders `1.5rem`, chapô,
+puis mono `[date] · [durée] MIN DE LECTURE`). Section non rendue si aucune entrée.
+
+**R07 — Appel à l'action.** `background:var(--graphite); color:var(--calque);
+padding:8rem 0`. Titre `--fs-giant` **« TRAVAILLONS ENSEMBLE »**, dernier mot en
+`--jaune-signal`. Quatre bornes cliquables `border:var(--trait) solid
+rgba(228,234,238,.45); padding:1.25rem 1.5rem; display:flex; justify-content:space-between`
+menant à `/contact` avec le motif de demande **présélectionné** (`?objet=`) :
+**COLLABORER** `collaboration` · **DEMANDER UN DEVIS** `devis` · **RÉSERVER UNE
+FORMATION** `formation` · **PROPOSER UN PARTENARIAT** `partenariat`.
+Survol : fond `--jaune-signal`, texte `--graphite`, 120ms.
+
+## D.2 `/a-propos`
+
+Repères : `R01` Mon histoire · `R02` Vision · `R03` Mission · `R04` Valeurs ·
+`R05` Manifeste · `R06` CTA.
+- **R01** : deux colonnes — portrait secondaire + récit en paragraphes,
+  `revealMask` par ligne. Texte à fournir (partie G) ; d'ici là, insérer les trois
+  paragraphes de présentation du dossier et un bloc `` visible.
+- **R02 / R03** : deux blocs jumeaux sur `--bleu-atelier`, textes exacts du dossier
+  (Vision : « Être une référence africaine… » ; Mission : « Accompagner les jeunes,
+  les organisations et les entreprises… »).
+- **R04 — Valeurs** : grille `repeat(4,1fr)`, bordures `--trait --cuivre`, douze
+  cellules `min-height:8rem; overflow:hidden`. Nom en Big Shoulders `1.5rem` ; au
+  survol, la définition remonte (`translateY(100%)`→`0`, **220ms
+  cubic-bezier(.16,1,.3,1)**) sur fond `--graphite`, texte `--calque` `--fs-mono-lg`,
+  et le nom passe en `--jaune-signal`. ≤768px : définition visible en permanence.
+  Valeurs et définitions : EXCELLENCE « Le travail livré doit tenir devant un jury. » ·
+  LEADERSHIP « Décider, assumer, entraîner. » · INNOVATION « Chercher la solution qui
+  n'existe pas encore ici. » · CRÉATIVITÉ « Trouver l'angle que personne n'a vu. » ·
+  DISCIPLINE « Les délais sont une promesse. » · INTÉGRITÉ « Dire ce qui est, même
+  quand ça coûte. » · ENGAGEMENT « Un projet commencé est un projet terminé. » ·
+  IMPACT « Ce qui ne change rien ne compte pas. » · COLLABORATION « Aucune initiative
+  sérieuse ne se porte seul. » · RESPONSABILITÉ « Répondre de ses choix devant ceux
+  qui suivent. » · VISION « Travailler pour dans cinq ans, agir aujourd'hui. » ·
+  PROFESSIONNALISME « Le sérieux se voit dans les détails. »
+- **R05 — Manifeste** : pleine largeur sur `--graphite`, texte en Big Shoulders
+  `clamp(1.75rem,3.2vw,2.75rem)`, `max-width:52rem`, `line-height:1.1`,
+  `revealMask` par ligne stagger 90ms. Texte à fournir.
+
+## D.3 `/parcours` — la timeline **est** le conducteur
+
+`background:var(--calque)`, calque `--grille` parallaxé.
+Le conducteur de page passe ici en **mode timeline** : `stroke-width:2.5`,
+positionné en colonne 3 sur ≥1024px, avec un **nœud** par entrée (carré `.75rem`,
+`fill:var(--calque)`, `stroke:var(--cuivre)`), qui se remplit en `--jaune-signal`
+quand l'entrée entre dans le viewport (160ms) — la mise sous tension progresse donc
+avec la lecture du parcours. `ScrollTrigger scrub:.6` sur toute la section.
+Chaque entrée : `display:grid; grid-template-columns:7rem 1fr; gap:2rem;
+padding-block:2.5rem; border-bottom:var(--trait) solid var(--cuivre)` — période en
+mono à gauche, contenu à droite (structure/diplôme en Big Shoulders `1.5rem`, poste
+en Instrument Sans 600, puis trois blocs mono/texte : `MISSIONS`, `COMPÉTENCES
+DÉVELOPPÉES`, `RÉSULTATS OBTENUS`). `revealRise delayIn = i×70ms`.
+
+Trois groupes, chacun ouvert par un cartouche : **ACADÉMIQUE** (CAP Électricité ·
+BAC Technique F3 · Licence Professionnelle en Maintenance des Systèmes
+Industriels) — **FORMATIONS COMPLÉMENTAIRES** (Photovoltaïque · Maintenance ·
+Bureautique · Communication · Design graphique · Gestion de projet · autres
+certifications), rendues en bornes plutôt qu'en entrées de timeline —
+**EXPÉRIENCES PROFESSIONNELLES** (entrées à fournir : période, structure, poste,
+missions, compétences, résultats ; afficher `` tant que la donnée manque,
+et ne créer aucune entrée fictive).
+
+**Section `#competences`** en fin de page (la page Compétences est fusionnée ici) :
+quatre panneaux sur `--bleu-atelier`, un par catégorie, chacun en bornes
+`border:var(--trait) solid rgba(228,234,238,.45); padding:.875rem 1.25rem` avec un
+**voyant qualitatif** — trois carrés `.375rem` dont *n* sont remplis en
+`--led-vert` selon le niveau, suivi du libellé mono du niveau. **Trois niveaux
+seulement, pas de pourcentage** : `MAÎTRISE` (3) · `AVANCÉ` (2) · `OPÉRATIONNEL` (1).
+Catégories et items exactement comme au chapitre 11 : Compétences digitales (Design
+graphique, Branding, Communication digitale, Création de contenu, Community
+Management, Marketing digital, Stratégie digitale) · Compétences en gestion (Gestion
+de projet, Gestion d'équipe, Organisation, Planification, Coordination, Leadership) ·
+Compétences techniques (Maintenance industrielle, Électricité industrielle,
+Photovoltaïque, Automatisation, Diagnostic industriel) · Soft skills (Créativité,
+Adaptabilité, Résolution de problèmes, Esprit d'équipe, Communication, Prise de
+parole, Esprit d'initiative). **Le niveau de chaque item est un champ de
+back-office** ; par défaut, aucun voyant rempli et le libellé masqué.
+
+## D.4 `/services`
+
+Titre `<h2>` **« CE QUE JE PRENDS EN CHARGE »**. Cinq groupes, chacun ouvert par un
+cartouche, chaque prestation en ligne de liste : `display:grid;
+grid-template-columns:3.5rem 1fr auto; align-items:center; gap:1.5rem;
+padding:1.5rem 1rem; border-top:var(--bd) solid var(--graphite);
+position:relative; overflow:hidden`. Survol : calque `--jaune-signal`
+`scaleX(0)→1` origine gauche, **190ms cubic-bezier(.16,1,.3,1)**. À droite de chaque
+ligne, deux liens tertiaires : **DEVIS** et **RENDEZ-VOUS**, tous deux vers
+`/contact?objet=devis|rdv&service=[slug]`.
+Groupes et prestations, sans ajout : **SERVICES DIGITAUX** (Design graphique,
+Identité visuelle, Branding, Création de contenu, Communication digitale, Supports de
+communication) · **GESTION DE PROJET** (Élaboration de projets, Planification,
+Coordination, Suivi, Évaluation) · **ÉVÉNEMENTIEL** (Organisation d'événements,
+Planification, Coordination générale, Gestion logistique, Accompagnement) ·
+**FORMATION** (Design graphique mobile, Communication digitale, Gestion de projet,
+Leadership, Créativité) · **CONSEIL** (Stratégie de communication, Branding,
+Positionnement, Développement de projets).
+
+## D.5 `/projets` — réalisations, projets et galerie fusionnés
+
+Barre de filtres collante sous le header (`position:sticky; top:4.5rem; z-index:50;
+background:var(--calque); border-bottom:var(--trait) solid var(--cuivre);
+padding-block:1rem`), deux niveaux :
+- **Nature** (radio, un seul actif) : TOUT · PROFESSIONNEL · ENTREPRENEURIAL ·
+  INSTITUTIONNEL.
+- **Type** (multi-sélection) : IDENTITÉ VISUELLE · LOGO · AFFICHE · FLYER · BADGE ·
+  MOCKUP · BANNIÈRE · CAMPAGNE DIGITALE · SITE WEB · SUPPORT ÉVÉNEMENTIEL ·
+  RÉALISATION TECHNIQUE · PHOTOGRAPHIE · VIDÉO.
+Chaque filtre est une borne `border:var(--trait) solid var(--cuivre);
+padding:.5rem 1rem; font:600 var(--fs-mono) "IBM Plex Mono"` ; actif =
+`background:var(--graphite); color:var(--calque)`. Filtrage **côté client**, sans
+rechargement, avec `history.replaceState` sur `?nature=&type=`, un compteur mono
+`[n] RÉALISATION(S)` en `aria-live="polite"`, et un état vide explicite :
+« Aucune réalisation ne correspond à ces filtres. » + bouton de réinitialisation.
+Grille `repeat(3,1fr); gap:1rem` de cartes ; sortie/entrée des cartes filtrées par
+`{opacity,scale:.98}`, **180ms**, stagger 30ms.
+Un basculement **LISTE / GALERIE** en tête : le mode galerie passe la grille en
+`repeat(4,1fr)` de visuels seuls (`aspect-ratio:1`), ouvrant la **lightbox**.
+**Lightbox** : `position:fixed; inset:0; z-index:95; background:rgba(20,24,28,.92)`,
+visuel `max-height:82vh; object-fit:contain`, légende mono en bas, compteur
+`[i] / [n]`, boutons carrés `2.75rem` bordés `--calque` (précédent / suivant /
+fermer), navigation `←` `→` `Escape`, `role="dialog" aria-modal="true"`, focus
+piégé, `lock()`, focus rendu à la vignette d'origine. Vidéos : `<video controls>`
+avec `poster`. Bouton de partage : `navigator.share` si disponible, sinon copie du
+lien avec retour mono « LIEN COPIÉ » pendant 1800ms.
+**Fiche projet** (`/projets/[slug]`, template unique) dans l'ordre du chapitre 14 :
+bannière · logo · présentation · contexte · objectifs · public cible · résultats ·
+difficultés rencontrées · solutions apportées · galerie photo · galerie vidéo ·
+témoignages · partenaires · navigation projet précédent/suivant. Chaque rubrique
+absente des données n'est **pas** rendue (pas de section vide, pas de faux contenu).
+
+## D.6 `/androcrea`
+
+Sections : Histoire · Mission · Vision · Domaines · Services · Formations · Galerie ·
+CTA. Mission et vision reprises littéralement du dossier (« Former une nouvelle
+génération de créatifs capables d'utiliser les technologies numériques pour
+développer leur carrière. » / « Faire d'AndroCréa une référence africaine dans la
+formation aux métiers du digital. »). **Domaines** en grille de 7 cellules bordées
+`--trait --cuivre` : Design graphique · Communication digitale · Créativité mobile ·
+Développement web · Montage vidéo · Marketing digital · Intelligence artificielle.
+**Formations** : catalogue en lignes de liste avec, par formation, mono
+`DURÉE` / `FORMAT` / `PUBLIC` et un bouton principal **« S'INSCRIRE »** →
+`/contact?objet=formation&formation=[slug]`. Contenu du catalogue à fournir.
+Identité : la page reste dans le système du site ; si AndroCréa possède ses propres
+couleurs, elles n'apparaissent que dans son logo, jamais dans l'interface.
+
+## D.7 `/digits-crea-awards`
+
+Sections : Historique · Objectifs · Catégories · Jury · Déroulement · Lauréats ·
+Partenaires · Médias · Galerie · Actualités.
+Le nom de l'événement est le **seul** endroit où la police pochoir est utilisée
+(2 occurrences max : le `<h1>` et une reprise en pied de page).
+**Déroulement** en frise horizontale de 5 étapes reliées par un trait `--cuivre`
+(carrés de jalon `.75rem`), étiquettes mono. **Lauréats** groupés par édition, en
+lignes `catégorie / nom / année`. **Jury**, **Partenaires**, **Lauréats** : rendus
+uniquement si les données existent ; sinon, un bloc unique
+`border:var(--bd) solid var(--graphite); padding:2rem` portant en mono
+**« ÉDITION EN PRÉPARATION — INFORMATIONS À VENIR »**.
+Prévoir dans le balisage, sans les activer, les emplacements V3 : `#candidature`,
+`#vote`, `#editions` (commentaires HTML explicites).
+
+## D.8 `/leadership`
+
+Rubriques du chapitre 15, chacune en section avec cartouche : Leadership jeunesse
+(rôle de Premier Adjoint au Maire des Jeunes de Covè) · Développement communautaire ·
+Citoyenneté · Conférences · Formations · Vision du leadership.
+Les conférences et formations sont des listes `date / lieu / intitulé / rôle` — vides
+par défaut, jamais peuplées d'exemples.
+
+## D.9 `/blog` et `/blog/[slug]`
+
+**Index** : filtres par catégorie en bornes (12 catégories exactes du chapitre 18 :
+Leadership · Entrepreneuriat · Innovation · Intelligence artificielle ·
+Communication · Marketing · Digital · Développement personnel · Gestion de projet ·
+Événementiel · Jeunesse · Technologie), grille `repeat(3,1fr)` de cartes,
+pagination en bornes numérotées (pas de scroll infini : mauvais pour le SEO).
+**Article** : `max-width:44rem` en colonne 3–9 ; méta en tête (catégorie · date ·
+`[n] MIN DE LECTURE` calculé à 200 mots/minute · auteur) ; corps en `--fs-body-lg`
+`line-height:1.7` ; `h2`/`h3` en Big Shoulders ; citations en
+`border-left:var(--bd) solid var(--jaune-signal); padding-left:1.5rem` ;
+code en IBM Plex Mono sur `--calque-clair`. Sommaire collant en colonne 10–12
+(`position:sticky; top:6rem`), lien actif signalé par un carré `--jaune-signal`.
+Barre de partage collante en bas sur mobile. Trois suggestions en pied, choisies par
+catégorie commune. Commentaires : bloc optionnel, désactivé par défaut.
+
+## D.10 `/ressources`
+
+Grille de cartes : type en borne mono (E-BOOK · GUIDE · CHECK-LIST · MODÈLE ·
+TEMPLATE · PRÉSENTATION · SUPPORT DE FORMATION · OUTIL · LIVRE · APPLICATION),
+titre, description, poids et format en mono, bouton principal **« TÉLÉCHARGER »**.
+Deux modes par ressource, champ de back-office : **libre** → lien direct ;
+**conditionné** → ouvre la modale newsletter (champ e-mail + consentement explicite
+`<input type="checkbox" required>` avec mention de finalité), puis délivre le lien.
+Visionneuse PDF intégrée : `<object type="application/pdf" width="100%"
+height="80vh">` avec repli lien de téléchargement.
+
+## D.11 `/medias`
+
+Rubriques du chapitre 17, chacune en cartouche : Interviews · Podcasts ·
+Conférences · Reportages · Télévision · Radio · Articles de presse · Publications
+officielles · Communiqués · Galerie vidéo. Chaque entrée : média, date, titre, lien
+externe (`target="_blank" rel="noopener"`, indicateur mono `↗`).
+En tête de page, un **kit presse** : bloc encadré avec bouton principal
+**« TÉLÉCHARGER LE DOSSIER DE PRESSE »**
+(`presse/dossier-presse-chabel-ananounon.pdf`) et bornes de téléchargement séparées
+`BIOGRAPHIE COURTE` · `BIOGRAPHIE LONGUE` · `PHOTOS HD` · `LOGOS`.
+
+## D.12 `/contact` — deux onglets
+
+`role="tablist"` de deux onglets (mêmes règles que le panneau à onglets : liseré
+`--jaune-signal` déplacé par ressort `{tension:260,friction:24}`) :
+**MESSAGE** et **RENDEZ-VOUS**. L'onglet ouvert est piloté par `?objet=` s'il est
+présent (`devis`, `rdv`, `formation`, `partenariat`, `collaboration`).
+
+**Onglet MESSAGE.** Premier champ = segmentation (`role="radiogroup"`, six bornes) :
+INSTITUTION · ORGANISATION INTERNATIONALE · ENTREPRISE · JEUNE PORTEUR DE PROJET ·
+PARTENAIRE · MÉDIA. Puis `Nom et prénom` · `Organisation` (facultatif) · `E-mail` ·
+`Téléphone` (facultatif) · `Objet` · `Message`.
+**Onglet RENDEZ-VOUS.** Type de rendez-vous (`role="radiogroup"`) : CONSULTATION ·
+RÉUNION · ACCOMPAGNEMENT · FORMATION · CONFÉRENCE · PARTENARIAT · DEMANDE DE DEVIS
+(**COACHING est marqué `À VENIR` et désactivé** — le dossier le prévoit « à terme »).
+Puis `Nom` · `Organisation` · `E-mail` · `Téléphone` · `Objet` ·
+`Date souhaitée` (`<input type="date">` avec `min` = aujourd'hui+1) ·
+`Créneau` (MATIN / APRÈS-MIDI) · `Message`.
+Champs : `border:0; border-bottom:var(--bd) solid var(--graphite); padding:.75rem 0;
+background:transparent; width:100%`, libellé mono au-dessus,
+`:focus` → `border-bottom-color:var(--jaune-signal)`.
+**Anti-spam** : champ leurre `input[name="_gotcha"]` en `position:absolute;
+left:-9999px` + horodatage de rendu rejetant toute soumission en moins de 3 secondes
++ (côté serveur) validation et limitation de débit par IP. Pas de CAPTCHA visuel.
+**Validation** : à la soumission uniquement, jamais pendant la saisie. Erreur =
+message mono `--fs-mono` `color:var(--rouge-coupure)` sous le champ +
+`aria-describedby` + `aria-invalid="true"` + focus sur le premier champ fautif.
+Succès : bouton en `--led-vert`, libellé **« DEMANDE ENREGISTRÉE »**, message
+`aria-live="polite"` précisant le délai de réponse.
+Colonne latérale : coordonnées (e-mail, WhatsApp, téléphone, réseaux), **horaires de
+disponibilité** en lignes mono jour/plage, et localisation **Covè, Zou, Bénin** en
+texte. Carte : n'intégrer aucune iframe par défaut — un bouton
+**« OUVRIR DANS UNE CARTE »** vers un lien externe (une iframe de carte coûte
+plusieurs centaines de kilo-octets et pose des cookies tiers).
+
+---
+
+# E. MODÈLE DE PROMPT RÉUTILISABLE (pour toute page non détaillée ci-dessus)
+
+> [COLLER LE PROMPT MAÎTRE — PARTIE C]
+>
+> **Page à produire** : `[URL]` — `[Titre H1]`
+> **Objectif de la page** : `[une phrase]`
+> **Parcours utilisateur visé** : `[recruteur | client | partenaire | journaliste | jeune]`
+> **Sections, dans l'ordre** : `[R01 …, R02 …, …]`
+> **Contenus exacts** : `[textes littéraux, aucune réécriture autorisée]`
+> **Spécificité technique de cette page** : `[timeline / filtres / lightbox / formulaire / aucune]`
+> **Composants partagés à réutiliser** : header, menu, conducteur, cartouches,
+> boutons, cartes, utilitaires flottants, footer — **sans les redéfinir**.
+> **Données manquantes** : afficher `` ; ne rien inventer.
+> **Méta** : `<title>`, description, `og:image`, données structurées `[type]`.
+>
+> Applique la méthode imposée en C.12.
+
+---
+
+# F. MODÈLE DE DONNÉES DU BACK-OFFICE
+
+Collections, champs et types. En WordPress : types de contenu personnalisés +
+champs personnalisés ; en headless : collections équivalentes.
+
+| Collection | Champs |
+|---|---|
+| **stats** (singleton) | `projets_realises` int · `evenements_organises` int · `personnes_formees` int · `annees_experience` int · `partenaires` int · `distinctions` int · `creations_graphiques` int · `conferences` int — **tous nullables, `null` → affichage `—` sans animation** |
+| **projets** | `titre` · `slug` · `nature` (enum professionnel/entrepreneurial/institutionnel) · `types[]` (enum des 13 filtres) · `banniere` · `logo` · `resume` · `presentation` richtext · `contexte` · `objectifs[]` · `public_cible` · `resultats` · `difficultes` · `solutions` · `galerie_photos[]` · `galerie_videos[]` · `partenaires[]` (ref) · `temoignages[]` (ref) · `mis_en_avant` bool · `ordre` int |
+| **articles** | `titre` · `slug` · `categorie` (enum des 12) · `chapo` · `corps` richtext · `image` · `auteur` · `date_publication` · `duree_lecture` int (auto) · `commentaires_ouverts` bool · `articles_lies[]` |
+| **temoignages** | `auteur` · `fonction` · `structure` · `photo` · `texte` · `note` int 1–5 nullable · `type` (client/partenaire/participant/collaborateur/institution/bénéficiaire) · `publie` bool (**modération : `false` par défaut**) · `projet` ref nullable |
+| **medias** | `type` (enum des 10 rubriques) · `titre` · `organe` · `date` · `url_externe` · `visuel` · `resume` |
+| **ressources** | `titre` · `type` (enum des 10) · `description` · `fichier` · `poids` · `format` · `acces` (libre/newsletter) · `telechargements` int (compteur) |
+| **formations** | `titre` · `slug` · `programme` (androcrea/site) · `duree` · `format` · `public` · `description` · `prochaine_session` date nullable |
+| **experiences** | `periode_debut` · `periode_fin` nullable · `structure` · `poste` · `missions[]` · `competences[]` · `resultats` · `groupe` (académique/pro/institutionnel) |
+| **competences** | `libelle` · `categorie` (digitale/gestion/technique/soft) · `niveau` (enum maitrise/avance/operationnel, **nullable**) · `ordre` |
+| **partenaires** | `nom` · `logo` · `url` · `type` · `visible` bool |
+| **demandes** (lecture seule) | `canal` (message/rdv) · `segment` · `nom` · `organisation` · `email` · `telephone` · `objet` · `service` · `date_souhaitee` · `creneau` · `message` · `recu_le` · `traite` bool |
+| **pages** | `titre` · `slug` · `sections[]` (blocs libres) · `meta_titre` · `meta_description` · `og_image` |
+
+Rôles : `administrateur` (Chabel) · `editeur` (contenus, sans réglages) ·
+`contributeur` (brouillons seulement). Notification e-mail à l'administrateur à
+chaque nouvelle **demande**, avec le segment en objet du mail pour un tri immédiat.
+
+---
+
+# G. À FOURNIR AVANT DE GÉNÉRER (sinon le site sortira rempli de vide)
+
+Le cahier des charges appelle beaucoup de contenus qu'aucun modèle ne peut produire
+sans mentir. Tant qu'un élément manque, la spec impose l'affichage `` et
+l'absence d'animation — c'est volontaire, et c'est préférable à un faux chiffre
+qu'un journaliste ou un bailleur pourrait relever.
+
+**Bloquant pour la V1**
+1. Les six indicateurs chiffrés de l'accueil (valeurs réelles, même approximatives
+   mais assumées).
+2. Le portrait professionnel haute définition, détouré ou sur fond neutre.
+3. Le CV en PDF, à jour, sous 2 Mo.
+4. Le numéro WhatsApp, le téléphone, l'e-mail officiel, les URLs exactes des réseaux.
+5. Les expériences professionnelles : période, structure, poste, missions,
+   compétences développées, résultats — pour chacune.
+6. Le niveau (`maîtrise` / `avancé` / `opérationnel`) des 25 compétences listées.
+7. Trois à six projets documentés selon la fiche du chapitre 14, avec visuels.
+8. Le texte de « Mon histoire » et celui du « Manifeste » — deux textes que seul
+   Chabel peut écrire.
+
+**Bloquant pour la V2**
+9. Trois témoignages réels minimum, avec autorisation de publication, photo,
+   fonction et structure.
+10. Le dossier de presse (biographies courte et longue, photos HD, logos).
+11. Les logos des partenaires, avec accord d'utilisation.
+12. Le catalogue des formations AndroCréa (durée, format, public, tarif ou mention).
+13. Les éléments des DIGIT'S CRÉA AWARDS : historique, catégories, jury, lauréats
+    par édition.
+14. Cinq à dix articles de blog, pour que la rubrique ne s'ouvre pas vide.
+
+**Décisions à prendre par Chabel, pas par le développeur**
+- L'option d'architecture (A.2) — elle conditionne l'hébergement et le budget.
+- Le nom de domaine et l'adresse e-mail professionnelle définitive.
+- Ressources en accès libre ou conditionné à la newsletter.
+- Commentaires du blog ouverts ou fermés.
+- Publication ou non des horaires de disponibilité et d'une carte de localisation.

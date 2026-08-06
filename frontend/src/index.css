@@ -1,0 +1,19 @@
+/* Ordre des cascade layers — à déclarer AVANT tout @import qui les utilise.
+   Raison (bug trouvé le 2026-08-03) : en CSS, le non-layered l'emporte sur
+   TOUT layer. reset.css était non-layered, donc sa règle
+   `button,input,textarea,select { border: none }` écrasait les utilitaires
+   `border-*` de Tailwind (qui vivent, eux, dans @layer utilities) : sur les
+   pages Tailwind, aucun bouton ni champ n'affichait sa bordure, alors qu'un
+   simple <div> l'affichait. Importer reset.css dans @layer base le remet à
+   sa place : il sert de socle, et les utilitaires peuvent le surcharger.
+   `properties` et `theme` sont les layers émis par Tailwind lui-même —
+   on les nomme ici uniquement pour figer l'ordre, sans le modifier.
+   tokens.css et grid.css restent volontairement non-layered : ce sont des
+   variables (:root) et des classes de mise en page maison (.container,
+   .grid-12, .watermark-grid) qui doivent, elles, primer sur Tailwind. */
+@layer properties, theme, base, utilities;
+
+@import './styles/tokens.css';
+@import './styles/reset.css' layer(base);
+@import './styles/grid.css';
+@import './styles/tailwind.css';
