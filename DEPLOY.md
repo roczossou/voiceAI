@@ -110,29 +110,35 @@ cd backend/back
 
 ## Points d'attention
 
-### Les fichiers téléversés ne survivent pas aux déploiements (plan gratuit)
+### Fichiers téléversés : Cloudinary
 
-Le système de fichiers d'une instance Render est éphémère : tout visuel ajouté
-depuis le back-office disparaît au déploiement suivant. Les images déjà
-fournies sont versionnées dans `backend/back/media/`, donc elles, elles
-restent — mais pas les nouvelles.
+Le système de fichiers d'une instance Render est éphémère — un visuel ajouté
+depuis le back-office disparaîtrait au déploiement suivant. Les fichiers sont
+donc envoyés sur **Cloudinary**, activé par la seule présence de la variable
+`CLOUDINARY_URL` (dashboard Cloudinary → *API Environment variable*, de la
+forme `cloudinary://<api_key>:<api_secret>@<cloud_name>`).
 
-Pour y remédier, il faut un **disque persistant**, qui impose un plan payant
-(`starter`). Dans `render.yaml` : passer `plan: starter` sur `chabel-api`,
-décommenter le bloc `disk:`, ajouter la variable
-`DJANGO_MEDIA_ROOT=/var/data/media`, et — comme le disque n'est pas monté
-pendant le build — recopier une fois les visuels existants au démarrage :
+Sans cette variable — développement hors ligne, exécution des tests — le
+stockage retombe automatiquement sur `backend/back/media/`, rien à
+désactiver.
 
-```yaml
-startCommand: >
-  mkdir -p "$DJANGO_MEDIA_ROOT" &&
-  cp -rn back/media/. "$DJANGO_MEDIA_ROOT"/ 2>/dev/null;
-  gunicorn --chdir back back.wsgi:application
+À savoir :
+
+- le préfixe des `public_id` Cloudinary vient de `MEDIA_URL` (`media/`) :
+  **ne pas changer `MEDIA_URL`**, cela déplacerait tous les fichiers déjà envoyés ;
+- Cloudinary distingue trois types de ressources ; les `ImageField` passent par
+  le stockage par défaut, la vidéo de projet et le CV PDF ont leur stockage
+  déclaré dans `backend/back/main/storages.py` ;
+- pour migrer des fichiers restés en local vers Cloudinary (et mettre la base à
+  jour, car Cloudinary attribue le `public_id` définitif) :
+
+```bash
+cd backend/back
+../venv/bin/python manage.py medias_vers_cloudinary --dry-run   # aperçu
+../venv/bin/python manage.py medias_vers_cloudinary             # envoi réel
 ```
 
-L'alternative durable, si le volume d'images grandit, est un stockage objet
-(S3, Cloudinary) via `django-storages` — à ce moment-là seul le `STORAGES`
-`default` de `settings.py` change.
+La commande est idempotente : les champs déjà migrés sont ignorés.
 
 ### Mise en veille (plan gratuit)
 

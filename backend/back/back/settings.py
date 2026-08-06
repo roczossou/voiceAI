@@ -74,6 +74,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'cloudinary_storage',
+    'cloudinary',
     'main',
 ]
 
@@ -171,20 +173,34 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = 'media/'
-# Sur Render, pointer MEDIA_ROOT vers le disque persistant monté (sinon les
-# fichiers envoyés depuis l'admin disparaissent au déploiement suivant, le
-# système de fichiers d'une instance étant éphémère).
 MEDIA_ROOT = Path(os.environ.get('DJANGO_MEDIA_ROOT', BASE_DIR / 'media'))
+
+# Les fichiers téléversés depuis le back-office vont sur Cloudinary : le système
+# de fichiers d'une instance Render est éphémère, ils disparaîtraient au
+# déploiement suivant. Sans CLOUDINARY_URL (dev hors ligne), repli sur MEDIA_ROOT.
+USE_CLOUDINARY = bool(os.environ.get('CLOUDINARY_URL'))
 
 STORAGES = {
     'default': {
-        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+        'BACKEND': (
+            # Stockage « image » : couvre tous les ImageField des modèles.
+            # Les vidéos et le CV PDF passent par un stockage dédié, déclaré
+            # champ par champ dans main/storages.py (Cloudinary distingue les
+            # types de ressources image / video / raw).
+            'cloudinary_storage.storage.MediaCloudinaryStorage' if USE_CLOUDINARY
+            else 'django.core.files.storage.FileSystemStorage'
+        ),
     },
     'staticfiles': {
         # WhiteNoise sert les statiques (admin + DRF) directement depuis gunicorn.
         'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
     },
 }
+
+# Les identifiants sont lus directement dans CLOUDINARY_URL par la bibliothèque
+# cloudinary — rien d'autre à déclarer ici. À noter : le préfixe des public_id
+# Cloudinary est dérivé de MEDIA_URL ci-dessus (« media/ ») ; changer MEDIA_URL
+# déplacerait donc tous les fichiers déjà envoyés.
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny'],

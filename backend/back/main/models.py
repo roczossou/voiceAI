@@ -1,5 +1,7 @@
 from django.db import models
 
+from .storages import raw_storage, video_storage
+
 
 class Formation(models.Model):
     class Programme(models.TextChoices):
@@ -105,7 +107,9 @@ class Service(models.Model):
 class Profil(models.Model):
     """Singleton — contenu unique du site (§G promptDesign.txt)."""
 
-    cv_pdf = models.FileField(upload_to='profil/', null=True, blank=True)
+    cv_pdf = models.FileField(
+        upload_to='profil/', null=True, blank=True, storage=raw_storage,
+    )
 
     class Meta:
         verbose_name = 'Profil'
@@ -187,7 +191,9 @@ class ProjetVideo(models.Model):
     projet = models.ForeignKey(
         Projet, on_delete=models.CASCADE, related_name='galerie_videos', null=True, blank=True
     )
-    video = models.FileField(upload_to='projets/videos/', null=True, blank=True)
+    video = models.FileField(
+        upload_to='projets/videos/', null=True, blank=True, storage=video_storage,
+    )
     url_externe = models.URLField(blank=True)
     legende = models.CharField(max_length=255, blank=True)
     ordre = models.PositiveIntegerField(default=0)

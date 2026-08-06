@@ -37,6 +37,11 @@ services:
         sync: false
       - key: CSRF_TRUSTED_ORIGINS
         sync: false
+      # Stockage des fichiers téléversés depuis le back-office. Sans cette
+      # variable, ils atterrissent sur le disque éphémère de l'instance et
+      # disparaissent au déploiement suivant.
+      - key: CLOUDINARY_URL
+        sync: false
       # Compte back-office créé au premier build (voir backend/build.sh).
       - key: DJANGO_SUPERUSER_USERNAME
         sync: false
@@ -44,18 +49,6 @@ services:
         sync: false
       - key: DJANGO_SUPERUSER_PASSWORD
         sync: false
-    # Disque persistant pour les visuels téléversés depuis l'admin.
-    # ⚠️ Indisponible sur le plan gratuit : passer `plan: starter` puis
-    # décommenter ce bloc ET la variable DJANGO_MEDIA_ROOT ci-dessous.
-    # Sans disque, les fichiers de backend/back/media/ sont perdus à chaque
-    # déploiement (système de fichiers éphémère).
-    # disk:
-    #   name: chabel-media
-    #   mountPath: /var/data
-    #   sizeGB: 1
-    # + envVar :
-    #   - key: DJANGO_MEDIA_ROOT
-    #     value: /var/data/media
 
   # ------------------------------------------------------------- Site React
   - type: web
