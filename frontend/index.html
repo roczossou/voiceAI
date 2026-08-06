@@ -13,17 +13,13 @@
     <title>frontend</title>
     <script>
       // Initialisation du thème avant le premier paint (spec §C.8) : lit
-      // localStorage["ca-theme"], sinon prefers-color-scheme. Doit rester en
-      // phase avec frontend/src/theme/theme.js.
+      // localStorage["ca-theme"], sinon « light » par défaut (la préférence
+      // système n'est volontairement pas suivie — DEFAULT_THEME). Doit rester
+      // en phase avec frontend/src/theme/theme.js.
       (function () {
         try {
           var stored = localStorage.getItem('ca-theme');
-          var theme =
-            stored === 'light' || stored === 'dark'
-              ? stored
-              : window.matchMedia('(prefers-color-scheme: dark)').matches
-                ? 'dark'
-                : 'light';
+          var theme = stored === 'light' || stored === 'dark' ? stored : 'light';
           document.documentElement.setAttribute('data-theme', theme);
         } catch (e) {
           document.documentElement.setAttribute('data-theme', 'light');

@@ -82,15 +82,6 @@
     repeating-linear-gradient(90deg, rgba(43,92,134,.07) 0 1px, transparent 1px .5rem);
 }
 
-/* Filet de repli si le script d'initialisation (index.html <head>) n'a pas pu s'exécuter */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --calque: #101418;
-    --calque-clair: #181D23;
-    --bleu-atelier: #16367E;
-    --bleu-trait: #4E86B8;
-    --graphite: #E4EAEE;
-    --cuivre: #D0865A;
-    --bordure: #384552;
-  }
-}
+/* Pas de repli sur prefers-color-scheme : le site s'ouvre en clair même sans
+   JavaScript (le sombre ne s'obtient que par le sélecteur du header, qui pose
+   [data-theme="dark"]). Voir DEFAULT_THEME dans src/theme/theme.js. */

@@ -4,6 +4,11 @@
 // script inline de index.html ; ce module ne fait que lire/écrire cet état.
 const STORAGE_KEY = 'ca-theme';
 
+// Le site s'ouvre en clair, quelle que soit la préférence système : c'est le
+// thème de référence de la charte (spec §C.4). Le mode sombre reste accessible
+// via le sélecteur du header, et le choix du visiteur est mémorisé.
+export const DEFAULT_THEME = 'light';
+
 export function getStoredTheme() {
   try {
     const value = localStorage.getItem(STORAGE_KEY);
@@ -18,7 +23,7 @@ export function getSystemTheme() {
 }
 
 export function getInitialTheme() {
-  return document.documentElement.getAttribute('data-theme') || getStoredTheme() || getSystemTheme();
+  return document.documentElement.getAttribute('data-theme') || getStoredTheme() || DEFAULT_THEME;
 }
 
 export function applyTheme(theme) {
