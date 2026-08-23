@@ -1,57 +1,38 @@
-// Header collant — spec §C.8. Compact après 120px de scroll (220ms), le
-// monogramme seul reste à gauche.
-import { useEffect, useState } from 'react';
-import { useTheme } from '../../theme';
-import { ThemeToggle } from './ThemeToggle';
-import { ButtonPrincipal } from '../ui/Button';
-import { SiteLink } from '../ui/SiteLink';
-import { QUICK_NAV, isNavActive } from './navigation';
+import { Link, NavLink } from 'react-router-dom';
 
-export function Header({ currentPath = '/', onOpenMenu, menuTriggerRef }) {
-  const [compact, setCompact] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-
-  useEffect(() => {
-    const onScroll = () => setCompact(window.scrollY > 120);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+export function Header({ currentPath, onOpenMenu, menuTriggerRef }) {
+  const getNavClass = (isActive) => {
+    const baseClass = "font-label-lg text-label-lg scale-95 active:scale-90 transition-all";
+    if (isActive) {
+      return `${baseClass} text-secondary font-bold border-b-2 border-secondary pb-1`;
+    }
+    return `${baseClass} text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-secondary-fixed`;
+  };
 
   return (
-    <header className={`site-header${compact ? ' is-compact' : ''}`}>
-      <div className="site-header-inner container">
-        <SiteLink href="/" className="site-header-brand" aria-label="Chabel ANANOUNON — Accueil">
-          <span className="site-header-mark" aria-hidden="true">CA</span>
-          {!compact && <span className="site-header-name">ANANOUNON</span>}
-        </SiteLink>
-
-        <nav className="site-header-nav" aria-label="Navigation rapide">
-          {QUICK_NAV.map(({ label, href }) => (
-            <SiteLink key={href} href={href} aria-current={isNavActive(currentPath, href) ? 'page' : undefined}>
-              {label}
-            </SiteLink>
-          ))}
-        </nav>
-
-        <div className="site-header-actions">
-          <ThemeToggle theme={theme} onToggle={toggleTheme} />
-          <ButtonPrincipal as={SiteLink} href="/contact" className="site-header-contact">
-            ME CONTACTER
-          </ButtonPrincipal>
-          <button
-            ref={menuTriggerRef}
-            type="button"
-            className="site-header-menu-btn"
-            aria-label="Ouvrir le menu"
-            onClick={onOpenMenu}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
+    <nav className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md dark:bg-on-surface/80 border-b border-outline-variant dark:border-outline">
+      <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto h-20">
+        <Link to="/" className="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">
+          CHABEL ANANOUNON
+        </Link>
+        <div className="hidden md:flex gap-6 items-center">
+          <NavLink to="/" className={({ isActive }) => getNavClass(isActive || currentPath === '/')}>Home</NavLink>
+          <NavLink to="/projets" className={({ isActive }) => getNavClass(isActive)}>Projects</NavLink>
+          <NavLink to="/blog" className={({ isActive }) => getNavClass(isActive)}>Blog</NavLink>
+          <NavLink to="/a-propos" className={({ isActive }) => getNavClass(isActive)}>About</NavLink>
+          <NavLink to="/contact" className={({ isActive }) => getNavClass(isActive)}>Contact</NavLink>
         </div>
+        <Link to="/contact" className="bg-secondary-container text-on-background font-label-lg text-label-lg px-6 py-3  hard-shadow hover:-translate-y-1 hover:hard-shadow-orange transition-all hidden md:block">
+          Hire Me
+        </Link>
+        <button 
+          ref={menuTriggerRef}
+          onClick={onOpenMenu}
+          className="md:hidden text-primary"
+        >
+          <span className="material-symbols-outlined">menu</span>
+        </button>
       </div>
-    </header>
+    </nav>
   );
 }

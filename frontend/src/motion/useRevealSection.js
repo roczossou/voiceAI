@@ -45,40 +45,39 @@ const EASE = 'power2.inOut';
 const VARIANTS = {
   // Montée ample.
   rise: {
-    from: { opacity: 0, y: 220 },
+    from: { opacity: 0, y: 72 },
     rest: { opacity: 1, y: 0 },
-    duration: 2,
+    duration: 0.8,
+    ease: 'power3.out',
   },
-  // Arrivée par la gauche.
   slideLeft: {
-    from: { opacity: 0, x: -280, y: 60 },
-    rest: { opacity: 1, x: 0, y: 0 },
-    duration: 2.1,
+    from: { opacity: 0, x: 80 },
+    rest: { opacity: 1, x: 0 },
+    duration: 0.8,
+    ease: 'power3.out',
   },
-  // Arrivée par la droite.
   slideRight: {
-    from: { opacity: 0, x: 280, y: 60 },
-    rest: { opacity: 1, x: 0, y: 0 },
-    duration: 2.1,
+    from: { opacity: 0, x: -80 },
+    rest: { opacity: 1, x: 0 },
+    duration: 0.8,
+    ease: 'power3.out',
   },
-  // Bascule autour du bord bas — la section se redresse vers le lecteur.
   tilt3d: {
     from: {
-      opacity: 0, y: 190, rotationX: 20, transformPerspective: 1300, transformOrigin: '50% 100%',
+      opacity: 0, y: 100, rotationX: -18, z: -80, transformPerspective: 1300, transformOrigin: '50% 100%',
     },
-    rest: { opacity: 1, y: 0, rotationX: 0 },
-    duration: 2.1,
+    rest: { opacity: 1, y: 0, rotationX: 0, z: 0 },
+    duration: 0.9,
+    ease: 'power2.out',
   },
-  // Pivot autour du bord droit — la plus « 3D » des variantes : la section
-  // s'ouvre comme une page qu'on tourne.
   swing: {
     from: {
-      opacity: 0, x: -240, rotationY: -24, transformPerspective: 1300, transformOrigin: '100% 50%',
+      opacity: 0, y: 90, rotationZ: 4, scale: 0.96, transformOrigin: '100% 50%',
     },
-    rest: { opacity: 1, x: 0, rotationY: 0 },
-    duration: 2.2,
+    rest: { opacity: 1, y: 0, rotationZ: 0, scale: 1 },
+    duration: 0.9,
+    ease: 'power3.out',
   },
-  // Rapprochement — la section arrive « depuis le fond ».
   zoom: {
     from: { opacity: 0, scale: 0.82, y: 120 },
     rest: { opacity: 1, scale: 1, y: 0 },

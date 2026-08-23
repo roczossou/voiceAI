@@ -1,96 +1,63 @@
-// /blog — spec §D.9 index. Plan (méthode C.12) :
-//   1. Sections : titre de page · filtres par catégorie (bornes) · compteur ·
-//      grille de cartes 3×n · pagination en bornes numérotées.
-//   2. Composants réutilisés : SiteLayout, Card, SiteLink, RevealMask.
-//   3. Spécifique à cette page : fetch /api/articles/ (table vide tant que le
-//      client ne fournit pas les 5-10 articles de la partie G, item 14 — page
-//      construite quand même sur décision explicite du 2026-08-02, état vide
-//      légitime en attendant) ; filtre catégorie replié au-delà de 6 entrées
-//      (retour client du 2026-08-02 sur le même problème pour /projets : 12
-//      bornes sur plusieurs lignes jugées "trop" — même correctif ici,
-//      appliqué avant même le retour, par cohérence) ; pagination bornes
-//      côté client (pas de pagination DRF configurée pour l'instant, table
-//      trop petite pour le justifier).
-//   4. Page nouvelle au sens de CLAUDE.md : TailwindCSS + valeurs arbitraires
-//      sur les tokens, pas de CSS dédié.
-//   5. Vérifié : 360px sans débordement, focus visible, reduce-motion, thème
-//      sombre, zéro contenu inventé (aucun article factice).
-//   6. Effet retiré : pas de stagger d'entrée sur les cartes au changement de
-//      page/filtre (le compteur aria-live doit rester lisible immédiatement,
-//      même raison que ProjetsPage.jsx).
 import { useMemo, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 import { SiteLayout } from '../../components/layout/SiteLayout';
 import { ProchaineEtape } from '../../components/ui/ProchaineEtape';
-import { Card } from '../../components/ui/Card';
-import { SiteLink } from '../../components/ui/SiteLink';
-import {
-  RevealMask, useParallax, useRevealStagger, useTilt,
-} from '../../motion';
+import { useRevealStagger } from '../../motion';
 import { fetchArticles } from '../../api/client';
 import { CATEGORIES, CATEGORIE_LABEL, PAGE_SIZE } from './constants';
 
 const CATEGORIES_VISIBLE = 6;
 
-function BlogHero() {
-  const planRef = useRef(null);
-  useParallax(planRef, { from: -6, to: 10 });
-
-  return (
-    <section className="relative flex min-h-[52svh] items-end overflow-hidden pt-[7rem] pb-[var(--space-14)]">
-      <div
-        ref={planRef}
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-[15%] right-0 hidden h-[130%] w-[42%] bg-[var(--calque-clair)] md:block"
-      />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-[12%] z-[1] select-none whitespace-nowrap text-center font-[family-name:var(--font-display)] text-[19vw] font-extrabold uppercase leading-none tracking-[-.02em] text-[var(--graphite)] opacity-[.07]"
-      >
-        JOURNAL
-      </span>
-
-      <div className="container relative z-10">
-        <p className="mb-[var(--space-6)] flex items-center gap-[var(--space-3)] font-mono text-[length:var(--fs-mono)] font-semibold uppercase tracking-[.14em] opacity-70">
-          <span className="mark-square inline-block h-[.375rem] w-[.375rem] bg-[var(--jaune-signal)]" />
-          <SiteLink href="/">ACCUEIL</SiteLink>
-          <span aria-hidden="true">/</span>
-          <span className="opacity-100">BLOG</span>
-        </p>
-        <h1 className="font-[family-name:var(--font-display)] text-[clamp(3rem,10vw,7.5rem)] font-extrabold uppercase leading-[.86] tracking-[-.01em]">
-          <RevealMask as="span" unit="lines" stagger={0.13} duration={1}>BLOG</RevealMask>
-        </h1>
-      </div>
-    </section>
-  );
-}
+// Couleur de badge par catégorie
+const CAT_COLORS = {
+  entrepreneuriat: 'bg-primary text-on-primary',
+  leadership: 'bg-secondary-container text-on-background',
+  digital: 'bg-primary-container text-on-primary-container',
+  formation: 'bg-surface-variant text-on-surface',
+};
 
 function ArticleCard({ article }) {
-  const ref = useRef(null);
-  useTilt(ref, { max: 6, perspective: 900, lift: 16 });
+  const catColor = CAT_COLORS[article.categorie] || 'bg-surface-variant text-on-surface';
+  const categLabel = CATEGORIE_LABEL[article.categorie] || article.categorie;
 
   return (
-    <Card
-      ref={ref}
+    <Link
       data-reveal-item
-      className="will-change-transform"
-      as={SiteLink}
-      href={`/blog/${article.slug}`}
-      visual={article.image
-        ? <img src={article.image} alt="" loading="lazy" />
-        : <div className="media-placeholder"><span>VISUEL — &lt;NON FOURNI&gt;</span></div>}
+      to={`/blog/${article.slug}`}
+      className="group flex flex-col bg-surface border-2 border-primary overflow-hidden hover:-translate-y-1 transition-all duration-300 shadow-md hover:shadow-xl"
     >
-      <p className="font-mono text-[length:var(--fs-mono)] text-[var(--cuivre)] uppercase mb-[var(--space-2)]">
-        {CATEGORIE_LABEL[article.categorie] || article.categorie}
-      </p>
-      <h3 className="font-[family-name:var(--font-display)] text-[1.25rem] font-bold uppercase leading-tight mb-[var(--space-2)]">
-        {article.titre}
-      </h3>
-      {article.chapo && <p className="text-[length:var(--fs-body)] opacity-80 mb-[var(--space-3)]">{article.chapo}</p>}
-      <p className="font-mono text-[length:var(--fs-mono)] opacity-70">
-        {article.date_publication ? `[${article.date_publication}] · ` : ''}{article.duree_lecture} MIN DE LECTURE
-      </p>
-    </Card>
+      {/* Image */}
+      <div className="aspect-[16/9] overflow-hidden bg-surface-variant relative">
+        {article.image ? (
+          <img src={article.image} alt="" loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-on-surface-variant font-label-sm uppercase tracking-wider">
+            VISUEL — &lt;NON FOURNI&gt;
+          </div>
+        )}
+        <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors"></div>
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-6">
+        <span className={`inline-block ${catColor} font-label-sm text-label-sm px-3 py-1 uppercase self-start mb-3`}>
+          {categLabel}
+        </span>
+        <h3 className="font-headline-md text-headline-md text-on-background uppercase leading-tight mb-3 group-hover:text-primary transition-colors">
+          {article.titre}
+        </h3>
+        {article.chapo && (
+          <p className="font-body-md text-body-md text-on-surface-variant mb-4 flex-1 line-clamp-3">
+            {article.chapo}
+          </p>
+        )}
+        <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-auto pt-4 border-t border-outline-variant flex items-center gap-2">
+          <span className="material-symbols-outlined text-[16px] text-secondary-container">schedule</span>
+          {article.date_publication ? `${article.date_publication} · ` : ''}{article.duree_lecture} MIN DE LECTURE
+        </p>
+      </div>
+    </Link>
   );
 }
 
@@ -113,8 +80,6 @@ export function BlogPage() {
 
   const grilleRef = useRef(null);
   useRevealStagger(grilleRef, {
-    // `currentPage` et `categorie` entrent dans la clé pour que la cascade
-    // rejoue quand le lecteur change de filtre ou de page.
     itemCount: `${pageItems.length}-${currentPage}-${categorie}`,
     distance: 56,
     stagger: 0.08,
@@ -127,82 +92,112 @@ export function BlogPage() {
 
   return (
     <SiteLayout>
-      <BlogHero />
+      {/* Hero */}
+      <section className="bg-primary text-on-primary py-[100px] md:py-[140px] px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+        <div className="max-w-max-width mx-auto relative z-10">
+          <p className="font-label-sm text-label-sm text-secondary-container uppercase tracking-widest mb-6">JOURNAL · BLOG</p>
+          <h1 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-primary uppercase leading-none mb-6">
+            ARTICLES &amp; <span className="text-secondary-container">RÉFLEXIONS</span>
+          </h1>
+          <p className="font-body-lg text-body-lg text-primary-fixed-dim max-w-xl">
+            Leadership, entrepreneuriat, créativité digitale et développement personnel — partages d'expérience et ressources utiles.
+          </p>
+        </div>
+        {/* Decorative watermark */}
+        <div className="absolute inset-x-0 bottom-0 text-[20vw] font-black text-primary-container/20 uppercase leading-none pointer-events-none select-none text-center">
+          JOURNAL
+        </div>
+      </section>
 
-      <section className="pb-[var(--space-16)]">
-        <div className="container">
-          <div role="radiogroup" aria-label="Catégorie" className="flex flex-wrap items-center gap-[var(--space-2)] mb-[var(--space-8)] pb-[var(--space-6)] border-b-[length:var(--trait)] border-[color:var(--bordure)]">
-            <button
-              type="button"
-              role="radio"
-              aria-checked={categorie === ''}
-              onClick={() => selectCategorie('')}
-              className={`border-[length:var(--trait)] px-[var(--space-4)] py-[var(--space-2)] font-mono text-[length:var(--fs-mono)] font-semibold uppercase tracking-[.05em] ${categorie === '' ? 'bg-[var(--graphite)] text-[var(--calque)] border-[color:var(--graphite)]' : 'border-[color:var(--bordure)]'}`}
-            >
-              TOUT
-            </button>
-            {visibleCategories.map(({ value, label }) => (
+      {/* Content */}
+      <section className="py-24 px-margin-mobile md:px-margin-desktop">
+        <div className="max-w-max-width mx-auto">
+
+          {/* Filters */}
+          <div className="mb-12 pb-6 border-b-2 border-primary/20">
+            <div role="radiogroup" aria-label="Catégorie" className="flex flex-wrap items-center gap-3">
               <button
-                key={value}
                 type="button"
                 role="radio"
-                aria-checked={categorie === value}
-                onClick={() => selectCategorie(value)}
-                className={`border-[length:var(--trait)] px-[var(--space-4)] py-[var(--space-2)] font-mono text-[length:var(--fs-mono)] font-semibold uppercase tracking-[.05em] ${categorie === value ? 'bg-[var(--graphite)] text-[var(--calque)] border-[color:var(--graphite)]' : 'border-[color:var(--bordure)]'}`}
+                aria-checked={categorie === ''}
+                onClick={() => selectCategorie('')}
+                className={`px-4 py-2 border-2 font-label-lg text-label-lg uppercase tracking-wider transition-all ${categorie === '' ? 'bg-secondary-container text-on-background border-secondary-container' : 'border-primary text-primary hover:bg-primary-container hover:text-on-primary-container'}`}
               >
-                {label}
+                TOUT
               </button>
-            ))}
-            {CATEGORIES.length > CATEGORIES_VISIBLE && (
-              <button
-                type="button"
-                aria-expanded={expanded}
-                onClick={() => setExpanded((v) => !v)}
-                className="inline-flex items-center gap-[.35em] px-[var(--space-2)] py-[var(--space-2)] font-mono text-[length:var(--fs-mono)] font-semibold uppercase tracking-[.05em] text-[var(--cuivre)]"
-              >
-                {expanded ? 'VOIR MOINS' : '+ VOIR PLUS'}
-              </button>
-            )}
+              {visibleCategories.map(({ value, label }) => (
+                <button
+                  key={value}
+                  type="button"
+                  role="radio"
+                  aria-checked={categorie === value}
+                  onClick={() => selectCategorie(value)}
+                  className={`px-4 py-2 border-2 font-label-lg text-label-lg uppercase tracking-wider transition-all ${categorie === value ? 'bg-secondary-container text-on-background border-secondary-container' : 'border-primary text-primary hover:bg-primary-container hover:text-on-primary-container'}`}
+                >
+                  {label}
+                </button>
+              ))}
+              {CATEGORIES.length > CATEGORIES_VISIBLE && (
+                <button
+                  type="button"
+                  aria-expanded={expanded}
+                  onClick={() => setExpanded((v) => !v)}
+                  className="font-label-lg text-label-lg text-secondary-container uppercase tracking-wider px-2 hover:underline"
+                >
+                  {expanded ? 'VOIR MOINS' : '+ VOIR PLUS'}
+                </button>
+              )}
+            </div>
           </div>
 
-          <p className="font-mono text-[length:var(--fs-mono)] font-semibold mb-[var(--space-8)]" aria-live="polite">
-            {`[${filtered.length}] ARTICLE${filtered.length > 1 ? 'S' : ''}`}
+          {/* Counter */}
+          <p className="font-label-lg text-label-lg text-primary uppercase tracking-wider mb-8" aria-live="polite">
+            [{filtered.length}] ARTICLE{filtered.length > 1 ? 'S' : ''}
           </p>
 
-          {status === 'pending' && <p className="font-mono text-[length:var(--fs-mono)] py-[var(--space-16)]">Chargement…</p>}
+          {/* States */}
+          {status === 'pending' && (
+            <div className="py-24 text-center">
+              <span className="material-symbols-outlined animate-spin text-primary text-[48px]">progress_activity</span>
+              <p className="font-body-lg text-primary mt-4">Chargement…</p>
+            </div>
+          )}
           {status === 'error' && (
-            <p className="font-mono text-[length:var(--fs-mono)] py-[var(--space-16)]">Impossible de charger les articles pour le moment.</p>
+            <div className="py-24 text-center bg-error-container p-8">
+              <p className="font-body-lg text-error">Impossible de charger les articles pour le moment.</p>
+            </div>
           )}
-
           {status === 'success' && filtered.length === 0 && (
-            <p className="font-mono text-[length:var(--fs-mono)] py-[var(--space-16)]">
-              {articles.length === 0
-                ? 'Aucun article publié pour le moment.'
-                : 'Aucun article ne correspond à cette catégorie.'}
-            </p>
+            <div className="py-24 text-center border-2 border-primary p-12">
+              <span className="material-symbols-outlined text-primary text-[64px] mb-4 block">article</span>
+              <p className="font-headline-md text-headline-md text-on-background mb-2">
+                {articles.length === 0 ? 'Aucun article publié pour le moment.' : 'Aucun article ne correspond à cette catégorie.'}
+              </p>
+              {articles.length > 0 && (
+                <button onClick={() => selectCategorie('')} className="mt-4 bg-primary text-on-primary px-6 py-3 font-label-lg uppercase hover:bg-primary-container transition-colors">
+                  RÉINITIALISER LE FILTRE
+                </button>
+              )}
+            </div>
           )}
 
+          {/* Grid */}
           {status === 'success' && pageItems.length > 0 && (
             <>
-              {/* Cascade sur les cartes. `itemCount` est indispensable : les
-                  articles viennent de /api/articles/, donc la grille est vide
-                  au premier rendu — sans cette dépendance le hook ne se
-                  rejouerait jamais et les cartes resteraient figées.
-                  La clé change aussi avec le filtre et la page, pour rejouer
-                  la cascade à chaque nouveau jeu de cartes. */}
-              <div ref={grilleRef} className="grid gap-[var(--space-6)] md:grid-cols-3">
+              <div ref={grilleRef} className="grid gap-gutter md:grid-cols-2 lg:grid-cols-3">
                 {pageItems.map((article) => <ArticleCard key={article.slug} article={article} />)}
               </div>
 
+              {/* Pagination */}
               {pageCount > 1 && (
-                <nav aria-label="Pagination" className="flex flex-wrap gap-[var(--space-2)] mt-[var(--space-10)]">
+                <nav aria-label="Pagination" className="flex flex-wrap gap-3 mt-12 justify-center">
                   {Array.from({ length: pageCount }, (_, i) => i + 1).map((n) => (
                     <button
                       key={n}
                       type="button"
                       aria-current={n === currentPage ? 'page' : undefined}
                       onClick={() => setPage(n)}
-                      className={`h-[2.5rem] w-[2.5rem] border-[length:var(--trait)] font-mono text-[length:var(--fs-mono)] font-semibold ${n === currentPage ? 'bg-[var(--graphite)] text-[var(--calque)] border-[color:var(--graphite)]' : 'border-[color:var(--bordure)]'}`}
+                      className={`h-10 w-10 border-2 font-label-lg text-label-lg font-bold transition-all ${n === currentPage ? 'bg-primary text-on-primary border-primary' : 'border-primary text-primary hover:bg-primary-container'}`}
                     >
                       {n}
                     </button>

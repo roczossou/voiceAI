@@ -20,10 +20,10 @@ import { prefersReducedMotion } from './reducedMotion';
 export function useRevealStagger(ref, {
   selector = '[data-reveal-item]',
   itemCount = 0,
-  distance = 60,
-  duration = 1.15,
-  stagger = 0.09,
-  ease = 'power2.inOut',
+  distance = 32,
+  duration = 0.7,
+  stagger = 0.08,
+  ease = 'power2.out',
   threshold = 0,
   rootMargin = '0px 0px -10% 0px',
 } = {}) {

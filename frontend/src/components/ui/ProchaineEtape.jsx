@@ -1,109 +1,77 @@
-// Bloc « étape suivante » — une SEULE destination par page.
-//
-// Remplace un premier essai (PagesSuivantes) qui listait toutes les autres
-// pages : le client l'a rejeté, « on croirait une autre nav » — et il avait
-// raison, une liste de liens en fin de page double le menu au lieu de guider.
-// Ici, chaque page pousse vers UNE suite logique, traitée comme une pleine
-// page d'appel : grand titre, une phrase, et tout le bloc cliquable.
-//
-// Le parcours est un anneau (voir ETAPES ci-dessous) : où qu'il entre, le
-// visiteur est toujours relancé vers une page utile, et jamais vers une page
-// qui n'existe pas encore (/androcrea, /leadership, etc. tombent toujours sur
-// le NotFound — à ajouter ici seulement quand elles existeront).
-//
-// Le composant porte sa propre révélation : ne pas l'envelopper dans une
-// RevealSection (deux révélations imbriquées se neutralisent).
-import { useRef } from 'react';
-import { SiteLink } from './SiteLink';
-import { useRevealSection } from '../../motion';
+import { Link } from 'react-router-dom';
 
-// Suite logique de chaque page. Accroches factuelles : elles décrivent ce que
-// la page contient vraiment, sans promesse inventée.
 const ETAPES = {
   '/': {
     href: '/a-propos',
     titre: 'À PROPOS',
     accroche: 'Le parcours, la vision et les valeurs derrière les projets.',
+    icon: 'person',
   },
   '/a-propos': {
     href: '/projets',
     titre: 'LES RÉALISATIONS',
     accroche: 'Les projets professionnels, entrepreneuriaux et institutionnels.',
+    icon: 'folder_open',
   },
   '/projets': {
     href: '/services',
     titre: 'LES SERVICES',
     accroche: 'Design, gestion de projet, événementiel, formation, conseil.',
+    icon: 'handyman',
   },
   '/services': {
     href: '/contact',
     titre: 'PARLONS-EN',
     accroche: 'Un message ou un rendez-vous, au choix.',
+    icon: 'mail',
   },
   '/blog': {
     href: '/a-propos',
     titre: 'À PROPOS',
     accroche: 'Le parcours, la vision et les valeurs derrière les projets.',
+    icon: 'person',
   },
   '/contact': {
     href: '/projets',
     titre: 'LES RÉALISATIONS',
     accroche: 'Les projets professionnels, entrepreneuriaux et institutionnels.',
+    icon: 'folder_open',
   },
 };
 
 export function ProchaineEtape({ courante }) {
-  const ref = useRef(null);
-  useRevealSection(ref, { variant: 'rise' });
-
   const etape = ETAPES[courante];
   if (!etape) return null;
 
   return (
-    <section ref={ref} className="border-t-[length:var(--bd)] border-[color:var(--bordure)]">
-      <SiteLink
-        href={etape.href}
-        className="group relative block overflow-hidden py-[var(--space-24)]"
-      >
-        <span
-          aria-hidden="true"
-          className="absolute inset-0 z-0 origin-bottom scale-y-0 bg-[var(--jaune-signal)] transition-transform duration-[420ms] [transition-timing-function:cubic-bezier(.16,1,.3,1)] group-hover:scale-y-100 group-focus-visible:scale-y-100"
-        />
-
-        <span className="container relative z-10 block">
-          <span className="mb-[var(--space-6)] flex items-center gap-[var(--space-3)] font-mono text-[length:var(--fs-mono)] font-semibold uppercase tracking-[.16em] opacity-70">
-            <span className="mark-square inline-block h-[.375rem] w-[.375rem] bg-[var(--jaune-signal)] transition-colors group-hover:bg-[var(--graphite)]" />
-            ÉTAPE SUIVANTE
-          </span>
-
-          <span className="flex flex-wrap items-end justify-between gap-[var(--space-8)]">
-            {/* Pas de largeur max sur ce bloc : elle forçait « PARLONS-EN » à
-                casser sur son trait d'union. Seule l'accroche est bornée. */}
-            <span className="block">
-              <span className="block font-[family-name:var(--font-display)] text-[clamp(2.75rem,8vw,6.5rem)] font-extrabold uppercase leading-[.88] tracking-[-.01em] [hyphens:none]">
+    <section className="px-margin-mobile md:px-margin-desktop py-16 bg-surface-container-low">
+      <div className="max-w-max-width mx-auto">
+        <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-4">
+          ÉTAPE SUIVANTE
+        </p>
+        <Link
+          to={etape.href}
+          className="group flex items-center justify-between gap-8 bg-primary text-on-primary p-8 md:p-12 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          <div className="flex items-center gap-6">
+            <div className="w-14 h-14 bg-secondary-container text-on-background rounded flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-[28px]">{etape.icon}</span>
+            </div>
+            <div>
+              <h3 className="font-headline-md text-headline-md text-on-primary uppercase mb-1">
                 {etape.titre}
-              </span>
-              <span className="mt-[var(--space-5)] block max-w-[38ch] font-mono text-[length:var(--fs-mono-lg)] uppercase leading-[1.7] tracking-[.04em] opacity-75">
+              </h3>
+              <p className="font-body-md text-body-md text-primary-fixed-dim max-w-md">
                 {etape.accroche}
-              </span>
-            </span>
+              </p>
+            </div>
+          </div>
 
-            <svg
-              className="shrink-0 transition-transform duration-300 group-hover:translate-x-4"
-              viewBox="0 0 24 24"
-              width="3.5rem"
-              height="3.5rem"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              aria-hidden="true"
-            >
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
+          <span className="shrink-0 w-12 h-12 border-2 border-on-primary/30 flex items-center justify-center group-hover:bg-secondary-container group-hover:border-secondary-container group-hover:text-on-background transition-all duration-300">
+            <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
           </span>
-        </span>
-      </SiteLink>
+        </Link>
+      </div>
     </section>
   );
 }

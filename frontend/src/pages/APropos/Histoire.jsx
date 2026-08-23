@@ -1,12 +1,4 @@
-// R01 — Mon histoire. Spec §D.2. Texte narratif complet non fourni (partie G,
-// item 8) : on insère les trois paragraphes de présentation du dossier
-// (infos.txt §2.2, les deux premiers déjà repris sur l'accueil dans
-// QuickIntro.jsx, le troisième réservé à cette page) et un bloc <> visible
-// pour le reste, conformément à la règle "ne rien inventer".
-import { useRef } from 'react';
-import { useConductorSection } from '../../components/layout/useConductor';
-import { SectionCartouche } from '../../components/ui/SectionCartouche';
-import { useTilt } from '../../motion';
+import React from 'react';
 
 const PARAGRAPHES = [
   `Je suis Chabel ANANOUNON, entrepreneur, leader jeunesse, gestionnaire de
@@ -24,54 +16,36 @@ const PARAGRAPHES = [
 ].map((p) => p.replace(/\s+/g, ' ').trim());
 
 export function Histoire() {
-  const sectionRef = useConductorSection('histoire', 'Mon histoire');
-  // La plaque du portrait se détache au pointeur : c'est la profondeur
-  // demandée (2026-08-03), obtenue par rotation 3D, pas par une ombre.
-  const portraitRef = useRef(null);
-  useTilt(portraitRef, { max: 5, perspective: 1100, lift: 20 });
-
   return (
-    <section ref={sectionRef} id="histoire" className="scroll-mt-[6rem] py-[var(--space-24)]">
-      <div className="container">
-        <SectionCartouche label="MON HISTOIRE" />
-        <div className="grid items-start gap-x-[var(--space-12)] gap-y-[var(--space-10)] md:grid-cols-[minmax(0,20rem)_1fr]">
-          <div ref={portraitRef} className="will-change-transform">
-            <div
-              className="flex aspect-[4/5] items-center justify-center border-[length:var(--bd)] border-[color:var(--bordure)] bg-[var(--calque-clair)] p-[var(--space-4)] text-center"
-              role="img"
-              aria-label="Portrait secondaire de Chabel ANANOUNON — non fourni"
-            >
-              <span className="font-mono text-[.7rem] tracking-[.08em] uppercase opacity-70">
-                PORTRAIT — &lt;NON FOURNI&gt;
-              </span>
-            </div>
-            <p className="mt-[var(--space-3)] flex items-center justify-between font-mono text-[length:var(--fs-mono)] uppercase tracking-[.1em] opacity-60">
-              <span>PL. 01</span>
-              <span>PORTRAIT</span>
-            </p>
-          </div>
-
-          <div className="flex flex-col">
+    <section className="py-32 px-margin-mobile md:px-margin-desktop bg-surface-container-low">
+      <div className="max-w-max-width mx-auto">
+        <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-background mb-16 uppercase text-center md:text-left">MON HISTOIRE</h2>
+        
+        <div className="grid lg:grid-cols-12 gap-gutter items-start">
+          {/* Text Content */}
+          <div className="lg:col-span-8 flex flex-col gap-6">
             {PARAGRAPHES.map((texte, i) => (
-              <div
-                key={texte.slice(0, 24)}
-                className="grid grid-cols-[2.5rem_1fr] gap-[var(--space-4)] border-t-[length:var(--trait)] border-[color:var(--bordure)] py-[var(--space-6)]"
-              >
-                <span className="font-mono text-[length:var(--fs-mono)] tracking-[.1em] opacity-50">
+              <div key={i} className="bg-surface p-8 border-2 border-primary shadow-lg flex gap-6 hover:-translate-y-1 transition-transform">
+                <span className="font-headline-md text-primary text-[32px] font-bold">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                {/* Pas de révélation individuelle ici : la section entière est
-                    déjà enveloppée dans RevealSection (AProposPage.jsx). Deux
-                    animations imbriquées se neutralisent — l'intérieure se
-                    jouerait pendant que le parent est encore invisible. */}
-                <p className="text-[length:var(--fs-body)] leading-[1.65]">{texte}</p>
+                <p className="font-body-lg text-body-lg text-on-background leading-relaxed">
+                  {texte}
+                </p>
               </div>
             ))}
+            <div className="bg-primary-container text-on-primary-container p-6 border-2 border-primary mt-4 font-label-sm uppercase tracking-wider text-center">
+              RÉCIT COMPLET — &lt;CONTENU À FOURNIR PAR CHABEL&gt;
+            </div>
+          </div>
 
-            <div className="mt-[var(--space-6)] border-[length:var(--bd)] border-[color:var(--bordure)] p-[var(--space-5)]">
-              <span className="font-mono text-[.7rem] tracking-[.08em] uppercase opacity-70">
-                RÉCIT COMPLET — &lt;CONTENU À FOURNIR PAR CHABEL&gt;
-              </span>
+          {/* Placeholder Image */}
+          <div className="lg:col-span-4 sticky top-32">
+            <div className="w-full aspect-[4/5] bg-surface border-4 border-secondary-container shadow-lg flex items-center justify-center p-8 text-center group overflow-hidden">
+               <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
+               <span className="relative font-label-lg uppercase tracking-wider text-on-surface-variant group-hover:text-primary transition-colors">
+                 PORTRAIT SECONDAIRE — &lt;NON FOURNI&gt;
+               </span>
             </div>
           </div>
         </div>

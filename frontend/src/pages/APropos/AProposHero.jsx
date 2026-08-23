@@ -1,122 +1,63 @@
-// R00 — Hero de page. Ajouté le 2026-08-03 : /a-propos ouvrait directement
-// sur un paragraphe, sans le poids visuel que l'accueil pose d'entrée.
-// Profondeur = trois plans qui défilent à des vitesses différentes (trame
-// millimétrée, mot fantôme, contenu) + la plaque signalétique inclinée au
-// pointeur (useTilt). Aucune librairie ajoutée : GSAP/Lenis uniquement.
-//
-// Contenus strictement réels : la ligne de métiers vient d'infos.txt §2.2,
-// la plaque reprend les valeurs déjà validées du hero d'accueil (spec §D.1).
-import { useRef } from 'react';
-import { useConductorSection } from '../../components/layout/useConductor';
-import { SiteLink } from '../../components/ui/SiteLink';
-import { RevealMask, useParallax, useTilt } from '../../motion';
-
-const PLAQUE = [
-  { label: 'NATIONALITÉ', value: 'Béninoise' },
-  { label: 'DÉPARTEMENT', value: 'Zou' },
-  { label: 'MANDAT', value: '1er Adjoint au Maire des Jeunes de Covè' },
-];
+import React from 'react';
+import portraitImg from '../../assets/portrait-cutout.png';
 
 const METIERS = 'Entrepreneur · Leader jeunesse · Gestionnaire de projet · Planificateur d’événements · Créatif digital';
 
 export function AProposHero() {
-  const sectionRef = useConductorSection('a-propos', 'À propos');
-  const watermarkRef = useRef(null);
-  const ghostRef = useRef(null);
-  const plaqueRef = useRef(null);
-
-  // Deux plans de fond à vitesses distinctes : c'est ce décalage qui crée la
-  // sensation de profondeur, pas une ombre portée (proscrite §C.11).
-  useParallax(watermarkRef, { from: -6, to: 10 });
-  useParallax(ghostRef, { from: 6, to: -8 });
-  useTilt(plaqueRef, { max: 7, perspective: 1000, lift: 26 });
-
   return (
-    <section
-      ref={sectionRef}
-      id="a-propos"
-      className="relative flex min-h-[62svh] items-end overflow-hidden pt-[7rem] pb-[var(--space-16)]"
-    >
-      {/* Plan de fond décalé — remplace la trame millimétrée, que le client
-          n'a pas aimée (2026-08-03, « je n'aime pas le style cahier »).
-          La profondeur vient désormais du glissement de plans pleins les uns
-          par rapport aux autres, pas d'une texture de fond. */}
-      {/* Surdimensionné et débordant en haut/bas pour que la parallaxe ne
-          découvre jamais le bord du plan. */}
-      {/* `hidden md:block` : ces plans composent la page en deux colonnes.
-          Sous 768px la mise en page est empilée, ils ne découperaient plus
-          rien — ils barraient juste le titre. */}
-      <div
-        ref={watermarkRef}
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-[15%] right-0 hidden h-[130%] w-[46%] bg-[var(--calque-clair)] md:block"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-[46%] top-0 hidden h-full w-[var(--trait)] bg-[var(--bordure)] opacity-70 md:block"
-      />
+    <section className="relative w-full min-h-[90vh] py-24 flex items-center bg-primary overflow-hidden">
+      {/* Asymmetric Color Block / Backdrop */}
+      <div className="absolute inset-y-0 right-0 w-1/3 bg-secondary-container hidden lg:block transform -skew-x-12 translate-x-16 z-0"></div>
+      
+      <div className="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop relative z-10 w-full mt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+          
+          {/* Text Content */}
+          <div className="lg:col-span-7 text-on-primary space-y-8">
+            <div>
+              <span className="inline-block bg-secondary-container text-on-secondary font-label-sm text-label-sm px-3 py-1 rounded-sm uppercase tracking-wider mb-4 border border-on-secondary">PROFIL</span>
+              <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg font-extrabold leading-tight uppercase">
+                À PROPOS <br/>
+                <span className="text-secondary-container">DE MOI.</span>
+              </h1>
+            </div>
+            <p className="font-body-lg text-body-lg text-primary-fixed-dim max-w-xl">
+              {METIERS}
+            </p>
 
-      {/* Mot en très grand, transparent (le client y tient — 2026-08-03).
-          Placé AU-DESSUS des plans (z-[1]) et centré sur toute la largeur :
-          la version précédente passait derrière le plan clair, qui la
-          coupait en lettres orphelines et la faisait passer pour un défaut.
-          `whitespace-nowrap` + taille en vw : le mot reste entier à toute
-          largeur, il n'est jamais rogné. */}
-      <span
-        ref={ghostRef}
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-[14%] z-[1] select-none whitespace-nowrap text-center font-[family-name:var(--font-display)] text-[17vw] font-extrabold uppercase leading-none tracking-[-.02em] text-[var(--graphite)] opacity-[.07]"
-      >
-        PROFIL
-      </span>
-
-      <div className="container relative z-10 grid items-end gap-[var(--space-12)] lg:grid-cols-[1.35fr_1fr]">
-        <div>
-          <p className="mb-[var(--space-6)] flex items-center gap-[var(--space-3)] font-mono text-[length:var(--fs-mono)] font-semibold uppercase tracking-[.14em] opacity-70">
-            <span className="mark-square inline-block h-[.375rem] w-[.375rem] bg-[var(--jaune-signal)]" />
-            <SiteLink href="/" className="hover:opacity-100">ACCUEIL</SiteLink>
-            <span aria-hidden="true">/</span>
-            <span className="text-[var(--graphite)] opacity-100">À PROPOS</span>
-          </p>
-
-          <h1 className="font-[family-name:var(--font-display)] text-[clamp(3.25rem,11vw,8.5rem)] font-extrabold uppercase leading-[.82] tracking-[-.01em]">
-            <RevealMask as="span" unit="lines" stagger={0.13} duration={1}>
-              À PROPOS
-            </RevealMask>
-          </h1>
-
-          <p className="mt-[var(--space-8)] max-w-[34rem] font-mono text-[length:var(--fs-mono-lg)] uppercase leading-[1.7] tracking-[.04em] opacity-75">
-            {METIERS}
-          </p>
-        </div>
-
-        {/* Plaque signalétique — le plan qui se détache au pointeur. */}
-        <div
-          ref={plaqueRef}
-          className="border-[length:var(--bd)] border-[color:var(--bordure)] bg-[var(--calque-clair)] p-[var(--space-6)] will-change-transform"
-        >
-          <p className="mb-[var(--space-5)] font-mono text-[length:var(--fs-mono)] font-semibold uppercase tracking-[.14em] opacity-60">
-            FICHE
-          </p>
-          <dl className="flex flex-col">
-            {PLAQUE.map(({ label, value }, i) => (
-              <div
-                key={label}
-                className={`flex flex-col gap-[.25rem] py-[var(--space-4)] ${i > 0 ? 'border-t-[length:var(--trait)] border-[color:var(--bordure)]' : 'pt-0'}`}
-              >
-                <dt className="font-mono text-[length:var(--fs-mono)] uppercase tracking-[.1em] opacity-60">{label}</dt>
-                <dd className="font-[family-name:var(--font-display)] text-[1.375rem] font-bold uppercase leading-[1.05]">{value}</dd>
+            {/* Expertise Bento Grid (Using Vision & Mission here to perfectly map real data to new design) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12">
+              <div className="bg-surface text-on-surface p-6 rounded-lg border-2 border-primary hover:translate-y-[-4px] transition-transform shadow-lg">
+                <div className="w-10 h-10 bg-primary-container text-on-primary rounded flex items-center justify-center mb-4">
+                  <span className="material-symbols-outlined">visibility</span>
+                </div>
+                <h3 className="font-headline-md text-headline-md text-[24px] mb-2 uppercase">Vision</h3>
+                <p className="font-body-md text-body-md text-on-surface-variant">Être une référence africaine en matière de leadership, d'innovation, de créativité, de gestion de projet et de développement des talents.</p>
               </div>
-            ))}
-          </dl>
+
+              <div className="bg-surface text-on-surface p-6 rounded-lg border-2 border-primary hover:translate-y-[-4px] transition-transform shadow-lg">
+                <div className="w-10 h-10 bg-secondary-container text-on-secondary rounded flex items-center justify-center mb-4">
+                  <span className="material-symbols-outlined">flag</span>
+                </div>
+                <h3 className="font-headline-md text-headline-md text-[24px] mb-2 uppercase">Mission</h3>
+                <p className="font-body-md text-body-md text-on-surface-variant">Accompagner les jeunes, les organisations et les entreprises dans la création de projets innovants, le développement des compétences et la transformation digitale.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Image Content */}
+          <div className="lg:col-span-5 relative mt-12 lg:mt-0">
+            <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden border-4 border-surface bg-surface shadow-lg z-20">
+              <img alt="Portrait Chabel" className="w-full h-full object-cover" src={portraitImg} fetchPriority="high"/>
+            </div>
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary-container rounded-full z-10 blur-xl opacity-50"></div>
+            <div className="absolute top-12 -right-8 w-24 h-24 border-4 border-on-primary rounded-full z-30 flex items-center justify-center bg-surface/90 backdrop-blur-md">
+              <span className="font-label-sm text-label-sm text-on-surface text-center font-bold">ZOU<br/>BÉNIN</span>
+            </div>
+          </div>
+
         </div>
       </div>
-
-      <p className="absolute bottom-[var(--space-6)] left-0 w-full">
-        <span className="container block font-mono text-[length:var(--fs-mono)] uppercase tracking-[.2em] text-[var(--cuivre)]">
-          COVÈ · ZOU · BÉNIN
-        </span>
-      </p>
     </section>
   );
 }

@@ -1,22 +1,6 @@
-// Section "Mon parcours" — fusionnée dans /a-propos sur décision du client
-// (2026-08-02), au lieu de la route /parcours séparée de spec §D.3. Reprend
-// le contenu de §D.3 tel quel : groupe académique + formations complémentaires
-// en bornes statiques (contenu littéral du dossier, infos.txt §3.1/§9),
-// groupe expériences professionnelles en timeline (données back-office,
-// aucune entrée fictive tant que /api/experiences/ est vide), puis la section
-// #competences (page Compétences fusionnée ici, §D.3 fin).
-//
-// Simplification assumée : le "conducteur en mode timeline" de la spec (nœud
-// par entrée, scrub ScrollTrigger sur toute la section) est réduit ici à un
-// trait vertical + nœuds à révélation simple par IntersectionObserver, dans
-// le même esprit de simplification documenté pour PageConductor (CLAUDE.md) —
-// à revoir si la fidélité pixel-perfect devient nécessaire.
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useConductorSection } from '../../components/layout/useConductor';
-import { SectionCartouche } from '../../components/ui/SectionCartouche';
-import { useParallax, useRevealRise, useRevealSection, useRevealStagger } from '../../motion';
-import { prefersReducedMotion } from '../../motion/reducedMotion';
 import { fetchCompetences, fetchExperiences } from '../../api/client';
 
 const ACADEMIQUE = [
@@ -40,49 +24,19 @@ const CATEGORIES_COMPETENCES = [
 const NIVEAU_N = { maitrise: 3, avance: 2, operationnel: 1 };
 const NIVEAU_LABEL = { maitrise: 'MAÎTRISE', avance: 'AVANCÉ', operationnel: 'OPÉRATIONNEL' };
 
-function GroupeCartouche({ children }) {
+function GroupeLabel({ children }) {
   return (
-    <p className="font-mono text-[length:var(--fs-mono)] font-semibold tracking-[.08em] uppercase pb-[var(--space-3)] border-b-[length:var(--trait)] border-[color:var(--bordure)] mb-[var(--space-6)]">
+    <h3 className="font-label-lg text-label-lg text-primary uppercase tracking-widest pb-3 border-b-2 border-primary/20 mb-6">
       {children}
-    </p>
+    </h3>
   );
 }
 
-function Borne({ children }) {
+function TagBorne({ children }) {
   return (
-    <span className="inline-block border-[length:var(--trait)] border-[color:var(--bordure)] px-[var(--space-4)] py-[var(--space-2)] font-mono text-[length:var(--fs-mono)] font-semibold tracking-[.05em] uppercase">
+    <span className="inline-block bg-surface border-2 border-primary/30 hover:border-primary hover:bg-primary-container text-on-background font-label-lg text-label-lg uppercase px-4 py-2 transition-colors cursor-default">
       {children}
     </span>
-  );
-}
-
-function TimelineNode() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || prefersReducedMotion()) {
-      if (el) el.dataset.filled = 'true';
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        el.dataset.filled = 'true';
-        observer.disconnect();
-      }
-    }, { threshold: 0.4 });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <span
-      ref={ref}
-      data-filled="false"
-      className="mark-square inline-block h-3 w-3 border-[length:2.5px] border-[color:var(--bordure)] bg-[var(--calque)] transition-colors duration-150 data-[filled=true]:bg-[var(--jaune-signal)] data-[filled=true]:border-[color:var(--jaune-signal)]"
-      aria-hidden="true"
-    />
   );
 }
 
@@ -93,42 +47,43 @@ function formatPeriode(debut, fin) {
 }
 
 function ExperienceEntry({ experience, index }) {
-  const ref = useRef(null);
-  useRevealRise(ref, { delayIn: index * 70 });
-
   return (
-    <div
-      ref={ref}
-      className="grid grid-cols-[7rem_1fr] gap-[var(--space-8)] py-[var(--space-10)] border-b-[length:var(--trait)] border-[color:var(--bordure)]"
-    >
-      <div className="flex items-start gap-[var(--space-2)] font-mono text-[length:var(--fs-mono)] font-semibold uppercase">
-        <TimelineNode />
-        {formatPeriode(experience.periode_debut, experience.periode_fin)}
+    <div className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-6 py-8 border-b border-primary/20 last:border-0">
+      <div className="flex items-start gap-3">
+        <span className="mt-1.5 inline-block w-3 h-3 bg-secondary-container shrink-0"></span>
+        <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider leading-snug">
+          {formatPeriode(experience.periode_debut, experience.periode_fin)}
+        </span>
       </div>
-      <div className="flex flex-col gap-[var(--space-3)]">
-        <h3 className="font-[family-name:var(--font-display)] text-[1.5rem] font-bold uppercase leading-none">
+      <div className="flex flex-col gap-3">
+        <h4 className="font-headline-md text-headline-md text-on-background uppercase leading-tight">
           {experience.structure}
-        </h3>
-        <p className="font-[family-name:var(--font-body)] font-semibold text-[length:var(--fs-body)]">{experience.poste}</p>
+        </h4>
+        <p className="font-label-lg text-label-lg text-primary uppercase">{experience.poste}</p>
 
         {experience.missions?.length > 0 && (
           <div>
-            <p className="font-mono text-[length:var(--fs-mono)] font-semibold tracking-[.05em] uppercase opacity-70 mb-[var(--space-2)]">MISSIONS</p>
-            <ul className="flex flex-col gap-[var(--space-1)]">
-              {experience.missions.map((m) => <li key={m}>{m}</li>)}
+            <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">MISSIONS</p>
+            <ul className="flex flex-col gap-1">
+              {experience.missions.map((m) => (
+                <li key={m} className="font-body-md text-body-md text-on-background flex gap-2">
+                  <span className="text-secondary-container mt-1">›</span>
+                  {m}
+                </li>
+              ))}
             </ul>
           </div>
         )}
         {experience.competences?.length > 0 && (
           <div>
-            <p className="font-mono text-[length:var(--fs-mono)] font-semibold tracking-[.05em] uppercase opacity-70 mb-[var(--space-2)]">COMPÉTENCES DÉVELOPPÉES</p>
-            <p>{experience.competences.map((c) => c.libelle).join(' · ')}</p>
+            <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">COMPÉTENCES DÉVELOPPÉES</p>
+            <p className="font-body-md text-body-md text-on-background">{experience.competences.map((c) => c.libelle).join(' · ')}</p>
           </div>
         )}
         {experience.resultats && (
           <div>
-            <p className="font-mono text-[length:var(--fs-mono)] font-semibold tracking-[.05em] uppercase opacity-70 mb-[var(--space-2)]">RÉSULTATS OBTENUS</p>
-            <p>{experience.resultats}</p>
+            <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">RÉSULTATS OBTENUS</p>
+            <p className="font-body-md text-body-md text-on-background">{experience.resultats}</p>
           </div>
         )}
       </div>
@@ -136,26 +91,30 @@ function ExperienceEntry({ experience, index }) {
   );
 }
 
+function NiveauDots({ n }) {
+  return (
+    <span className="flex gap-1" aria-hidden="true">
+      {[1, 2, 3].map((i) => (
+        <span
+          key={i}
+          className={`inline-block h-2 w-2 rounded-full ${i <= n ? 'bg-secondary-container' : 'bg-outline-variant'}`}
+        />
+      ))}
+    </span>
+  );
+}
+
 function CompetenceItem({ competence }) {
   const n = NIVEAU_N[competence.niveau] ?? 0;
-
   return (
-    <div
-      data-reveal-item
-      className="flex items-center justify-between gap-[var(--space-4)] border-[length:var(--trait)] border-[color:rgba(228,234,238,.45)] px-[var(--space-5)] py-[var(--space-3)]"
-    >
-      <span>{competence.libelle}</span>
-      <span className="flex items-center gap-[var(--space-3)] shrink-0">
-        <span className="flex gap-1" aria-hidden="true">
-          {[1, 2, 3].map((i) => (
-            <span
-              key={i}
-              className={`mark-square inline-block h-[.375rem] w-[.375rem] ${i <= n ? 'bg-[var(--led-vert)]' : 'border-[length:1.5px] border-[color:rgba(228,234,238,.45)]'}`}
-            />
-          ))}
-        </span>
+    <div className="flex items-center justify-between gap-4 py-3 border-b border-white/10 last:border-0">
+      <span className="font-body-md text-body-md text-on-primary">{competence.libelle}</span>
+      <span className="flex items-center gap-3 shrink-0">
+        <NiveauDots n={n} />
         {competence.niveau && (
-          <span className="font-mono text-[length:var(--fs-mono)] opacity-80">{NIVEAU_LABEL[competence.niveau]}</span>
+          <span className="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">
+            {NIVEAU_LABEL[competence.niveau]}
+          </span>
         )}
       </span>
     </div>
@@ -164,85 +123,72 @@ function CompetenceItem({ competence }) {
 
 export function Parcours() {
   const sectionRef = useConductorSection('parcours', 'Mon parcours');
-  const watermarkRef = useRef(null);
-  useParallax(watermarkRef, { from: 0, to: 6 });
   const { data: experiences = [] } = useQuery({ queryKey: ['experiences'], queryFn: fetchExperiences });
   const { data: competences = [] } = useQuery({ queryKey: ['competences'], queryFn: fetchCompetences });
 
-  // Déclaré APRÈS les requêtes : `competences.length` sert de dépendance au
-  // stagger, qui doit se rejouer une fois les cartes réellement rendues.
-  const competencesRef = useRef(null);
-  useRevealSection(competencesRef, { variant: 'tilt3d' });
-  useRevealStagger(competencesRef, { itemCount: competences.length });
-
   return (
-    <section ref={sectionRef} id="parcours" className="scroll-mt-[6rem] py-[var(--space-24)] relative overflow-hidden">
-      {/* Trame millimétrée retirée ici aussi (2026-08-03) : le client n'aime
-          pas le rendu « cahier ». Remplacée par un bandeau plein décalé en
-          parallaxe, qui structure la section sans texture. */}
-      <div
-        ref={watermarkRef}
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-[10%] left-0 -z-10 h-[120%] w-full bg-[var(--calque-clair)]"
-      />
-      <div className="container relative flex flex-col gap-[var(--space-16)]">
-        <SectionCartouche label="MON PARCOURS" />
+    <section ref={sectionRef} id="parcours" className="py-32 px-margin-mobile md:px-margin-desktop bg-surface-container-low">
+      <div className="max-w-max-width mx-auto flex flex-col gap-16">
+        <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-background uppercase">MON PARCOURS</h2>
 
+        {/* Académique */}
         <div>
-          <GroupeCartouche>Académique</GroupeCartouche>
-          <div className="flex flex-wrap gap-[var(--space-3)]">
-            {ACADEMIQUE.map((item) => <Borne key={item}>{item}</Borne>)}
+          <GroupeLabel>Académique</GroupeLabel>
+          <div className="flex flex-wrap gap-3">
+            {ACADEMIQUE.map((item) => <TagBorne key={item}>{item}</TagBorne>)}
           </div>
         </div>
 
+        {/* Formations complémentaires */}
         <div>
-          <GroupeCartouche>Formations complémentaires</GroupeCartouche>
-          <div className="flex flex-wrap gap-[var(--space-3)]">
-            {FORMATIONS_COMPLEMENTAIRES.map((item) => <Borne key={item}>{item}</Borne>)}
+          <GroupeLabel>Formations complémentaires</GroupeLabel>
+          <div className="flex flex-wrap gap-3">
+            {FORMATIONS_COMPLEMENTAIRES.map((item) => <TagBorne key={item}>{item}</TagBorne>)}
           </div>
         </div>
 
+        {/* Expériences */}
         <div>
-          <GroupeCartouche>Expériences professionnelles</GroupeCartouche>
+          <GroupeLabel>Expériences professionnelles</GroupeLabel>
           {experiences.length > 0 ? (
             <div>
               {experiences.map((exp, i) => <ExperienceEntry key={exp.id} experience={exp} index={i} />)}
             </div>
           ) : (
-            <div className="border-[length:var(--bd)] border-[color:var(--bordure)] p-[var(--space-8)]">
-              <span className="font-mono text-[.7rem] tracking-[.08em] uppercase opacity-70">
-                EXPÉRIENCES PROFESSIONNELLES — &lt;CONTENU À FOURNIR PAR CHABEL&gt;
+            <div className="bg-surface border-2 border-primary/20 p-8 text-center">
+              <span className="material-symbols-outlined text-primary text-[40px] mb-3 block">work_history</span>
+              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+                EXPÉRIENCES — &lt;CONTENU À FOURNIR PAR CHABEL&gt;
               </span>
             </div>
           )}
         </div>
       </div>
 
-      {/* Révélation propre à ce bloc : il est trop bas dans la section pour
-          profiter de celle de Parcours, déclenchée sur le haut de la section
-          et donc déjà terminée quand on arrive ici (retour client : « ni la
-          section ni les cartes ne s'animent »). Le conteneur bascule, puis les
-          cartes défilent en cascade (useRevealStagger). */}
-      <div
-        ref={competencesRef}
-        id="competences"
-        className="scroll-mt-[6rem] mt-[var(--space-24)] bg-[var(--bleu-atelier)] text-[var(--calque)] py-[var(--space-20)]"
-      >
-        <div className="container">
-          <p className="font-mono text-[length:var(--fs-mono)] font-semibold tracking-[.08em] uppercase opacity-75 mb-[var(--space-10)]">
-            COMPÉTENCES
-          </p>
-          <div className="grid gap-[var(--space-8)] md:grid-cols-2">
+      {/* Compétences — fond bleu foncé */}
+      <div id="competences" className="bg-on-surface text-on-primary mt-32 py-24 px-margin-mobile md:px-margin-desktop -mx-margin-mobile md:-mx-margin-desktop">
+        <div className="max-w-max-width mx-auto">
+          <h2 className="font-display-lg-mobile text-display-lg-mobile text-secondary-container uppercase mb-12">COMPÉTENCES</h2>
+          <div className="grid gap-12 md:grid-cols-2">
             {CATEGORIES_COMPETENCES.map(({ key, label }) => {
               const items = competences.filter((c) => c.categorie === key);
               if (items.length === 0) return null;
               return (
-                <div key={key} className="flex flex-col gap-[var(--space-3)]">
-                  <h3 className="font-[family-name:var(--font-display)] text-[1.25rem] font-bold uppercase">{label}</h3>
+                <div key={key} className="flex flex-col">
+                  <h3 className="font-label-lg text-label-lg text-secondary-container uppercase tracking-widest mb-4 pb-3 border-b border-on-surface-variant/40">
+                    {label}
+                  </h3>
                   {items.map((c) => <CompetenceItem key={c.id} competence={c} />)}
                 </div>
               );
             })}
+            {competences.length === 0 && (
+              <div className="md:col-span-2 border border-on-surface-variant/30 p-8 text-center">
+                <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+                  COMPÉTENCES — &lt;DONNÉES À COMPLÉTER DANS L'ADMIN&gt;
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>

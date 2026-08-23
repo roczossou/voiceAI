@@ -74,14 +74,12 @@ export function SiteLayout({ children }) {
         triggerRef={menuTriggerRef}
       />
 
-      <main id="contenu" ref={mainRef} className="site-main">
+      <main id="contenu" ref={mainRef} className="pt-20 min-h-screen">
         <PageConductor wrapperRef={mainRef} />
         {children}
       </main>
 
-      <Newsletter />
       <Footer />
-      <FloatingUtils />
     </ConductorProvider>
   );
 }
