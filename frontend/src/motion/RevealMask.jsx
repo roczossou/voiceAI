@@ -94,7 +94,7 @@ export function RevealMask({
             verticalAlign: 'top',
           }}
         >
-          <span data-reveal-inner style={{ display: 'inline-block' }}>
+          <span data-reveal-inner style={{ display: unit === 'lines' ? 'block' : 'inline-block', width: unit === 'lines' ? '100%' : 'auto' }}>
             {token}
             {unit === 'word' && i < tokens.length - 1 ? ' ' : ''}
           </span>

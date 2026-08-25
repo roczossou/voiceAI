@@ -30,38 +30,38 @@ export function FAQ() {
     <section className="py-24 px-margin-mobile md:px-margin-desktop bg-surface">
       <div className="max-w-max-width mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
         <div className="md:col-span-5">
-          <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-background uppercase mb-6">
-            FAQ <br/>
-            <span className="text-secondary-container">QUESTIONS</span>
+          <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-background mb-6">
+            Questions <br />
+            <span className="text-secondary-container">fréquentes</span>
           </h2>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-sm">
+          <p className="font-body-lg text-body-lg text-on-surface-variant ">
             Vous avez des questions sur mon expertise ou mes services ? Voici quelques réponses fréquentes.
           </p>
         </div>
-        
+
         <div className="md:col-span-7 flex flex-col gap-4">
           {FAQS.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div 
-                key={index} 
-                className={`border-2 transition-colors ${isOpen ? 'border-secondary-container bg-secondary-container/5' : 'border-outline-variant hover:border-primary/50'}`}
+              <div
+                key={index}
+                className={`border rounded-2xl overflow-hidden transition-all duration-300 card-sheen-beam shadow-xs ${isOpen ? 'border-purple-500 glow-purple bg-surface' : 'border-outline-variant hover:border-purple-300 bg-surface'}`}
               >
-                <button 
+                <button
                   onClick={() => toggle(index)}
                   className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
                 >
-                  <span className="font-headline-md text-headline-md text-on-background uppercase pr-4">
+                  <span className="font-headline-md text-headline-md text-on-background font-bold pr-4">
                     {faq.question}
                   </span>
-                  <span className={`material-symbols-outlined text-2xl transition-transform duration-300 ${isOpen ? 'rotate-180 text-secondary-container' : 'text-on-surface-variant'}`}>
+                  <span className={`material-symbols-outlined text-2xl transition-transform duration-300 ${isOpen ? 'rotate-180 text-purple-600' : 'text-on-surface-variant'}`}>
                     expand_more
                   </span>
                 </button>
-                <div 
+                <div
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
                 >
-                  <p className="p-6 pt-0 font-body-md text-body-md text-on-surface-variant">
+                  <p className="p-6 pt-0 font-body-md text-body-md text-on-surface-variant leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>

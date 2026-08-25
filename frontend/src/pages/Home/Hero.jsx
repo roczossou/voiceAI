@@ -55,57 +55,64 @@ function RotatingTitle() {
 export function Hero() {
   return (
     <section className="relative pt-32 pb-32 overflow-hidden bg-primary w-full px-margin-mobile md:px-margin-desktop min-h-screen flex items-center">
-      {/* Background Watermark */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[18vw] font-display-lg font-black text-primary-fixed-dim/20 whitespace-nowrap pointer-events-none select-none z-0">
+      {/* Background Watermark & Animated Glow Ring */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[18vw] font-display-lg font-black text-primary-fixed-dim/15 whitespace-nowrap pointer-events-none select-none z-0">
         CHABEL
       </div>
+      <div className="absolute top-[10%] right-[10%] w-[400px] h-[400px] bg-gradient-to-tr from-purple-500/20 via-cyan-500/20 to-amber-500/20 rounded-full blur-3xl animate-spin-slow pointer-events-none z-0" />
 
       <div className="max-w-max-width mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10 w-full">
         {/* Left Content (Text) */}
         <div className="flex flex-col items-start gap-8">
-          {/* Badge */}
-          <div className="bg-secondary-container text-on-background font-label-sm text-[11px] font-bold uppercase tracking-widest px-4 py-2 border border-black shadow-[4px_4px_0px_rgba(0,0,0,1)]">
-            DISPONIBLE POUR DE NOUVEAUX PROJETS
+          {/* Badge avec point lumineux vert émeraude */}
+          <div className="hero-anim-badge flex items-center gap-2 bg-secondary-container text-on-secondary font-label-sm text-[11px] font-bold tracking-widest px-4 py-2 border border-emerald-400/40 rounded-full shadow-md">
+            {/* <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 dot-pulse-emerald inline-block" /> */}
+            <span>DISPONIBLE POUR DE NOUVEAUX PROJETS</span>
           </div>
 
           {/* Title */}
-          <h1 className="font-display-lg-mobile text-[3rem] md:text-[5rem] md:font-display-lg text-white font-bold leading-[1.1] tracking-tight">
-            Bienvenue, <br />
-            je suis <br />
-            <span className="text-secondary-container">Chabel </span>ANANOUNON.
-          </h1>
+          <div className="hero-anim-title">
+            <h1 className="font-display-lg-mobile text-[3rem] md:text-[5rem] md:font-display-lg text-white font-bold leading-[1.1] tracking-tight">
+              Bienvenue, <br />
+              je suis <br />
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-secondary-container to-purple-300">Chabel </span>ANANOUNON.
+            </h1>
+            <div className="mt-2">
+              <RotatingTitle />
+            </div>
+          </div>
 
           {/* Subtext */}
-          <p className="font-body-md md:text-lg text-white/80 max-w-xl leading-relaxed">
-            Je combine des principes de marketing agressifs avec une exécution esthétique immaculée pour construire des solutions numériques qui captent l'attention et stimulent la conversion.
+          <p className="hero-anim-text font-body-md md:text-lg text-white/90  leading-relaxed">
+            Je combine des principes de marketing stratégiques avec une exécution esthétique immaculée pour construire des solutions numériques qui captent l'attention et stimulent la conversion.
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-wrap gap-6 pt-4">
-            <Link 
-              to="/projets" 
-              className="bg-secondary-container text-on-background font-label-sm font-bold text-sm uppercase px-8 py-4 border border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all flex items-center gap-2"
+          <div className="hero-anim-btn flex flex-wrap gap-6 pt-4">
+            <Link
+              to="/projets"
+              className="bg-secondary-container text-on-secondary font-label-sm font-bold text-sm px-8 py-4 border border-amber-400/50 hover:scale-105 transition-all flex items-center gap-2 rounded-2xl shadow-md"
             >
-              Découvrir mes projets
+              <span>Découvrir mes projets</span>
               <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
             </Link>
-            <Link 
-              to="/a-propos" 
-              className="bg-transparent text-white font-label-sm font-bold text-sm uppercase px-8 py-4 border border-white hover:bg-white/10 transition-all"
+            <Link
+              to="/a-propos"
+              className="bg-white/10 text-white font-label-sm font-bold text-sm px-8 py-4 border border-white/30 backdrop-blur-md hover:bg-white/20 hover:scale-105 transition-all rounded-2xl shadow-md"
             >
               Mon parcours
             </Link>
           </div>
         </div>
 
-        {/* Right Content (Image) */}
-        <div className="relative mt-16 lg:mt-0 flex justify-center lg:justify-end">
-          <div className="relative w-full max-w-[500px] aspect-[4/5]">
-            <div className="absolute inset-0 bg-secondary-container border border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] transform translate-x-4 translate-y-4 z-0"></div>
-            <div className="relative z-10 w-full h-full border border-black bg-surface overflow-hidden">
-              <img 
-                alt="Chabel ANANOUNON de face, en tenue professionnelle" 
-                className="w-full h-full object-cover object-top" 
+        {/* Right Content (Portrait avec entrée extravagante et flottaison 3D) */}
+        <div className="hero-anim-portrait relative mt-16 lg:mt-0 flex justify-center lg:justify-end">
+          <div className="relative w-full max-w-[500px] aspect-[4/5] animate-hero-float">
+            <div className="absolute inset-0 bg-gradient-to-tr from-amber-500 via-secondary-container to-purple-600 border border-purple-400/40 glow-purple shadow-xl transform translate-x-4 translate-y-4 z-0 rounded-3xl"></div>
+            <div className="relative z-10 w-full h-full border border-outline-variant bg-surface overflow-hidden rounded-3xl shadow-2xl">
+              <img
+                alt="Chabel ANANOUNON de face, en tenue professionnelle"
+                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
                 src={portraitImg}
                 fetchPriority="high"
               />

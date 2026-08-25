@@ -5,12 +5,12 @@ import { useConductorSection } from '../../components/layout/useConductor';
 import { fetchStats } from '../../api/client';
 
 const LABELS = [
-  { key: 'projets_realises', label: 'PROJETS RÉALISÉS' },
-  { key: 'evenements_organises', label: 'ÉVÉNEMENTS ORGANISÉS' },
-  { key: 'personnes_formees', label: 'PERSONNES FORMÉES' },
-  { key: 'annees_experience', label: "ANNÉES D'EXPÉRIENCE" },
-  { key: 'partenaires', label: 'PARTENAIRES' },
-  { key: 'distinctions', label: 'DISTINCTIONS' },
+  { key: 'projets_realises', label: 'Projets réalisés' },
+  { key: 'evenements_organises', label: 'Événements organisés' },
+  { key: 'personnes_formees', label: 'Personnes formées' },
+  { key: 'annees_experience', label: "Années d'expérience" },
+  { key: 'partenaires', label: 'Partenaires' },
+  { key: 'distinctions', label: 'Distinctions' },
 ];
 
 function Stat({ label, value, index }) {
@@ -23,7 +23,7 @@ function Stat({ label, value, index }) {
       <p ref={ref} className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary group-hover:text-secondary-container transition-colors relative z-10">
         {value == null ? '—' : value}
       </p>
-      <p className="font-label-lg text-label-lg font-bold text-on-background uppercase mt-2 relative z-10">
+      <p className="font-label-lg text-label-lg font-bold text-on-background mt-2 relative z-10">
         {label}
       </p>
     </div>
@@ -37,9 +37,9 @@ export function Indicators() {
   return (
     <section ref={sectionRef} id="indicateurs" className="py-24 px-margin-mobile md:px-margin-desktop bg-background">
       <div className="max-w-max-width mx-auto">
-        <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-background uppercase text-center mb-16 leading-none">
-          L'IMPACT <br/>
-          <span className="text-secondary-container">EN CHIFFRES</span>
+        <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-background text-center mb-16 leading-none">
+          L'impact <br/>
+          <span className="text-secondary-container">en chiffres</span>
         </h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

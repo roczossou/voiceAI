@@ -33,22 +33,35 @@ const AXES = [
 
 const PROPOSITION = "À travers mes compétences en gestion de projet, communication digitale, planification d'événements, créativité et leadership, j'accompagne les organisations, les entreprises, les collectivités et les jeunes entrepreneurs dans la conception, la réalisation et la promotion de projets à fort impact.";
 
+const ACCENTS_CAP = [
+  { labelColor: 'text-purple-600', dot: 'bg-purple-500 dot-pulse-purple', border: 'border-purple-200 hover:border-purple-500', glow: 'glow-purple' },
+  { labelColor: 'text-cyan-600', dot: 'bg-cyan-500 dot-pulse-cyan', border: 'border-cyan-200 hover:border-cyan-500', glow: 'glow-cyan' },
+  { labelColor: 'text-amber-600', dot: 'bg-amber-500 dot-pulse-amber', border: 'border-amber-200 hover:border-amber-500', glow: 'glow-amber' },
+];
+
 function Axe({ label, texte, index }) {
   const ref = useRef(null);
-  useTilt(ref, { max: 5, perspective: 1100, lift: 14 });
+  useTilt(ref, { max: 8, perspective: 1000, lift: 16 });
+  const accent = ACCENTS_CAP[index % ACCENTS_CAP.length];
 
   return (
     <div
       ref={ref}
       data-reveal-item
-      className="flex flex-col gap-[var(--space-5)] border-[length:var(--bd)] border-[color:var(--bordure)] bg-[var(--calque-clair)] p-[var(--space-8)] will-change-transform"
+      className={`group relative flex flex-col justify-between gap-6 rounded-2xl border bg-surface p-8 transition-all duration-300 ${accent.border} ${accent.glow} shadow-sm will-change-transform`}
     >
-      <p className="flex items-center gap-[var(--space-3)] font-mono text-[length:var(--fs-mono)] font-semibold uppercase tracking-[.14em] opacity-70">
-        <span className="mark-square inline-block h-[.375rem] w-[.375rem] bg-[var(--jaune-signal)]" />
-        {label}
-        <span className="ml-auto opacity-60">{String(index + 1).padStart(2, '0')}</span>
-      </p>
-      <p className="font-[family-name:var(--font-display)] text-[1.5rem] font-bold uppercase leading-[1.12]">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className={`w-2.5 h-2.5 rounded-full ${accent.dot}`} />
+          <span className={`font-mono text-xs font-bold tracking-wider ${accent.labelColor}`}>
+            {label}
+          </span>
+        </div>
+        <span className="font-mono text-sm font-bold opacity-30 group-hover:opacity-100 transition-opacity">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+      </div>
+      <p className="font-display text-lg font-medium leading-relaxed text-on-surface">
         {texte}
       </p>
     </div>
@@ -61,19 +74,20 @@ export function Cap() {
   useRevealStagger(grilleRef, { itemCount: AXES.length, distance: 56, stagger: 0.1 });
 
   return (
-    <section ref={sectionRef} id="cap" className="scroll-mt-[6rem] py-[var(--space-24)]">
-      <div className="container">
-        <SectionCartouche label="LE CAP" />
+    <section ref={sectionRef} id="cap" className="scroll-mt-[6rem] py-24 bg-surface">
+      <div className="max-w-7xl mx-auto px-margin">
+        <SectionCartouche label="LE CAP & VISION" />
 
-        <div ref={grilleRef} className="grid gap-[var(--space-4)] md:grid-cols-3">
+        <div ref={grilleRef} className="grid gap-6 md:grid-cols-3 mb-12">
           {AXES.map((axe, i) => <Axe key={axe.cle} index={i} {...axe} />)}
         </div>
 
-        <div className="mt-[var(--space-10)] border-t-[length:var(--bd)] border-[color:var(--bordure)] pt-[var(--space-8)]">
-          <p className="mb-[var(--space-4)] font-mono text-[length:var(--fs-mono)] font-semibold uppercase tracking-[.14em] opacity-70">
+        <div className="rounded-2xl border border-outline-variant/60 bg-gradient-to-r from-surface-container-low via-surface to-surface-container-low p-8 shadow-sm">
+          <p className="mb-3 font-mono text-xs font-bold tracking-wider text-primary flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             PROPOSITION DE VALEUR
           </p>
-          <p className="max-w-[62ch] text-[length:var(--fs-body-lg)] leading-[1.6]">{PROPOSITION}</p>
+          <p className="max-w-4xl text-base md:text-lg leading-relaxed text-on-surface-variant">{PROPOSITION}</p>
         </div>
       </div>
     </section>

@@ -129,9 +129,9 @@ https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&
 
 | Rôle | Famille | Réglages |
 |---|---|---|
-| Display | `Big Shoulders Display` 800 | uppercase, `letter-spacing:.005em`, `line-height:.84` |
+| Display | `Big Shoulders Display` 800 | , `letter-spacing:.005em`, `line-height:.84` |
 | Texte | `Instrument Sans` 400/500/600 | `line-height:1.6` |
-| Technique | `IBM Plex Mono` 400/600 | uppercase, `letter-spacing:.1em` — repères, cotes, dates, libellés |
+| Technique | `IBM Plex Mono` 400/600 | , `letter-spacing:.1em` — repères, cotes, dates, libellés |
 | Pochoir | `Big Shoulders Stencil Display` 700 | **DIGIT'S CRÉA AWARDS uniquement, 2 occurrences max par page** |
 
 Échelle : `--fs-mono:.6875rem` · `--fs-mono-lg:.8125rem` · `--fs-body:1.0625rem` ·

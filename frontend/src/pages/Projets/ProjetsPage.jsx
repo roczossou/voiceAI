@@ -13,10 +13,17 @@ import { Lightbox } from './Lightbox';
 const TYPES_VISIBLE = 6;
 const COL_SPANS = ['md:col-span-8', 'md:col-span-4', 'md:col-span-5', 'md:col-span-7'];
 
+const CARD_ACCENTS = [
+  { border: 'hover:border-purple-500', glow: 'glow-purple', bg: 'bg-purple-600', tag: 'bg-purple-600' },
+  { border: 'hover:border-emerald-500', glow: 'glow-emerald', bg: 'bg-emerald-600', tag: 'bg-emerald-600' },
+  { border: 'hover:border-cyan-500', glow: 'glow-cyan', bg: 'bg-cyan-600', tag: 'bg-cyan-600' },
+  { border: 'hover:border-amber-500', glow: 'glow-amber', bg: 'bg-amber-600', tag: 'bg-amber-600' },
+];
+
 function FilterBorne({ active, onClick, children, role, ariaChecked, ariaPressed }) {
-  const baseClasses = "px-4 py-2 border-2 text-primary font-label-lg text-label-lg rounded-DEFAULT transition-all";
-  const activeClasses = "border-secondary-container bg-secondary-container text-on-secondary";
-  const inactiveClasses = "border-primary hover:bg-primary-container hover:text-on-primary-container";
+  const baseClasses = "px-md py-sm border font-label-bold text-[11px] tracking-wider rounded-xl transition-all duration-300 shadow-xs flex items-center gap-xs";
+  const activeClasses = "border-secondary-container bg-secondary-container text-on-secondary shadow-md scale-105";
+  const inactiveClasses = "border-outline-variant bg-surface text-on-surface hover:border-primary hover:bg-surface-container";
 
   return (
     <button
@@ -101,26 +108,30 @@ export function ProjetsPage() {
 
   return (
     <SiteLayout>
-      <main className="pb-[160px] px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto pt-[40px]">
-        {/* Header Section */}
-        <header className="mb-16 md:mb-24 flex flex-col justify-between items-start gap-8 border-b-2 border-primary pb-8">
-          <div className="max-w-2xl w-full flex flex-col md:flex-row justify-between items-end gap-8 mb-4">
-            <div>
-              <h1 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-4 uppercase tracking-tighter">
-                RÉALISATIONS <br/><span className="text-secondary-container">ATELIER</span>
+      <main className="pb-[160px] px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto pt-[120px] md:pt-[140px]">
+        {/* Header Section — conservé tel quel (première section) */}
+        <header className="mb-xl flex flex-col justify-between items-start gap-lg border-b border-outline-variant pb-lg relative overflow-hidden">
+          <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-end gap-md mb-sm">
+            <div className="w-full md:shrink-0">
+              <div className="inline-flex items-center gap-2 bg-secondary-container text-on-secondary font-label-bold text-[11px] px-md py-xs rounded-full tracking-widest mb-sm shadow-sm">
+                {/* <span className="w-2 h-2 rounded-full bg-emerald-500 dot-pulse-emerald" /> */}
+                PORTFOLIO &amp; SHOWCASE
+              </div>
+              <h1 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-sm tracking-tighter">
+                Projets et <br /><span className="text-secondary-container">Réalisations</span>
               </h1>
-              <p className="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+              <p className="font-body-lg text-body-lg text-on-surface-variant w-full leading-relaxed">
                 Une collection de réalisations, projets et collaborations, illustrant ma méthodologie et mon engagement à créer de la valeur.
               </p>
             </div>
-            
-            <p className="font-label-lg text-label-lg text-primary-fixed-dim" aria-live="polite">
+
+            <p className="font-label-bold text-[11px] text-primary bg-primary/10 px-md py-sm rounded-xl border border-primary/20 shrink-0 tracking-wider" aria-live="polite">
               [{filtered.length}] RÉALISATION{filtered.length > 1 ? 'S' : ''}
             </p>
           </div>
-          
-          <div className="w-full flex flex-col gap-4">
-             <div className="flex flex-wrap gap-3" role="radiogroup" aria-label="Nature">
+
+          <div className="w-full flex flex-col gap-md">
+            <div className="flex flex-wrap gap-sm" role="radiogroup" aria-label="Nature">
               {NATURES.map(({ value, label }) => (
                 <FilterBorne key={label} role="radio" ariaChecked={nature === value} active={nature === value} onClick={() => setNature(value)}>
                   {label}
@@ -128,81 +139,103 @@ export function ProjetsPage() {
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-3" aria-label="Type">
+            <div className="flex flex-wrap gap-sm" aria-label="Type">
               {visibleTypes.map(({ value, label }) => (
                 <FilterBorne key={value} ariaPressed={types.includes(value)} active={types.includes(value)} onClick={() => toggleType(value)}>
                   {label}
                 </FilterBorne>
               ))}
               {TYPES.length > TYPES_VISIBLE && (
-                <button type="button" className="text-primary hover:text-secondary-container font-label-lg" aria-expanded={showAllTypes} onClick={() => setTypesExpanded((v) => !v)}>
+                <button type="button" className="font-label-bold text-[11px] text-primary hover:text-secondary-container tracking-wider transition-colors" aria-expanded={showAllTypes} onClick={() => setTypesExpanded((v) => !v)}>
                   {showAllTypes ? 'VOIR MOINS' : '+ VOIR PLUS'}
                 </button>
               )}
             </div>
 
-            <div className="flex flex-wrap gap-3 mt-4 border-t border-primary/20 pt-4">
-               <FilterBorne ariaPressed={mode === 'liste'} active={mode === 'liste'} onClick={() => setMode('liste')}>
+            <div className="flex flex-wrap gap-sm border-t border-outline-variant pt-md">
+              <FilterBorne ariaPressed={mode === 'liste'} active={mode === 'liste'} onClick={() => setMode('liste')}>
+                <span className="material-symbols-outlined text-[14px]">view_list</span>
                 LISTE
               </FilterBorne>
               <FilterBorne ariaPressed={mode === 'galerie'} active={mode === 'galerie'} onClick={() => setMode('galerie')}>
+                <span className="material-symbols-outlined text-[14px]">grid_view</span>
                 GALERIE
               </FilterBorne>
             </div>
           </div>
         </header>
 
+        {/* Grid section */}
         <section ref={sectionRef} id="projets">
-          {status === 'pending' && <p className="font-body-lg text-primary">Chargement…</p>}
-          {status === 'error' && <p className="font-body-lg text-error">Impossible de charger les réalisations pour le moment.</p>}
+          {status === 'pending' && (
+            <div className="py-xl text-center">
+              <span className="material-symbols-outlined animate-spin text-primary text-[48px]">progress_activity</span>
+              <p className="font-body-lg text-primary mt-md">Chargement…</p>
+            </div>
+          )}
+          {status === 'error' && (
+            <div className="bg-surface border border-outline-variant rounded-xl p-lg text-center shadow-sm">
+              <span className="material-symbols-outlined text-error text-[40px] mb-sm block">error</span>
+              <p className="font-body-lg text-error">Impossible de charger les réalisations pour le moment.</p>
+            </div>
+          )}
 
           {status === 'success' && filtered.length === 0 && (
-            <div className="bg-surface p-8 border-2 border-primary rounded-lg text-center">
-              <p className="font-body-lg mb-4">
+            <div className="bg-surface p-lg border border-outline-variant rounded-xl text-center shadow-sm">
+              <span className="material-symbols-outlined text-on-surface-variant text-[48px] mb-sm block">search_off</span>
+              <p className="font-body-lg text-on-surface mb-md">
                 {projets.length === 0 ? 'Aucune réalisation disponible pour le moment.' : 'Aucune réalisation ne correspond à ces filtres.'}
               </p>
               {projets.length > 0 && (
-                <button type="button" className="bg-primary text-on-primary px-6 py-2 rounded-DEFAULT font-label-lg" onClick={resetFilters}>
-                  RÉINITIALISER LES FILTRES
+                <button type="button" className="text-on-primary font-label-bold text-label-bold px-lg py-md rounded-full transition-all tracking-wider" style={{ background: 'linear-gradient(135deg, rgb(255, 69, 0) 0%, rgb(255, 183, 0) 100%)' }} onClick={resetFilters}>
+                  Réinitialiser les filtres
                 </button>
               )}
             </div>
           )}
 
           {status === 'success' && filtered.length > 0 && mode === 'liste' && (
-            <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-12 gap-gutter auto-rows-[300px] md:auto-rows-[400px]">
+            <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-12 gap-md auto-rows-[300px] md:auto-rows-[400px]">
               {filtered.map((projet, index) => {
                 const colSpanClass = COL_SPANS[index % 4];
+                const acc = CARD_ACCENTS[index % CARD_ACCENTS.length];
                 return (
-                  <Link key={projet.slug} to={`/projets/${projet.slug}`} className={`project-card group relative col-span-1 ${colSpanClass} row-span-1 border-2 border-primary bg-surface overflow-hidden rounded-lg cursor-pointer`}>
+                  <Link
+                    key={projet.slug}
+                    to={`/projets/${projet.slug}`}
+                    className={`project-card group relative col-span-1 ${colSpanClass} row-span-1 border border-outline-variant ${acc.border} ${acc.glow} bg-surface overflow-hidden rounded-xl card-parallax-zoom cursor-pointer shadow-sm`}
+                  >
                     {projet.banniere ? (
                       <img src={projet.banniere} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                     ) : (
-                       <div className="w-full h-full bg-surface-variant flex items-center justify-center text-on-surface-variant">
-                         <span className="font-label-lg uppercase">Visuel —</span>
-                       </div>
-                    )}
-                    <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-300"></div>
-                    <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-inverse-surface/90 to-transparent flex justify-between items-end z-10">
-                      <div>
-                        <span className="inline-block bg-primary text-on-primary px-3 py-1 font-label-sm text-label-sm rounded-DEFAULT mb-2 uppercase">{projet.nature}</span>
-                        <h3 className="font-headline-md text-headline-md text-surface">{projet.titre}</h3>
+                      <div className="w-full h-full bg-surface-variant flex items-center justify-center text-on-surface-variant">
+                        <span className="material-symbols-outlined text-[64px] opacity-30">image</span>
                       </div>
-                      <span className="material-symbols-outlined text-surface-bright bg-secondary-container p-2 rounded-full opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">arrow_outward</span>
+                    )}
+                    <div className="absolute inset-0 bg-primary/15 group-hover:bg-transparent transition-colors duration-300" />
+                    <div className="absolute bottom-0 left-0 w-full p-md bg-gradient-to-t from-inverse-surface/90 via-inverse-surface/40 to-transparent flex justify-between items-end z-10">
+                      <div>
+                        <span className={`inline-block ${acc.tag} text-white px-sm py-xs font-label-bold text-[10px] rounded-lg mb-xs font-bold shadow-xs`}>{projet.nature}</span>
+                        <h3 className="font-headline-md text-headline-md text-surface font-bold">{projet.titre}</h3>
+                      </div>
+                      <span className="material-symbols-outlined text-surface-bright bg-secondary-container p-sm rounded-full opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-md">arrow_outward</span>
                     </div>
                   </Link>
                 );
               })}
 
-              {/* CTA Section (Breaking the grid) */}
-              <div className="col-span-1 md:col-span-12 row-span-auto bg-primary text-on-primary p-8 md:p-16 flex flex-col md:flex-row items-center justify-between border-4 border-secondary-container relative overflow-hidden mt-8 rounded-xl shadow-lg">
-                <div className="absolute -right-20 -top-20 w-64 h-64 bg-secondary-container rotate-45 opacity-90 z-0"></div>
-                <div className="absolute -left-10 -bottom-10 w-32 h-32 border-8 border-primary-container rounded-full z-0"></div>
-                <div className="relative z-10 max-w-xl">
-                  <h2 className="font-headline-lg text-headline-lg mb-4">Besoin d'un projet similaire ?</h2>
+              {/* CTA card */}
+              <div className="col-span-1 md:col-span-12 row-span-auto bg-gradient-to-r from-primary via-primary-container to-primary text-on-primary p-lg md:p-xl flex flex-col md:flex-row items-center justify-between relative overflow-hidden mt-md rounded-xl shadow-lg">
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                  <svg className="absolute" style={{ top: '-20%', right: '-8%', width: 280, height: 280 }} viewBox="0 0 220 220" fill="none">
+                    <circle cx="110" cy="110" r="80" stroke="rgba(255,183,0,0.25)" strokeWidth="44" />
+                  </svg>
+                </div>
+                <div className="relative z-10">
+                  <h2 className="font-headline-lg text-headline-lg font-bold text-on-primary mb-sm">Besoin d'un projet similaire ?</h2>
                   <p className="font-body-lg text-body-lg text-primary-fixed-dim">Construisons ensemble des expériences marquantes et orientées résultats.</p>
                 </div>
-                <Link to="/contact" className="relative z-10 mt-8 md:mt-0 bg-secondary-container text-on-secondary px-8 py-4 font-label-lg text-label-lg rounded-DEFAULT border-2 border-secondary-container hover:bg-transparent hover:text-secondary-container transition-all shadow-md">
+                <Link to="/contact" className="relative z-10 mt-lg md:mt-0 text-on-primary font-label-bold text-label-bold px-lg py-md rounded-full hover:opacity-90 transition-all shadow-md tracking-wider shrink-0" style={{ background: 'linear-gradient(135deg, rgb(255, 69, 0) 0%, rgb(255, 183, 0) 100%)' }}>
                   Démarrer un projet
                 </Link>
               </div>
@@ -210,12 +243,12 @@ export function ProjetsPage() {
           )}
 
           {status === 'success' && filtered.length > 0 && mode === 'galerie' && (
-            <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-gutter">
+            <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
               {galleryItems.map((item, i) => (
                 <button
                   key={item.id}
                   type="button"
-                  className="project-card relative border-2 border-primary bg-surface overflow-hidden rounded-lg cursor-pointer aspect-square"
+                  className="project-card relative border border-outline-variant hover:border-primary bg-surface overflow-hidden rounded-xl cursor-pointer aspect-square shadow-sm transition-all glow-purple"
                   onClick={(e) => { lastFocusedRef.current = e.currentTarget; setLightboxIndex(i); }}
                 >
                   <img src={item.src} alt={item.legende} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
@@ -225,7 +258,7 @@ export function ProjetsPage() {
           )}
         </section>
 
-        <div className="mt-16">
+        <div className="mt-xl">
           <ProchaineEtape courante="/projets" />
         </div>
       </main>

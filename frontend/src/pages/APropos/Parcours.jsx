@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useConductorSection } from '../../components/layout/useConductor';
@@ -15,26 +16,26 @@ const FORMATIONS_COMPLEMENTAIRES = [
 ];
 
 const CATEGORIES_COMPETENCES = [
-  { key: 'digitale', label: 'Compétences digitales' },
-  { key: 'gestion', label: 'Compétences en gestion' },
-  { key: 'technique', label: 'Compétences techniques' },
-  { key: 'soft', label: 'Soft skills' },
+  { key: 'digitale', label: 'Compétences digitales', icon: 'devices' },
+  { key: 'gestion', label: 'Compétences en gestion', icon: 'account_tree' },
+  { key: 'technique', label: 'Compétences techniques', icon: 'build' },
+  { key: 'soft', label: 'Soft skills', icon: 'psychology' },
 ];
 
 const NIVEAU_N = { maitrise: 3, avance: 2, operationnel: 1 };
-const NIVEAU_LABEL = { maitrise: 'MAÎTRISE', avance: 'AVANCÉ', operationnel: 'OPÉRATIONNEL' };
+const NIVEAU_LABEL = { maitrise: 'Maîtrise', avance: 'Avancé', operationnel: 'Opérationnel' };
 
-function GroupeLabel({ children }) {
-  return (
-    <h3 className="font-label-lg text-label-lg text-primary uppercase tracking-widest pb-3 border-b-2 border-primary/20 mb-6">
-      {children}
-    </h3>
-  );
-}
+const CAT_ACCENTS = [
+  { border: 'border-purple-200 hover:border-purple-500', glow: 'glow-purple', icon: 'text-purple-600', iconBg: 'bg-purple-500/10 group-hover:bg-purple-600 group-hover:text-white', title: 'group-hover:text-purple-600', dot: 'bg-purple-500', bar: 'bg-purple-500' },
+  { border: 'border-emerald-200 hover:border-emerald-500', glow: 'glow-emerald', icon: 'text-emerald-600', iconBg: 'bg-emerald-500/10 group-hover:bg-emerald-600 group-hover:text-white', title: 'group-hover:text-emerald-600', dot: 'bg-emerald-500', bar: 'bg-emerald-500' },
+  { border: 'border-cyan-200 hover:border-cyan-500', glow: 'glow-cyan', icon: 'text-cyan-600', iconBg: 'bg-cyan-500/10 group-hover:bg-cyan-600 group-hover:text-white', title: 'group-hover:text-cyan-600', dot: 'bg-cyan-500', bar: 'bg-cyan-500' },
+  { border: 'border-amber-200 hover:border-amber-500', glow: 'glow-amber', icon: 'text-amber-600', iconBg: 'bg-amber-500/10 group-hover:bg-amber-600 group-hover:text-white', title: 'group-hover:text-amber-600', dot: 'bg-amber-500', bar: 'bg-amber-500' },
+];
 
-function TagBorne({ children }) {
+function TagBorne({ children, accent }) {
+  const acc = CAT_ACCENTS[accent % CAT_ACCENTS.length];
   return (
-    <span className="inline-block bg-surface border-2 border-primary/30 hover:border-primary hover:bg-primary-container text-on-background font-label-lg text-label-lg uppercase px-4 py-2 transition-colors cursor-default">
+    <span className={`inline-block bg-surface border ${acc.border} ${acc.icon} font-label-bold text-[11px] px-sm py-xs rounded-lg transition-colors cursor-default shadow-xs`}>
       {children}
     </span>
   );
@@ -47,46 +48,44 @@ function formatPeriode(debut, fin) {
 }
 
 function ExperienceEntry({ experience, index }) {
+  const acc = CAT_ACCENTS[index % CAT_ACCENTS.length];
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-6 py-8 border-b border-primary/20 last:border-0">
-      <div className="flex items-start gap-3">
-        <span className="mt-1.5 inline-block w-3 h-3 bg-secondary-container shrink-0"></span>
-        <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider leading-snug">
+    <div className={`group bg-surface border ${acc.border} ${acc.glow} rounded-xl p-lg card-sheen-beam shadow-sm transition-all hover:-translate-y-0.5`}>
+      <div className="flex flex-wrap items-start justify-between gap-sm mb-md">
+        <div>
+          <h4 className={`font-headline-md text-body-lg font-bold text-on-surface transition-colors ${acc.title}`}>
+            {experience.structure}
+          </h4>
+          <p className={`font-label-bold text-[12px] tracking-wider mt-xs ${acc.icon}`}>{experience.poste}</p>
+        </div>
+        <span className={`font-label-bold text-[11px] ${acc.icon} bg-surface-container px-sm py-xs rounded-lg border border-outline-variant/60 shrink-0`}>
           {formatPeriode(experience.periode_debut, experience.periode_fin)}
         </span>
       </div>
-      <div className="flex flex-col gap-3">
-        <h4 className="font-headline-md text-headline-md text-on-background uppercase leading-tight">
-          {experience.structure}
-        </h4>
-        <p className="font-label-lg text-label-lg text-primary uppercase">{experience.poste}</p>
 
-        {experience.missions?.length > 0 && (
-          <div>
-            <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">MISSIONS</p>
-            <ul className="flex flex-col gap-1">
-              {experience.missions.map((m) => (
-                <li key={m} className="font-body-md text-body-md text-on-background flex gap-2">
-                  <span className="text-secondary-container mt-1">›</span>
-                  {m}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {experience.competences?.length > 0 && (
-          <div>
-            <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">COMPÉTENCES DÉVELOPPÉES</p>
-            <p className="font-body-md text-body-md text-on-background">{experience.competences.map((c) => c.libelle).join(' · ')}</p>
-          </div>
-        )}
-        {experience.resultats && (
-          <div>
-            <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">RÉSULTATS OBTENUS</p>
-            <p className="font-body-md text-body-md text-on-background">{experience.resultats}</p>
-          </div>
-        )}
-      </div>
+      {experience.missions?.length > 0 && (
+        <div className="mb-sm">
+          <p className="font-label-bold text-[10px] text-on-surface-variant tracking-widest mb-xs">MISSIONS</p>
+          <ul className="flex flex-col gap-xs">
+            {experience.missions.map((m) => (
+              <li key={m} className="font-body-sm text-body-sm text-on-surface flex gap-sm items-start">
+                <span className={`${acc.icon} mt-0.5 shrink-0 font-bold`}>›</span>
+                <span className="flex-1 min-w-0">{m}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {experience.competences?.length > 0 && (
+        <div className="flex flex-wrap gap-xs pt-sm border-t border-outline-variant/40">
+          {experience.competences.map((c) => (
+            <span key={c.libelle} className={`font-label-bold text-[10px] px-sm py-xs rounded-lg border ${acc.border} ${acc.icon} bg-surface-container`}>
+              {c.libelle}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -97,7 +96,7 @@ function NiveauDots({ n }) {
       {[1, 2, 3].map((i) => (
         <span
           key={i}
-          className={`inline-block h-2 w-2 rounded-full ${i <= n ? 'bg-secondary-container' : 'bg-outline-variant'}`}
+          className={`inline-block h-2 w-5 rounded-full ${i <= n ? 'bg-secondary-container' : 'bg-outline-variant/40'}`}
         />
       ))}
     </span>
@@ -107,12 +106,12 @@ function NiveauDots({ n }) {
 function CompetenceItem({ competence }) {
   const n = NIVEAU_N[competence.niveau] ?? 0;
   return (
-    <div className="flex items-center justify-between gap-4 py-3 border-b border-white/10 last:border-0">
-      <span className="font-body-md text-body-md text-on-primary">{competence.libelle}</span>
-      <span className="flex items-center gap-3 shrink-0">
+    <div className="flex items-center justify-between gap-md py-sm border-b border-outline-variant/40 last:border-0">
+      <span className="font-body-sm text-body-sm text-on-surface">{competence.libelle}</span>
+      <span className="flex items-center gap-sm shrink-0">
         <NiveauDots n={n} />
         {competence.niveau && (
-          <span className="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">
+          <span className="font-label-bold text-[10px] text-on-surface-variant tracking-wider hidden sm:block">
             {NIVEAU_LABEL[competence.niveau]}
           </span>
         )}
@@ -127,69 +126,93 @@ export function Parcours() {
   const { data: competences = [] } = useQuery({ queryKey: ['competences'], queryFn: fetchCompetences });
 
   return (
-    <section ref={sectionRef} id="parcours" className="py-32 px-margin-mobile md:px-margin-desktop bg-surface-container-low">
-      <div className="max-w-max-width mx-auto flex flex-col gap-16">
-        <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-background uppercase">MON PARCOURS</h2>
+    <section ref={sectionRef} id="parcours" className="py-xl bg-gradient-to-b from-surface-container-low to-surface border-t border-outline-variant/50">
+      <div className="max-w-7xl mx-auto px-margin flex flex-col gap-lg">
+
+        {/* Section header */}
+        <div className="border-l-4 border-primary pl-md">
+          <h2 className="font-headline-lg text-headline-lg font-bold text-on-surface">Mon parcours</h2>
+          <p className="font-body-md text-body-md text-on-surface-variant mt-sm">
+            Formation académique, expériences professionnelles et compétences acquises.
+          </p>
+        </div>
 
         {/* Académique */}
-        <div>
-          <GroupeLabel>Académique</GroupeLabel>
-          <div className="flex flex-wrap gap-3">
-            {ACADEMIQUE.map((item) => <TagBorne key={item}>{item}</TagBorne>)}
+        <div className="bg-surface border border-outline-variant rounded-xl p-lg shadow-sm">
+          <div className="flex items-center gap-sm mb-md border-b border-outline-variant/60 pb-sm">
+            <div className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center">
+              <span className="material-symbols-outlined text-[20px]">school</span>
+            </div>
+            <h3 className="font-headline-md text-body-lg font-bold text-on-surface">Académique</h3>
+          </div>
+          <div className="flex flex-wrap gap-sm">
+            {ACADEMIQUE.map((item, i) => <TagBorne key={item} accent={i}>{item}</TagBorne>)}
           </div>
         </div>
 
         {/* Formations complémentaires */}
-        <div>
-          <GroupeLabel>Formations complémentaires</GroupeLabel>
-          <div className="flex flex-wrap gap-3">
-            {FORMATIONS_COMPLEMENTAIRES.map((item) => <TagBorne key={item}>{item}</TagBorne>)}
+        <div className="bg-surface border border-outline-variant rounded-xl p-lg shadow-sm">
+          <div className="flex items-center gap-sm mb-md border-b border-outline-variant/60 pb-sm">
+            <div className="w-10 h-10 bg-secondary-container/20 text-secondary-container rounded-xl flex items-center justify-center">
+              <span className="material-symbols-outlined text-[20px]">workspace_premium</span>
+            </div>
+            <h3 className="font-headline-md text-body-lg font-bold text-on-surface">Formations complémentaires</h3>
+          </div>
+          <div className="flex flex-wrap gap-sm">
+            {FORMATIONS_COMPLEMENTAIRES.map((item, i) => <TagBorne key={item} accent={i}>{item}</TagBorne>)}
           </div>
         </div>
 
         {/* Expériences */}
         <div>
-          <GroupeLabel>Expériences professionnelles</GroupeLabel>
+          <div className="mb-md border-l-4 border-secondary-container pl-md">
+            <h3 className="font-headline-md text-headline-md font-bold text-on-surface">Expériences professionnelles</h3>
+          </div>
           {experiences.length > 0 ? (
-            <div>
+            <div className="flex flex-col gap-md">
               {experiences.map((exp, i) => <ExperienceEntry key={exp.id} experience={exp} index={i} />)}
             </div>
           ) : (
-            <div className="bg-surface border-2 border-primary/20 p-8 text-center">
-              <span className="material-symbols-outlined text-primary text-[40px] mb-3 block">work_history</span>
-              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
-                EXPÉRIENCES — &lt;CONTENU À FOURNIR PAR CHABEL&gt;
+            <div className="bg-surface border border-outline-variant rounded-xl p-lg text-center shadow-sm">
+              <span className="material-symbols-outlined text-primary text-[40px] mb-sm block">work_history</span>
+              <span className="font-label-bold text-[12px] text-on-surface-variant tracking-wider">
+                EXPÉRIENCES — À COMPLÉTER DANS L'ADMIN
               </span>
             </div>
           )}
         </div>
-      </div>
 
-      {/* Compétences — fond bleu foncé */}
-      <div id="competences" className="bg-on-surface text-on-primary mt-32 py-24 px-margin-mobile md:px-margin-desktop -mx-margin-mobile md:-mx-margin-desktop">
-        <div className="max-w-max-width mx-auto">
-          <h2 className="font-display-lg-mobile text-display-lg-mobile text-secondary-container uppercase mb-12">COMPÉTENCES</h2>
-          <div className="grid gap-12 md:grid-cols-2">
-            {CATEGORIES_COMPETENCES.map(({ key, label }) => {
-              const items = competences.filter((c) => c.categorie === key);
-              if (items.length === 0) return null;
-              return (
-                <div key={key} className="flex flex-col">
-                  <h3 className="font-label-lg text-label-lg text-secondary-container uppercase tracking-widest mb-4 pb-3 border-b border-on-surface-variant/40">
-                    {label}
-                  </h3>
-                  {items.map((c) => <CompetenceItem key={c.id} competence={c} />)}
-                </div>
-              );
-            })}
-            {competences.length === 0 && (
-              <div className="md:col-span-2 border border-on-surface-variant/30 p-8 text-center">
-                <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
-                  COMPÉTENCES — &lt;DONNÉES À COMPLÉTER DANS L'ADMIN&gt;
-                </span>
-              </div>
-            )}
+        {/* Compétences */}
+        <div className="bg-gradient-to-br from-primary to-primary-container rounded-xl p-lg shadow-xl">
+          <div className="mb-lg border-l-4 border-secondary-container pl-md">
+            <h3 className="font-headline-md text-headline-md font-bold text-on-primary">Compétences</h3>
           </div>
+          {competences.length > 0 ? (
+            <div className="grid gap-lg md:grid-cols-2">
+              {CATEGORIES_COMPETENCES.map(({ key, label, icon }, catIdx) => {
+                const items = competences.filter((c) => c.categorie === key);
+                if (items.length === 0) return null;
+                const acc = CAT_ACCENTS[catIdx % CAT_ACCENTS.length];
+                return (
+                  <div key={key} className="bg-white/10 backdrop-blur-sm rounded-xl p-md border border-white/20">
+                    <div className="flex items-center gap-sm mb-md pb-sm border-b border-white/20">
+                      <div className="w-8 h-8 bg-secondary-container text-on-secondary rounded-lg flex items-center justify-center">
+                        <span className="material-symbols-outlined text-[16px]">{icon}</span>
+                      </div>
+                      <h4 className="font-label-bold text-[12px] text-on-primary tracking-wider">{label}</h4>
+                    </div>
+                    {items.map((c) => <CompetenceItem key={c.id} competence={c} />)}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="bg-white/10 rounded-xl p-lg text-center border border-white/20">
+              <span className="font-label-bold text-[12px] text-primary-fixed-dim tracking-wider">
+                COMPÉTENCES — À COMPLÉTER DANS L'ADMIN
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </section>

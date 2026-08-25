@@ -74,7 +74,7 @@ export function SiteLayout({ children }) {
         triggerRef={menuTriggerRef}
       />
 
-      <main id="contenu" ref={mainRef} className="pt-20 min-h-screen">
+      <main id="contenu" ref={mainRef} className="min-h-screen">
         <PageConductor wrapperRef={mainRef} />
         {children}
       </main>

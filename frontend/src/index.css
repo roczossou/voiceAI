@@ -58,14 +58,20 @@
   --radius-DEFAULT: 0.125rem;
   --radius-lg: 0.25rem;
   --radius-xl: 0.5rem;
-  --radius-full: 0.75rem;
+  --radius-full: 9999px;
 
   /* Spacing */
   --spacing-margin-mobile: 20px;
   --spacing-max-width: 1280px;
   --spacing-margin-desktop: 80px;
-  --spacing-unit: 8px;
-  --spacing-gutter: 24px;
+  --spacing-unit: 4px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+  --spacing-gutter: 20px;
+  --spacing-margin: 24px;
 
   /* Font Families */
   --font-label-sm: Inter, sans-serif;
@@ -113,6 +119,24 @@
   --text-headline-lg: 40px;
   --text-headline-lg--line-height: 1.2;
   --text-headline-lg--font-weight: 700;
+
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 1.5;
+  --text-body-sm--font-weight: 400;
+
+  --text-label-bold: 12px;
+  --text-label-bold--line-height: 1;
+  --text-label-bold--letter-spacing: 0.05em;
+  --text-label-bold--font-weight: 700;
+
+  --text-headline-lg-mobile: 28px;
+  --text-headline-lg-mobile--line-height: 1.2;
+  --text-headline-lg-mobile--font-weight: 700;
+
+  --text-headline-xl: 48px;
+  --text-headline-xl--line-height: 1.1;
+  --text-headline-xl--letter-spacing: -0.02em;
+  --text-headline-xl--font-weight: 800;
 }
 
 @layer utilities {
@@ -120,7 +144,161 @@
   .hard-shadow-blue { box-shadow: 0 10px 25px -5px rgba(0, 62, 199, 0.25), 0 8px 10px -6px rgba(0, 62, 199, 0.25); }
   .hard-shadow-orange { box-shadow: 0 10px 25px -5px rgba(251, 120, 0, 0.25), 0 8px 10px -6px rgba(251, 120, 0, 0.25); }
   .hero-clip { clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95) rotateX(-8deg);
+    perspective: 1000px;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+  }
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+    transition: opacity 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform, opacity;
+  }
+  .stagger-item.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #003ec7 0%, #0052ff 70%, #ff8a00 100%);
+  }
+  .bg-gradient-secondary {
+    background: linear-gradient(135deg, #ff8a00 0%, #ffb77f 100%);
+  }
+
+  /* SECTION-SPECIFIC CARD ANIMATIONS (VARIÉES & NON-RÉPÉTITIVES) */
+  
+  /* 1. Glassmorphism & Sheen Beam (Domaines d'expertise) */
+  .card-sheen-beam {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-sheen-beam:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+  .card-sheen-beam::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(60deg, transparent 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%);
+    transform: rotate(25deg);
+    transition: transform 0.8s ease-in-out;
+    pointer-events: none;
+  }
+  .card-sheen-beam:hover::after {
+    transform: translate(260%, 0) rotate(25deg);
+  }
+
+  /* 2. Elastic Pop-Out (Compétences) */
+  .card-pop-elastic {
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  }
+  .card-pop-elastic:hover {
+    transform: translateY(-6px) scale(1.03) rotate(-1deg);
+  }
+
+  /* 3. Horizontal Wave Slide (Public Cible) */
+  .card-wave-glow {
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .card-wave-glow:hover {
+    transform: translateX(10px) scale(1.01);
+  }
+
+  /* 4. Parallax Image Zoom (Projets en avant) */
+  .card-parallax-zoom {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+  }
+  .card-parallax-zoom:hover {
+    transform: translateY(-8px);
+  }
+
+  /* 5. Glowing Shadow Palette */
+  .glow-purple:hover {
+    box-shadow: 0 20px 35px -10px rgba(139, 92, 246, 0.35), 0 0 15px 2px rgba(139, 92, 246, 0.2);
+  }
+  .glow-emerald:hover {
+    box-shadow: 0 20px 35px -10px rgba(16, 185, 129, 0.35), 0 0 15px 2px rgba(16, 185, 129, 0.2);
+  }
+  .glow-amber:hover {
+    box-shadow: 0 20px 35px -10px rgba(245, 158, 11, 0.35), 0 0 15px 2px rgba(245, 158, 11, 0.2);
+  }
+  .glow-cyan:hover {
+    box-shadow: 0 20px 35px -10px rgba(6, 182, 212, 0.35), 0 0 15px 2px rgba(6, 182, 212, 0.2);
+  }
+  .glow-rose:hover {
+    box-shadow: 0 20px 35px -10px rgba(244, 63, 94, 0.35), 0 0 15px 2px rgba(244, 63, 94, 0.2);
+  }
 }
+
+/* Extravagant Hero Entrance Keyframes & Floating Animations */
+@keyframes hero-badge-in {
+  0% { opacity: 0; transform: translateY(-30px) rotateX(-90deg); }
+  100% { opacity: 1; transform: translateY(0) rotateX(0deg); }
+}
+@keyframes hero-title-in {
+  0% { opacity: 0; transform: translateY(40px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes hero-portrait-in {
+  0% { opacity: 0; transform: perspective(1000px) rotateY(-25deg) rotateX(15deg) scale(0.8); }
+  100% { opacity: 1; transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1); }
+}
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1.5deg); }
+}
+@keyframes spin-slow {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.08); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.hero-anim-badge { animation: hero-badge-in 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s both; }
+.hero-anim-title { animation: hero-title-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both; }
+.hero-anim-text { animation: hero-title-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both; }
+.hero-anim-btn { animation: hero-title-in 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s both; }
+.hero-anim-portrait { animation: hero-portrait-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both; }
+.animate-hero-float { animation: hero-float 6s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 28s linear infinite; }
+
+/* Multi-color Animated Pulse Dots */
+@keyframes pulse-emerald {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+@keyframes pulse-purple {
+  0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+}
+@keyframes pulse-amber {
+  0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+@keyframes pulse-cyan {
+  0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+}
+
+.dot-pulse-emerald { animation: pulse-emerald 2s infinite; }
+.dot-pulse-purple { animation: pulse-purple 2s infinite; }
+.dot-pulse-amber { animation: pulse-amber 2s infinite; }
+.dot-pulse-cyan { animation: pulse-cyan 2s infinite; }
 
 @layer base {
   body {

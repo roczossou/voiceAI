@@ -9,41 +9,63 @@ export function Engagements() {
       titre: "Premier Adjoint au Maire des Jeunes",
       organisation: "Commune de Covè",
       description: "Engagement dans le développement communautaire et la gouvernance jeunesse locale.",
-      icon: "account_balance"
+      icon: "account_balance",
+      accent: 'purple',
     },
     {
       titre: "Initiatives Communautaires",
       organisation: "Actions sociales",
       description: "Organisation d'activités citoyennes et de sensibilisation pour les jeunes.",
-      icon: "diversity_3"
+      icon: "diversity_3",
+      accent: 'emerald',
     },
     {
       titre: "Formation & Ateliers",
       organisation: "Renforcement de capacités",
       description: "Sessions gratuites pour initier les jeunes aux métiers du numérique.",
-      icon: "school"
+      icon: "school",
+      accent: 'cyan',
     }
   ];
 
+  const ACCENT_MAP = {
+    purple: { border: 'border-purple-200 hover:border-purple-500', glow: 'glow-purple', iconBg: 'bg-purple-500/10 text-purple-600 group-hover:bg-purple-600 group-hover:text-white', title: 'group-hover:text-purple-600', org: 'text-purple-600', dot: 'bg-purple-500 dot-pulse-purple' },
+    emerald: { border: 'border-emerald-200 hover:border-emerald-500', glow: 'glow-emerald', iconBg: 'bg-emerald-500/10 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white', title: 'group-hover:text-emerald-600', org: 'text-emerald-600', dot: 'bg-emerald-500 dot-pulse-emerald' },
+    cyan: { border: 'border-cyan-200 hover:border-cyan-500', glow: 'glow-cyan', iconBg: 'bg-cyan-500/10 text-cyan-600 group-hover:bg-cyan-600 group-hover:text-white', title: 'group-hover:text-cyan-600', org: 'text-cyan-600', dot: 'bg-cyan-500 dot-pulse-cyan' },
+  };
+
   return (
-    <section ref={sectionRef} id="engagements" className="py-24 px-margin-mobile md:px-margin-desktop bg-surface">
-      <div className="max-w-max-width mx-auto">
-        <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-background uppercase mb-16 leading-none border-l-8 border-secondary-container pl-6">
-          ENGAGEMENTS <br/>
-          <span className="text-secondary-container">& CITOYENNETÉ</span>
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {engagements.map((eng, idx) => (
-            <div key={idx} className="bg-white border-2 border-outline-variant p-8 hover:border-black hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all duration-300 group">
-              <div className="w-16 h-16 bg-secondary-container/10 text-secondary-container flex items-center justify-center mb-6 rounded-full border border-secondary-container group-hover:bg-secondary-container group-hover:text-black transition-colors">
-                <span className="material-symbols-outlined text-[32px]">{eng.icon}</span>
+    <section ref={sectionRef} id="engagements" className="py-xl bg-gradient-to-b from-surface-container-lowest to-surface border-t border-outline-variant/50">
+      <div className="max-w-7xl mx-auto px-margin">
+        {/* Section header */}
+        <div className="mb-lg border-l-4 border-primary pl-md">
+          <h2 className="font-headline-lg text-headline-lg font-bold text-on-surface">Engagements & Citoyenneté</h2>
+          <p className="font-body-md text-body-md text-on-surface-variant mt-sm">
+            Actions concrètes au service de la jeunesse et de la communauté.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-md">
+          {engagements.map((eng, idx) => {
+            const acc = ACCENT_MAP[eng.accent];
+            return (
+              <div key={idx} className={`group bg-surface border ${acc.border} ${acc.glow} rounded-xl p-lg card-sheen-beam shadow-sm flex flex-col justify-between`}>
+                <div>
+                  <div className="flex items-center justify-between mb-md">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors duration-300 ${acc.iconBg}`}>
+                      <span className="material-symbols-outlined text-[24px]">{eng.icon}</span>
+                    </div>
+                    <span className={`w-2.5 h-2.5 rounded-full ${acc.dot}`} />
+                  </div>
+                  <h3 className={`font-headline-md text-body-lg font-bold text-on-surface mb-xs transition-colors ${acc.title}`}>
+                    {eng.titre}
+                  </h3>
+                  <p className={`font-label-bold text-[11px] tracking-wider mb-sm ${acc.org}`}>{eng.organisation}</p>
+                  <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">{eng.description}</p>
+                </div>
               </div>
-              <h3 className="font-headline-md text-headline-md text-on-background mb-2 uppercase">{eng.titre}</h3>
-              <p className="font-label-lg font-bold text-secondary-container mb-4">{eng.organisation}</p>
-              <p className="font-body-md text-body-md text-on-surface-variant">{eng.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

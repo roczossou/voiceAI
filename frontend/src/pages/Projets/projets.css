@@ -36,7 +36,6 @@
   padding: .5rem 1rem;
   font: 600 var(--fs-mono) var(--font-mono);
   letter-spacing: .05em;
-  text-transform: uppercase;
   background: transparent;
   color: var(--graphite);
   cursor: pointer;
@@ -69,7 +68,6 @@
   padding: .5rem .25rem;
   font: 600 var(--fs-mono) var(--font-mono);
   letter-spacing: .05em;
-  text-transform: uppercase;
   color: var(--cuivre);
   cursor: pointer;
   display: inline-flex;
@@ -126,7 +124,6 @@
 .projets-card-nature {
   font: 600 var(--fs-mono) var(--font-mono);
   letter-spacing: .08em;
-  text-transform: uppercase;
   color: var(--cuivre);
   margin-bottom: var(--space-2);
 }

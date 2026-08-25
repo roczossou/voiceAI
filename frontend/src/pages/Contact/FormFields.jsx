@@ -9,7 +9,7 @@ export const Field = forwardRef(function Field({
 
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="font-label-sm text-on-background uppercase tracking-wider">
+      <label htmlFor={id} className="font-label-sm text-on-background tracking-wider">
         {label}{required ? ' *' : ''}
       </label>
       {textarea ? (
@@ -53,7 +53,7 @@ export function RadioGroup({
 
   return (
     <div className="flex flex-col gap-3">
-      <p className="font-label-sm text-on-background uppercase tracking-wider">{label} *</p>
+      <p className="font-label-sm text-on-background tracking-wider">{label} *</p>
       <div
         role="radiogroup"
         aria-label={label}
@@ -75,9 +75,8 @@ export function RadioGroup({
               aria-checked={checked}
               disabled={disabled}
               onClick={() => onChange(optValue)}
-              className={`px-4 py-2 border-2 font-label-lg uppercase tracking-wider transition-colors duration-150 ${
-                checked ? 'bg-primary text-on-primary border-primary' : 'bg-surface text-on-surface-variant border-outline-variant hover:border-primary hover:text-primary'
-              } ${disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
+              className={`px-4 py-2 border-2 font-label-lg tracking-wider transition-colors duration-150 ${checked ? 'bg-primary text-on-primary border-primary' : 'bg-surface text-on-surface-variant border-outline-variant hover:border-primary hover:text-primary'
+                } ${disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
             >
               {optLabel}
               {disabled ? ' — À VENIR' : ''}
@@ -97,9 +96,8 @@ export function SubmitButton({ pending, success, children }) {
     <button
       type="submit"
       disabled={pending || success}
-      className={`w-full font-label-lg text-label-lg py-4 px-8 transition-colors flex justify-center items-center gap-2 group disabled:cursor-not-allowed mt-4 ${
-        success ? 'bg-success-green text-on-primary' : 'bg-secondary-container text-on-background hover:bg-secondary'
-      }`}
+      className={`w-full font-label-lg text-label-lg py-4 px-8 transition-colors flex justify-center items-center gap-2 group disabled:cursor-not-allowed mt-4 ${success ? 'bg-success-green text-on-primary' : 'bg-secondary-container text-on-background hover:bg-secondary'
+        }`}
     >
       <span>{success ? 'DEMANDE ENREGISTRÉE' : children}</span>
       {!success && (

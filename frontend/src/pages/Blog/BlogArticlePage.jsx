@@ -47,7 +47,7 @@ export function BlogArticlePage() {
   const handleShare = async () => {
     const url = window.location.href;
     if (navigator.share) {
-      navigator.share({ url, title: article?.titre }).catch(() => {});
+      navigator.share({ url, title: article?.titre }).catch(() => { });
       return;
     }
     await navigator.clipboard.writeText(url);
@@ -67,7 +67,7 @@ export function BlogArticlePage() {
           {status === 'error' && (
             <div className="py-[var(--space-16)]">
               <p className="font-mono text-[length:var(--fs-mono)] mb-[var(--space-6)]">Article introuvable.</p>
-              <SiteLink href="/blog" className="font-mono text-[length:var(--fs-mono)] font-semibold uppercase underline">
+              <SiteLink href="/blog" className="font-mono text-[length:var(--fs-mono)] font-semibold underline">
                 RETOUR AU BLOG
               </SiteLink>
             </div>
@@ -75,14 +75,14 @@ export function BlogArticlePage() {
 
           {status === 'success' && article && (
             <>
-              <p className="font-mono text-[length:var(--fs-mono)] font-semibold uppercase tracking-[.05em] opacity-75 mb-[var(--space-4)]">
+              <p className="font-mono text-[length:var(--fs-mono)] font-semibold tracking-[.05em] opacity-75 mb-[var(--space-4)]">
                 {CATEGORIE_LABEL[article.categorie] || article.categorie}
                 {article.date_publication ? ` · ${article.date_publication}` : ''}
                 {` · ${article.duree_lecture} MIN DE LECTURE`}
                 {article.auteur ? ` · ${article.auteur}` : ''}
               </p>
 
-              <h1 className="font-[family-name:var(--font-display)] text-[clamp(2rem,4.5vw,3rem)] font-bold uppercase leading-[1.05] mb-[var(--space-8)]">
+              <h1 className="font-[family-name:var(--font-display)] text-[clamp(2rem,4.5vw,3rem)] font-bold leading-[1.05] mb-[var(--space-8)]">
                 <RevealMask as="span" unit="lines">{article.titre}</RevealMask>
               </h1>
 
@@ -99,14 +99,14 @@ export function BlogArticlePage() {
               <button
                 type="button"
                 onClick={handleShare}
-                className="mt-[var(--space-10)] inline-flex items-center gap-[var(--space-2)] border-[length:var(--bd)] border-[color:var(--bordure)] px-[var(--space-5)] py-[var(--space-3)] font-mono text-[length:var(--fs-mono)] font-semibold uppercase tracking-[.05em]"
+                className="mt-[var(--space-10)] inline-flex items-center gap-[var(--space-2)] border-[length:var(--bd)] border-[color:var(--bordure)] px-[var(--space-5)] py-[var(--space-3)] font-mono text-[length:var(--fs-mono)] font-semibold tracking-[.05em]"
               >
                 {copied ? 'LIEN COPIÉ' : 'PARTAGER'}
               </button>
 
               {suggestions.length > 0 && (
                 <div className="mt-[var(--space-20)]">
-                  <p className="font-mono text-[length:var(--fs-mono)] font-semibold tracking-[.08em] uppercase opacity-70 mb-[var(--space-6)]">
+                  <p className="font-mono text-[length:var(--fs-mono)] font-semibold tracking-[.08em] opacity-70 mb-[var(--space-6)]">
                     À LIRE AUSSI
                   </p>
                   <div className="grid gap-[var(--space-6)] sm:grid-cols-3">
@@ -119,7 +119,7 @@ export function BlogArticlePage() {
                           ? <img src={s.image} alt="" loading="lazy" />
                           : <div className="media-placeholder"><span>VISUEL — &lt;NON FOURNI&gt;</span></div>}
                       >
-                        <h3 className="font-[family-name:var(--font-display)] text-[1.0625rem] font-bold uppercase leading-tight">{s.titre}</h3>
+                        <h3 className="font-[family-name:var(--font-display)] text-[1.0625rem] font-bold leading-tight">{s.titre}</h3>
                       </Card>
                     ))}
                   </div>

@@ -11,15 +11,15 @@ export function QuickIntro() {
         <div className="md:col-span-5 relative">
           <div className="absolute -inset-4 bg-gradient-to-br from-secondary-container to-primary opacity-20 blur-2xl rounded-full z-0"></div>
           <div className="relative z-10 border-l-4 border-secondary-container pl-6 py-2">
-            <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-background uppercase leading-none">
-              À PROPOS <br/>
-              <span className="text-secondary-container">DE MOI</span>
+            <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-background leading-none">
+              À propos <br/>
+              <span className="text-secondary-container">de moi</span>
             </h2>
           </div>
         </div>
         
         <div className="md:col-span-7 flex flex-col gap-6">
-          <p className="font-body-lg text-body-lg md:text-xl text-on-background leading-relaxed">
+          <p className="font-body-lg text-body-lg md:text-xl text-on-background leading-relaxed w-full">
             <RevealMask as="span" unit="lines">
               Je suis Chabel ANANOUNON, entrepreneur, leader jeunesse, gestionnaire de
               projet, planificateur d&apos;événements et créatif digital béninois. Ma
@@ -29,7 +29,7 @@ export function QuickIntro() {
               au numérique.
             </RevealMask>
           </p>
-          <p className="font-body-md md:text-lg text-on-surface-variant leading-relaxed">
+          <p className="font-body-md md:text-lg text-on-surface-variant leading-relaxed w-full">
             <RevealMask as="span" unit="lines">
               Convaincu que la jeunesse africaine constitue la plus grande richesse du
               continent, je mets mes compétences au service de projets innovants qui
@@ -40,9 +40,9 @@ export function QuickIntro() {
           <div className="pt-4">
             <Link 
               to="/a-propos" 
-              className="inline-flex items-center gap-2 font-label-lg text-label-lg font-bold text-on-background bg-secondary-container px-6 py-3 border border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all uppercase"
+              className="inline-flex items-center gap-2 font-label-lg text-label-lg font-bold text-on-secondary bg-secondary-container px-6 py-3.5 border border-amber-400/40 rounded-2xl hover:scale-105 transition-all shadow-md"
             >
-              LIRE MON HISTOIRE COMPLÈTE
+              Lire mon histoire complète
               <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
             </Link>
           </div>

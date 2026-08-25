@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en" style="">
+
+<head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Accueil - Portfolio</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "on-error": "#ffffff",
+                                                "on-surface-variant": "#434656",
+                                                "on-error-container": "#93000a",
+                                                "primary-fixed": "#dde1ff",
+                                                "tertiary-fixed-dim": "#c6c6c6",
+                                                "tertiary": "#4d4e4e",
+                                                "on-primary-fixed-variant": "#0038b6",
+                                                "primary-fixed-dim": "#b7c4ff",
+                                                "outline": "#737688",
+                                                "outline-variant": "#c3c5d9",
+                                                "secondary-fixed": "#ffdcc4",
+                                                "error": "#ba1a1a",
+                                                "primary": "#003ec7",
+                                                "on-surface": "#1c1b1b",
+                                                "surface-variant": "#e5e2e1",
+                                                "on-secondary-fixed": "#2f1500",
+                                                "error-container": "#ffdad6",
+                                                "tertiary-fixed": "#e2e2e2",
+                                                "on-secondary-container": "#613100",
+                                                "background": "#fcf9f8",
+                                                "surface-container-high": "#eae7e7",
+                                                "on-background": "#1c1b1b",
+                                                "on-primary-container": "#dfe3ff",
+                                                "secondary-fixed-dim": "#ffb77f",
+                                                "on-secondary-fixed-variant": "#6f3900",
+                                                "on-tertiary": "#ffffff",
+                                                "surface-container-highest": "#e5e2e1",
+                                                "tertiary-container": "#656666",
+                                                "surface": "#fcf9f8",
+                                                "on-tertiary-fixed-variant": "#454747",
+                                                "on-tertiary-container": "#e4e4e4",
+                                                "secondary-container": "#ff8a00",
+                                                "surface-container-lowest": "#ffffff",
+                                                "on-primary-fixed": "#001452",
+                                                "surface-tint": "#004ced",
+                                                "on-tertiary-fixed": "#1a1c1c",
+                                                "on-primary": "#ffffff",
+                                                "on-secondary": "#ffffff",
+                                                "secondary": "#914c00",
+                                                "inverse-on-surface": "#f3f0ef",
+                                                "inverse-surface": "#313030",
+                                                "surface-container": "#f0eded",
+                                                "surface-container-low": "#f6f3f2",
+                                                "primary-container": "#0052ff",
+                                                "surface-bright": "#fcf9f8",
+                                                "inverse-primary": "#b7c4ff",
+                                                "surface-dim": "#dcd9d9"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.125rem",
+                                                "lg": "0.25rem",
+                                                "xl": "0.5rem",
+                                                "full": "0.75rem"
+                                        },
+                                        "spacing": {
+                                                "unit": "4px",
+                                                "sm": "8px",
+                                                "gutter": "20px",
+                                                "margin": "24px",
+                                                "xl": "40px",
+                                                "lg": "24px",
+                                                "md": "16px",
+                                                "xs": "4px"
+                                        },
+                                        "fontFamily": {
+                                                "body-md": [
+                                                        "Inter"
+                                                ],
+                                                "body-lg": [
+                                                        "Inter"
+                                                ],
+                                                "label-bold": [
+                                                        "Inter"
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "Plus Jakarta Sans"
+                                                ],
+                                                "body-sm": [
+                                                        "Inter"
+                                                ],
+                                                "headline-md": [
+                                                        "Plus Jakarta Sans"
+                                                ],
+                                                "headline-lg": [
+                                                        "Plus Jakarta Sans"
+                                                ],
+                                                "headline-xl": [
+                                                        "Plus Jakarta Sans"
+                                                ]
+                                        },
+                                        "fontSize": {
+                                                "body-md": [
+                                                        "16px",
+                                                        {
+                                                                "lineHeight": "1.5",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "body-lg": [
+                                                        "18px",
+                                                        {
+                                                                "lineHeight": "1.6",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "label-bold": [
+                                                        "12px",
+                                                        {
+                                                                "lineHeight": "1",
+                                                                "letterSpacing": "0.05em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "28px",
+                                                        {
+                                                                "lineHeight": "1.2",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "body-sm": [
+                                                        "14px",
+                                                        {
+                                                                "lineHeight": "1.5",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "headline-md": [
+                                                        "24px",
+                                                        {
+                                                                "lineHeight": "1.3",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-lg": [
+                                                        "32px",
+                                                        {
+                                                                "lineHeight": "1.2",
+                                                                "letterSpacing": "-0.01em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-xl": [
+                                                        "48px",
+                                                        {
+                                                                "lineHeight": "1.1",
+                                                                "letterSpacing": "-0.02em",
+                                                                "fontWeight": "800"
+                                                        }
+                                                ]
+                                        }
+                                },
+                        },
+                }
+        </script>
+        <style>
+                body {
+                        font-family: 'Inter', sans-serif;
+                }
+
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6,
+                .font-headline-xl,
+                .font-headline-lg,
+                .font-headline-md,
+                .font-headline-lg-mobile {
+                        font-family: 'Plus Jakarta Sans', sans-serif;
+                }
+
+                .reveal {
+                        opacity: 0;
+                        transform: translateY(30px);
+                        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+                }
+
+                .reveal.active {
+                        opacity: 1;
+                        transform: translateY(0);
+                }
+
+                .stagger-item {
+                        opacity: 0;
+                        transform: translateY(20px);
+                        transition: all 0.6s cubic-bezier(0.5, 0, 0, 1);
+                }
+
+                .stagger-item.active {
+                        opacity: 1;
+                        transform: translateY(0);
+                }
+
+                .bg-gradient-primary {
+                        background: linear-gradient(135deg, #003ec7 0%, #0052ff 70%, #ff8a00 100%);
+                }
+
+                .bg-gradient-secondary {
+                        background: linear-gradient(135deg, #ff8a00 0%, #ffb77f 100%);
+                }
+        </style>
+</head>
+
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+        <!-- TopNavBar -->
+        <header class="bg-surface/80 backdrop-blur-md border-b border-outline-variant fixed top-0 w-full z-50">
+                <div class="flex justify-between items-center px-margin py-sm max-w-7xl mx-auto">
+                        <a class="font-headline-md text-headline-md font-bold text-primary" href="#">CHABEL
+                                ANANOUNON</a>
+                        <nav class="hidden md:flex gap-lg items-center">
+                                <a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1"
+                                        href="#">Home</a>
+                                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200"
+                                        href="#">Projects</a>
+                                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200"
+                                        href="#">Blog</a>
+                                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200"
+                                        href="#">About</a>
+                                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200"
+                                        href="#">Contact</a>
+                        </nav>
+                        <button class="bg-gradient-primary text-on-primary font-label-bold text-label-bold px-md py-sm rounded-full hidden md:block hover:opacity-90 transition-opacity"
+                                style="background: linear-gradient(135deg, rgb(255, 69, 0) 0%, rgb(255, 183, 0) 100%);">Hire
+                                Me</button>
+                        <button class="md:hidden text-primary">
+                                <span class="material-symbols-outlined">menu</span>
+                        </button>
+                </div>
+        </header>
+        <main class="flex-grow pt-[72px]">
+                <!-- Hero Section -->
+                <section
+                        class="relative overflow-hidden pb-xl pt-xl md:pt-[120px] md:pb-[80px] reveal bg-surface-container-lowest active">
+                        <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                                <img alt="" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida/AEtjO1VCipaw5_qPhMZGjNxk7UVLTs2Ke2HkxpnEO1AfaPn1bClf8UoQ3WH54Bn55i5uu9jOfXuqCTaIdVjEXLUZKQG5MNH2i-NnFq4YUzb-Y1SjXjpiYoIQSvI6_KWtLjjzxMIr9PzdsXDY5AYO7Zctz40BvF7n5IA2owdkHQpBxRNJ_inZSq0R9M-GYxg6eubafApuXn2SX7L-r5VyUTm1s6jpaCqClUFFibA4tYDGXsLg6MFLrT3okutW_w" />
+                        </div>
+                        <div class="max-w-7xl mx-auto px-margin relative z-10">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
+                                        <div
+                                                class="relative z-10 bg-surface/90 backdrop-blur-sm p-lg md:p-xl rounded-xl md:-ml-margin">
+                                                <span
+                                                        class="inline-block bg-secondary-container text-on-primary font-label-bold text-label-bold px-sm py-unit rounded-full mb-md tracking-wider stagger-item active">DISPONIBLE
+                                                        POUR DE NOUVEAUX PROJETS</span>
+                                                <h1
+                                                        class="font-headline-xl text-headline-lg-mobile md:text-headline-xl font-extrabold mb-md text-on-surface stagger-item active">
+                                                        Bienvenue, je suis <span class="text-primary">Chabel
+                                                                ANANOUNON.</span></h1>
+                                                <p
+                                                        class="font-body-lg text-body-lg text-on-surface-variant mb-lg max-w-lg stagger-item active">
+                                                        Je combine des principes de marketing agressifs avec une
+                                                        exécution esthétique immaculée pour construire des solutions
+                                                        numériques qui captent l'attention et stimulent la conversion.
+                                                </p>
+                                                <div class="flex flex-wrap gap-md stagger-item active"><button
+                                                                class="text-on-primary font-label-bold text-label-bold px-lg py-md rounded-full hover:bg-secondary transition-colors tracking-wider shadow-lg shadow-secondary-container/30"
+                                                                style="background: linear-gradient(135deg, rgb(255, 69, 0) 0%, rgb(255, 183, 0) 100%); text-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;">Découvrir
+                                                                mes projets</button><button
+                                                                class="border-2 border-primary text-primary font-label-bold text-label-bold px-lg py-md rounded-full hover:bg-primary-container hover:text-on-primary transition-colors tracking-wider">Mon
+                                                                parcours</button></div>
+                                        </div>
+                                        <div
+                                                class="relative flex justify-center md:justify-end mt-xl md:mt-0 stagger-item active">
+                                                <div
+                                                        class="relative w-full  bg-surface p-md border-4 border-secondary-container shadow-2xl z-10 overflow-hidden group rounded-xl">
+                                                        <img alt="Portrait of Chabel ANANOUNON"
+                                                                class="w-full h-auto rounded-[20px] object-cover bg-surface-variant transition-transform duration-500 group-hover:scale-105"
+                                                                src={portrait} />
+                                                        <div
+                                                                class="absolute bottom-lg left-1/2 transform -translate-x-1/2 bg-surface text-on-surface border border-outline-variant rounded-full px-md py-sm flex items-center gap-sm shadow-md whitespace-nowrap">
+                                                                <span class="material-symbols-outlined text-secondary-container"
+                                                                        style="font-variation-settings: 'FILL' 1;">verified</span>
+                                                                <span class="font-label-bold text-label-bold">Method
+                                                                        Proven</span>
+                                                        </div>
+                                                </div>
+                                                <div
+                                                        class="absolute -top-10 -right-10 w-64 h-64 bg-primary-fixed rounded-full blur-3xl opacity-20 -z-10">
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <!-- About Section -->
+                <section class="py-xl bg-gradient-to-b from-surface-container-lowest to-surface reveal">
+                        <div class="max-w-7xl mx-auto px-margin">
+                                <div class="grid grid-cols-1 md:grid-cols-1 gap-md">
+                                        <div class="mb-lg border-l-4 border-primary pl-md stagger-item">
+                                                <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">
+                                                        À PROPOS DE MOI</h2>
+                                                <p class="font-body-lg text-body-lg text-on-surface-variant mt-md">
+                                                        Je suis Chabel ANANOUNON, entrepreneur, leader jeunesse,
+                                                        gestionnaire de projet, planificateur d'événements et créatif
+                                                        digital béninois...
+                                                </p>
+                                                <button class="mt-md text-on-primary font-label-bold text-label-bold px-lg py-md rounded-full hover:opacity-90 transition-opacity tracking-wider shadow-lg shadow-primary/30"
+                                                        style="background: linear-gradient(135deg, rgb(255, 69, 0) 0%, rgb(255, 183, 0) 100%);">LIRE
+                                                        MON HISTOIRE COMPLÈTE</button>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <!-- Expertise Section -->
+                <section
+                        class="py-xl bg-gradient-to-b from-surface to-surface-container-low border-t border-outline-variant/50 reveal">
+                        <div class="max-w-7xl mx-auto px-margin">
+                                <div class="mb-lg border-l-4 border-primary pl-md stagger-item">
+                                        <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">DOMAINES
+                                                D'EXPERTISE</h2>
+                                        <p class="font-body-md text-body-md text-on-surface-variant mt-sm">Strategic
+                                                approaches to digital product design.</p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+                                        <!-- Bento Box 1 -->
+                                        <div
+                                                class="bg-surface border border-outline-variant rounded-xl p-lg hover:border-primary hover:shadow-xl transition-all group stagger-item shadow-sm">
+                                                <div
+                                                        class="w-12 h-12 bg-primary-fixed rounded-xl flex items-center justify-center mb-md group-hover:bg-gradient-primary transition-all">
+                                                        <span
+                                                                class="material-symbols-outlined text-primary group-hover:text-on-primary">architecture</span>
+                                                </div>
+                                                <h3
+                                                        class="font-headline-md text-body-lg font-bold mb-sm text-on-surface">
+                                                        Créativité Digitale</h3>
+                                                <ul class="space-y-sm mt-md">
+                                                        <li
+                                                                class="flex items-start gap-sm border-b border-outline-variant pb-sm">
+                                                                <span
+                                                                        class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                                                <span
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant">Design
+                                                                        graphique</span>
+                                                        </li>
+                                                        <li
+                                                                class="flex items-start gap-sm border-b border-outline-variant pb-sm">
+                                                                <span
+                                                                        class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                                                <span
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant">Branding</span>
+                                                        </li>
+                                                        <li class="flex items-start gap-sm">
+                                                                <span
+                                                                        class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                                                <span
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant">Communication
+                                                                        digitale</span>
+                                                        </li>
+                                                </ul>
+                                        </div>
+                                        <!-- Bento Box 2 -->
+                                        <div
+                                                class="bg-surface border border-outline-variant rounded-xl p-lg hover:border-secondary-container hover:shadow-xl transition-all group stagger-item shadow-sm">
+                                                <div
+                                                        class="w-12 h-12 bg-secondary-fixed rounded-xl flex items-center justify-center mb-md group-hover:bg-gradient-secondary transition-all">
+                                                        <span
+                                                                class="material-symbols-outlined text-secondary-container group-hover:text-on-primary">psychology</span>
+                                                </div>
+                                                <h3
+                                                        class="font-headline-md text-body-lg font-bold mb-sm text-on-surface">
+                                                        Gestion de Projet</h3>
+                                                <ul class="space-y-sm mt-md">
+                                                        <li
+                                                                class="flex items-start gap-sm border-b border-outline-variant pb-sm">
+                                                                <span
+                                                                        class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                                                <span
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant">Planification
+                                                                        stratégique</span>
+                                                        </li>
+                                                        <li
+                                                                class="flex items-start gap-sm border-b border-outline-variant pb-sm">
+                                                                <span
+                                                                        class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                                                <span
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant">Événementiel</span>
+                                                        </li>
+                                                        <li class="flex items-start gap-sm">
+                                                                <span
+                                                                        class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                                                <span
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant">Suivi
+                                                                        &amp; Évaluation</span>
+                                                        </li>
+                                                </ul>
+                                        </div>
+                                        <!-- Bento Box 3 -->
+                                        <div
+                                                class="bg-surface border border-outline-variant rounded-xl p-lg hover:border-primary hover:shadow-xl transition-all group stagger-item shadow-sm">
+                                                <div
+                                                        class="w-12 h-12 bg-tertiary-fixed rounded-xl flex items-center justify-center mb-md group-hover:bg-tertiary transition-all">
+                                                        <span
+                                                                class="material-symbols-outlined text-tertiary group-hover:text-on-primary">bolt</span>
+                                                </div>
+                                                <h3
+                                                        class="font-headline-md text-body-lg font-bold mb-sm text-on-surface">
+                                                        Leadership</h3>
+                                                <ul class="space-y-sm mt-md">
+                                                        <li
+                                                                class="flex items-start gap-sm border-b border-outline-variant pb-sm">
+                                                                <span
+                                                                        class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                                                <span
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant">Formation
+                                                                        &amp; Ateliers</span>
+                                                        </li>
+                                                        <li
+                                                                class="flex items-start gap-sm border-b border-outline-variant pb-sm">
+                                                                <span
+                                                                        class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                                                <span
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant">Gouvernance
+                                                                        jeunesse</span>
+                                                        </li>
+                                                        <li class="flex items-start gap-sm">
+                                                                <span
+                                                                        class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                                                <span
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant">Développement
+                                                                        personnel</span>
+                                                        </li>
+                                                </ul>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <!-- Compétences & Stack technique -->
+                <section
+                        class="py-xl bg-gradient-to-b from-surface-container-low to-surface border-t border-outline-variant/50 reveal">
+                        <div class="max-w-7xl mx-auto px-margin">
+                                <div class="mb-lg border-l-4 border-primary pl-md stagger-item">
+                                        <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">
+                                                COMPÉTENCES &amp; STACK TECHNIQUE</h2>
+                                        <p class="font-body-md text-body-md text-on-surface-variant mt-sm">Les outils et
+                                                technologies que j'utilise pour donner vie aux projets.</p>
+                                </div>
+                                <div class="flex flex-wrap gap-sm stagger-item">
+                                        <span
+                                                class="bg-primary/10 text-primary font-label-bold px-md py-sm rounded-full border border-primary/20">Adobe
+                                                Creative Suite</span>
+                                        <span
+                                                class="bg-secondary-container/10 text-secondary-container font-label-bold px-md py-sm rounded-full border border-secondary-container/20">Figma</span>
+                                        <span
+                                                class="bg-surface text-on-surface font-label-bold px-md py-sm rounded-full border border-outline-variant">Gestion
+                                                de Projet Agile</span>
+                                        <span
+                                                class="bg-surface text-on-surface font-label-bold px-md py-sm rounded-full border border-outline-variant">Stratégie
+                                                Digitale</span>
+                                        <span
+                                                class="bg-surface text-on-surface font-label-bold px-md py-sm rounded-full border border-outline-variant">Marketing
+                                                de Contenu</span>
+                                        <span
+                                                class="bg-primary/10 text-primary font-label-bold px-md py-sm rounded-full border border-primary/20">Suite
+                                                Office</span>
+                                        <span
+                                                class="bg-secondary-container/10 text-secondary-container font-label-bold px-md py-sm rounded-full border border-secondary-container/20">Outils
+                                                de Suivi &amp; Évaluation</span>
+                                </div>
+                        </div>
+                </section>
+                <!-- Featured Projects Section -->
+                <section
+                        class="py-xl bg-gradient-to-b from-surface to-surface-container-low border-t border-outline-variant/50 reveal">
+                        <div class="max-w-7xl mx-auto px-margin">
+                                <div
+                                        class="flex justify-between items-end mb-lg border-b border-outline-variant pb-sm stagger-item">
+                                        <div>
+                                                <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">
+                                                        PROJETS EN AVANT</h2>
+                                        </div>
+                                        <a class="font-label-bold text-label-bold text-primary hover:underline flex items-center gap-xs"
+                                                href="#">
+                                                Explorer les archives (TOUS LES PROJETS) <span
+                                                        class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                        </a>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-12 gap-md grid-rows-[minmax(250px,_auto)]">
+                                        <!-- Large Feature Project -->
+                                        <div
+                                                class="md:col-span-8 bg-surface rounded-xl overflow-hidden border border-outline-variant group relative stagger-item shadow-md">
+                                                <div class="h-64 md:h-full bg-surface-variant w-full"
+                                                        data-alt="A sleek, modern SaaS dashboard interface showing complex data analytics with vibrant blue and orange charts against a light gray background, highlighting clean typography and a fixed grid layout."
+                                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYc3ZQw6MRkvcR1UFDKh8A23tVEnCLnxldxJpnzOgql7SO_IZDr_DTZvMXPMAMPe-B4Z4I4YBAV2h6EktUL9Ak6yG8Ovkz1T7vpiaQY74O920O2RAMw6v9u0hP7qfJid_KmUlB2S75ZCkreHodhxUXWp2OPjM-KR7bb4hEAnvkInPmJtB4fudzeIu34ruihCjJPH8rgNNQS8wimHhBPrwUQr8O4gv3eeQEpTo2h7evPD8SIl5d4Uw')">
+                                                </div>
+                                                <div
+                                                        class="absolute bottom-0 left-0 w-full p-md bg-gradient-to-t from-black/80 to-transparent">
+                                                        <div class="flex gap-sm mb-xs">
+                                                                <span
+                                                                        class="bg-primary text-on-primary font-label-bold text-[10px] px-2 py-1 rounded-full">Formation</span>
+                                                                <span
+                                                                        class="bg-surface/20 text-on-primary backdrop-blur-sm font-label-bold text-[10px] px-2 py-1 rounded-full border border-white/20">Digital
+                                                                        Créativité Mobile</span>
+                                                        </div>
+                                                        <h3 class="font-headline-md text-[20px] font-bold text-white">
+                                                                ANDROCRÉA</h3>
+                                                        <p class="font-body-sm text-body-sm text-white/80 mt-1">Former
+                                                                une nouvelle génération de créatifs...</p>
+                                                </div>
+                                        </div>
+                                        <!-- Smaller Project 1 -->
+                                        <div
+                                                class="md:col-span-4 bg-surface rounded-xl overflow-hidden border border-outline-variant flex flex-col group stagger-item shadow-md">
+                                                <div class="h-48 bg-surface-variant w-full"
+                                                        data-alt="A mobile app interface showcasing a seamless checkout flow with prominent orange primary buttons and a minimalist white structural design, emphasizing high-contrast functionalism."
+                                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuByxGL-68Ca5NEmR9pVbvOX3DmdKjgcZLDKg_wmIZ37I35pEeATBQFH9GB49-yK4b2SpAiebVeNikqnVzw3DEOWtJR4z12Mu1S3Ity06ivWUkvWNQ0ivodY3izHRtQuqnpjq8xrZTscOrXfknVohazGME08G87zqtpSJeFB1b-KJSmpMtCKyBugLsSbpz37xJwb91jEklPo7NhxwpQsn4UOCRmUXu1rEb6qHtPMC-KbPKX0zxI7co8')">
+                                                </div>
+                                                <div class="p-md flex-grow flex flex-col justify-between">
+                                                        <div>
+                                                                <h3
+                                                                        class="font-headline-md text-[18px] font-bold text-on-surface mb-xs">
+                                                                        DIGIT'S CRÉA AWARDS</h3>
+                                                                <p
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant">
+                                                                        Événementiel Digital Valorisation des Talents.
+                                                                </p>
+                                                        </div>
+                                                        <div class="mt-sm">
+                                                                <a class="text-primary font-label-bold text-[12px] flex items-center gap-xs hover:underline"
+                                                                        href="#">Case Study <span
+                                                                                class="material-symbols-outlined text-[14px]">north_east</span></a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <!-- Smaller Project 2 -->
+                                        <div
+                                                class="md:col-span-4 bg-surface rounded-xl overflow-hidden border border-outline-variant flex flex-col group stagger-item shadow-md">
+                                                <div class="h-48 bg-surface-variant w-full"
+                                                        data-alt="A corporate marketing landing page emphasizing high-energy professionalism with bold typography, structural blue borders, and a clear call to action section."
+                                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWNMaqNkUPzFwX4tYklKfNjr_S7UzOpB-OiRQx9Y-mUEnO8CwjEwTK8TVjN6Y8W-hXAsoLpfcFQHPPMARvfKNh8RpCb-VSx5p8xSDlZ3w6mTFA9fkxkQ_jPJMXSA75NkDbzTEve0_3aOztL9obNb6mfbBYlNDy29LBe57IABl4wpODfzjCCg9wMxSAuuir3Z-VgrSY0XrSdPx5bES1TWG7GAYiHKXTWy6FJRIjjbxU8wdy3OA5DJs')">
+                                                </div>
+                                                <div class="p-md flex-grow flex flex-col justify-between">
+                                                        <div>
+                                                                <h3
+                                                                        class="font-headline-md text-[18px] font-bold text-on-surface mb-xs">
+                                                                        MAIRIE DES JEUNES DE COVÈ</h3>
+                                                                <p
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant">
+                                                                        Leadership Engagement Citoyen.</p>
+                                                        </div>
+                                                        <div class="mt-sm">
+                                                                <a class="text-primary font-label-bold text-[12px] flex items-center gap-xs hover:underline"
+                                                                        href="#">Case Study <span
+                                                                                class="material-symbols-outlined text-[14px]">north_east</span></a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <!-- Promo Box -->
+                                        <div
+                                                class="md:col-span-8 bg-gradient-primary rounded-xl overflow-hidden border border-primary/50 flex items-center justify-between p-lg relative stagger-item shadow-lg shadow-primary/20">
+                                                <div class="absolute inset-0 bg-white/5"
+                                                        style="clip-path: polygon(50% 0%, 100% 0, 100% 100%, 75% 100%);">
+                                                </div>
+                                                <div
+                                                        class="relative z-10 w-full flex flex-col md:flex-row justify-between items-center gap-md">
+                                                        <div>
+                                                                <span
+                                                                        class="inline-block bg-white/20 backdrop-blur-sm text-white font-label-bold text-[10px] px-3 py-1 rounded-full mb-sm border border-white/30">Available
+                                                                        Now</span>
+                                                                <h3
+                                                                        class="font-headline-md text-headline-md font-bold text-white">
+                                                                        Design System Masterclass</h3>
+                                                                <p
+                                                                        class="font-body-sm text-body-sm text-white/80 mt-xs">
+                                                                        Learn the method of creating interfaces that
+                                                                        convert.</p>
+                                                        </div>
+                                                        <div
+                                                                class="flex-shrink-0 bg-surface rounded-xl p-sm border border-outline-variant shadow-xl flex items-center gap-sm">
+                                                                <div
+                                                                        class="line-through text-on-surface-variant font-body-sm text-body-sm">
+                                                                        5000F</div>
+                                                                <div
+                                                                        class="text-secondary-container font-headline-md text-[20px] font-bold">
+                                                                        1515F</div>
+                                                                <button
+                                                                        class="bg-gradient-primary text-on-primary font-label-bold text-[12px] px-md py-sm rounded-full ml-sm hover:opacity-90 transition-opacity">Enroll</button>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <!-- Blog Section -->
+                <section
+                        class="py-xl bg-gradient-to-b from-surface-container-low to-surface border-t border-outline-variant/50 reveal">
+                        <div class="max-w-7xl mx-auto px-margin">
+                                <div
+                                        class="flex justify-between items-end mb-lg border-b border-outline-variant pb-sm stagger-item">
+                                        <div>
+                                                <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">
+                                                        DERNIÈRES PUBLICATIONS</h2>
+                                        </div>
+                                        <a class="font-label-bold text-label-bold text-primary hover:underline flex items-center gap-xs"
+                                                href="#">
+                                                Voir le blog <span
+                                                        class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                        </a>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+                                        <!-- Article 1 -->
+                                        <div
+                                                class="bg-surface border border-outline-variant rounded-xl overflow-hidden flex flex-col group hover:shadow-xl transition-all stagger-item shadow-sm">
+                                                <div class="h-48 bg-surface-variant w-full relative">
+                                                        <div class="absolute inset-0 bg-primary/10"></div>
+                                                </div>
+                                                <div class="p-md flex-grow flex flex-col justify-between">
+                                                        <div>
+                                                                <span
+                                                                        class="text-secondary-container font-label-bold text-[10px] mb-xs block">Leadership</span>
+                                                                <h3
+                                                                        class="font-headline-md text-[18px] font-bold text-on-surface mb-sm group-hover:text-primary transition-colors">
+                                                                        L'importance de l'engagement citoyen chez les
+                                                                        jeunes</h3>
+                                                                <p
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+                                                                        Découvrez comment la jeunesse peut activement
+                                                                        participer au développement de sa communauté à
+                                                                        travers des actions concrètes.</p>
+                                                        </div>
+                                                        <div
+                                                                class="mt-md pt-sm border-t border-outline-variant flex items-center justify-between text-on-surface-variant font-label-bold text-[12px]">
+                                                                <span class="">12 Août 2026</span>
+                                                                <span class="">5 min read</span>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <!-- Article 2 -->
+                                        <div
+                                                class="bg-surface border border-outline-variant rounded-xl overflow-hidden flex flex-col group hover:shadow-xl transition-all stagger-item shadow-sm">
+                                                <div class="h-48 bg-surface-variant w-full relative">
+                                                        <div class="absolute inset-0 bg-secondary/10"></div>
+                                                </div>
+                                                <div class="p-md flex-grow flex flex-col justify-between">
+                                                        <div>
+                                                                <span
+                                                                        class="text-primary font-label-bold text-[10px] mb-xs block">Design
+                                                                        &amp; Créativité</span>
+                                                                <h3
+                                                                        class="font-headline-md text-[18px] font-bold text-on-surface mb-sm group-hover:text-primary transition-colors">
+                                                                        Créer une identité visuelle qui marque les
+                                                                        esprits</h3>
+                                                                <p
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+                                                                        Les principes fondamentaux pour construire une
+                                                                        marque forte et mémorable dans l'écosystème
+                                                                        digital africain.</p>
+                                                        </div>
+                                                        <div
+                                                                class="mt-md pt-sm border-t border-outline-variant flex items-center justify-between text-on-surface-variant font-label-bold text-[12px]">
+                                                                <span class="">25 Juil 2026</span>
+                                                                <span class="">4 min read</span>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <!-- Article 3 -->
+                                        <div
+                                                class="bg-surface border border-outline-variant rounded-xl overflow-hidden flex flex-col group hover:shadow-xl transition-all stagger-item shadow-sm">
+                                                <div class="h-48 bg-surface-variant w-full relative">
+                                                        <div class="absolute inset-0 bg-tertiary/10"></div>
+                                                </div>
+                                                <div class="p-md flex-grow flex flex-col justify-between">
+                                                        <div>
+                                                                <span
+                                                                        class="text-secondary-container font-label-bold text-[10px] mb-xs block">Événementiel</span>
+                                                                <h3
+                                                                        class="font-headline-md text-[18px] font-bold text-on-surface mb-sm group-hover:text-primary transition-colors">
+                                                                        Réussir son événement : de l'idée à la
+                                                                        réalisation</h3>
+                                                                <p
+                                                                        class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+                                                                        Guide pratique des étapes incontournables pour
+                                                                        organiser un événement à succès, basé sur mes
+                                                                        expériences de terrain.</p>
+                                                        </div>
+                                                        <div
+                                                                class="mt-md pt-sm border-t border-outline-variant flex items-center justify-between text-on-surface-variant font-label-bold text-[12px]">
+                                                                <span class="">10 Juin 2026</span>
+                                                                <span class="">6 min read</span>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <!-- Impact Metrics -->
+                <section
+                        class="py-xl bg-gradient-to-b from-surface to-surface-container-low border-t border-outline-variant/50 reveal">
+                        <div class="max-w-7xl mx-auto px-margin text-center">
+                                <h2
+                                        class="font-headline-lg text-headline-lg font-bold text-on-surface mb-lg stagger-item">
+                                        Impact</h2>
+                                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-md">
+                                        <div
+                                                class="p-md stagger-item bg-surface rounded-xl border border-outline-variant/50 shadow-sm">
+                                                <h3
+                                                        class="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">
+                                                        20+</h3>
+                                                <p class="font-body-sm text-on-surface-variant mt-2">Projets Réalisés
+                                                </p>
+                                        </div>
+                                        <div
+                                                class="p-md stagger-item bg-surface rounded-xl border border-outline-variant/50 shadow-sm">
+                                                <h3
+                                                        class="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">
+                                                        15+</h3>
+                                                <p class="font-body-sm text-on-surface-variant mt-2">Événements
+                                                        Organisés</p>
+                                        </div>
+                                        <div
+                                                class="p-md stagger-item bg-surface rounded-xl border border-outline-variant/50 shadow-sm">
+                                                <h3
+                                                        class="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">
+                                                        500+</h3>
+                                                <p class="font-body-sm text-on-surface-variant mt-2">Personnes Formées
+                                                </p>
+                                        </div>
+                                        <div
+                                                class="p-md stagger-item bg-surface rounded-xl border border-outline-variant/50 shadow-sm">
+                                                <h3
+                                                        class="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">
+                                                        5+</h3>
+                                                <p class="font-body-sm text-on-surface-variant mt-2">Années d'Expérience
+                                                </p>
+                                        </div>
+                                        <div
+                                                class="p-md stagger-item bg-surface rounded-xl border border-outline-variant/50 shadow-sm">
+                                                <h3
+                                                        class="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">
+                                                        10+</h3>
+                                                <p class="font-body-sm text-on-surface-variant mt-2">Partenaires</p>
+                                        </div>
+                                        <div
+                                                class="p-md stagger-item bg-surface rounded-xl border border-outline-variant/50 shadow-sm">
+                                                <h3
+                                                        class="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">
+                                                        3+</h3>
+                                                <p class="font-body-sm text-on-surface-variant mt-2">Distinctions</p>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <!-- FAQ Section -->
+                <section
+                        class="py-xl bg-gradient-to-b from-surface-container-low to-surface border-t border-outline-variant/50 reveal">
+                        <div class="max-w-4xl mx-auto px-margin">
+                                <h2
+                                        class="font-headline-lg text-headline-lg font-bold text-on-surface mb-lg text-center stagger-item">
+                                        FAQ QUESTIONS</h2>
+                                <div class="space-y-md">
+                                        <details
+                                                class="bg-surface rounded-xl p-md border border-outline-variant shadow-sm stagger-item">
+                                                <summary
+                                                        class="font-headline-md text-body-lg font-bold cursor-pointer outline-none text-primary">
+                                                        Quels services proposez-vous exactement ?</summary>
+                                                <p class="font-body-md text-on-surface-variant mt-sm">Je propose des
+                                                        services de design graphique, branding, communication digitale,
+                                                        ainsi que de la gestion de projet et planification d'événements.
+                                                </p>
+                                        </details>
+                                        <details
+                                                class="bg-surface rounded-xl p-md border border-outline-variant shadow-sm stagger-item">
+                                                <summary
+                                                        class="font-headline-md text-body-lg font-bold cursor-pointer outline-none text-primary">
+                                                        Comment travaillez-vous avec vos clients ?</summary>
+                                                <p class="font-body-md text-on-surface-variant mt-sm">Je collabore
+                                                        étroitement pour comprendre les besoins spécifiques, établir une
+                                                        stratégie claire et livrer des résultats avec un suivi régulier.
+                                                </p>
+                                        </details>
+                                        <details
+                                                class="bg-surface rounded-xl p-md border border-outline-variant shadow-sm stagger-item">
+                                                <summary
+                                                        class="font-headline-md text-body-lg font-bold cursor-pointer outline-none text-primary">
+                                                        Puis-je vous engager pour une conférence ou un atelier ?
+                                                </summary>
+                                                <p class="font-body-md text-on-surface-variant mt-sm">Oui, je suis
+                                                        disponible pour animer des ateliers et des conférences sur le
+                                                        leadership, la créativité et le développement personnel.</p>
+                                        </details>
+                                        <details
+                                                class="bg-surface rounded-xl p-md border border-outline-variant shadow-sm stagger-item">
+                                                <summary
+                                                        class="font-headline-md text-body-lg font-bold cursor-pointer outline-none text-primary">
+                                                        Quels sont vos tarifs ?</summary>
+                                                <p class="font-body-md text-on-surface-variant mt-sm">Mes tarifs varient
+                                                        en fonction de la complexité et de la durée du projet.
+                                                        Contactez-moi pour un devis personnalisé.</p>
+                                        </details>
+                                </div>
+                        </div>
+                </section>
+                <!-- Testimonials Section -->
+                <section
+                        class="py-xl bg-gradient-to-b from-surface to-surface-container-low border-t border-outline-variant/50 reveal">
+                        <div class="max-w-7xl mx-auto px-margin">
+                                <h2
+                                        class="font-headline-lg text-headline-lg font-bold text-on-surface mb-lg text-center stagger-item">
+                                        Témoignages</h2>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                                        <div
+                                                class="bg-surface p-lg rounded-xl border border-outline-variant shadow-md stagger-item relative">
+                                                <span
+                                                        class="material-symbols-outlined text-primary/10 absolute top-4 right-4 text-6xl">format_quote</span>
+                                                <p class="font-body-lg text-on-surface italic mb-md relative z-10">"Le
+                                                        travail de Chabel a transformé notre approche marketing. Ses
+                                                        designs sont non seulement beaux, mais ils convertissent."</p>
+                                                <p class="font-label-bold text-primary">— Marie G.</p>
+                                        </div>
+                                        <div
+                                                class="bg-surface p-lg rounded-xl border border-outline-variant shadow-md stagger-item relative">
+                                                <span
+                                                        class="material-symbols-outlined text-primary/10 absolute top-4 right-4 text-6xl">format_quote</span>
+                                                <p class="font-body-lg text-on-surface italic mb-md relative z-10">"Un
+                                                        leader inspirant et un professionnel dévoué. L'organisation de
+                                                        notre événement a été un succès retentissant grâce à son
+                                                        expertise."</p>
+                                                <p class="font-label-bold text-primary">— Paul T.</p>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <!-- CTA Section -->
+                <section
+                        class="py-xl bg-gradient-to-b from-surface-container-low to-surface border-t border-outline-variant/50 reveal active">
+                        <div class="max-w-4xl mx-auto px-margin text-center">
+                                <div
+                                        class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-md stagger-item active">
+                                        <span
+                                                class="material-symbols-outlined text-[32px] text-primary">rocket_launch</span>
+                                </div>
+                                <h2
+                                        class="font-headline-xl text-headline-lg-mobile md:text-headline-xl font-extrabold text-on-surface mb-md stagger-item active">
+                                        TRAVAILLONS <span
+                                                class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container">ENSEMBLE.</span>
+                                </h2>
+                                <p
+                                        class="font-body-lg text-body-lg text-on-surface-variant mb-lg  mx-auto stagger-item active">
+                                        Ready to elevate your digital presence with high-performance UI and
+                                        conversion-focused design? Let's discuss your next big project.
+                                </p>
+                                <div class="flex flex-wrap justify-center gap-md stagger-item active">
+                                        <button class="bg-gradient-primary text-on-primary font-label-bold text-label-bold px-lg py-md rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-primary/30 tracking-wider"
+                                                style="background: linear-gradient(135deg, rgb(255, 69, 0) 0%, rgb(255, 183, 0) 100%);">Collaborer</button>
+                                        <button class="text-on-primary font-label-bold text-label-bold px-lg py-md rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-secondary-container/30 tracking-wider"
+                                                style="background: linear-gradient(135deg, rgb(255, 69, 0) 0%, rgb(255, 183, 0) 100%);">Demander
+                                                un devis</button>
+                                        <button
+                                                class="border-2 border-primary text-primary font-label-bold text-label-bold px-lg py-md rounded-full hover:bg-primary/10 transition-colors tracking-wider">Réserver
+                                                une formation</button>
+                                        <button
+                                                class="border-2 border-primary text-primary font-label-bold text-label-bold px-lg py-md rounded-full hover:bg-primary/10 transition-colors tracking-wider">Proposer
+                                                un partenariat</button>
+                                </div>
+                                <div
+                                        class="mt-lg flex justify-center gap-md items-center text-on-surface-variant stagger-item active">
+                                        <div class="flex items-center gap-xs font-body-sm text-[12px]">
+                                                <span
+                                                        class="material-symbols-outlined text-[16px] text-primary">lock</span>
+                                                Secure Platform
+                                        </div>
+                                        <span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+                                        <div class="flex items-center gap-xs font-body-sm text-[12px]">
+                                                <span
+                                                        class="material-symbols-outlined text-[16px] text-primary">download</span>
+                                                Instant Delivery
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+        </main>
+        <!-- Footer -->
+        <footer class="bg-surface border-t border-outline-variant w-full py-lg">
+                <div class="flex flex-col md:flex-row justify-between items-center px-margin max-w-7xl mx-auto gap-md">
+                        <div
+                                class="font-headline-md text-headline-md font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container">
+                                CHABEL ANANOUNON
+                        </div>
+                        <div class="font-body-sm text-body-sm text-on-surface-variant">
+                                © 2026 CHABEL ANANOUNON. Tous droits réservés.
+                        </div>
+                        <div class="flex gap-md">
+                                <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors font-bold"
+                                        href="#">LinkedIn</a>
+                                <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors font-bold"
+                                        href="#">GitHub</a>
+                                <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors font-bold"
+                                        href="#">Dribbble</a>
+                        </div>
+                </div>
+        </footer>
+        <script class="">
+                document.addEventListener('DOMContentLoaded', () => {
+                        const observerOptions = {
+                                threshold: 0.1,
+                                rootMargin: '0px 0px -50px 0px'
+                        };
+
+                        const observer = new IntersectionObserver((entries) => {
+                                entries.forEach(entry => {
+                                        if (entry.isIntersecting) {
+                                                entry.target.classList.add('active');
+                                                // If it's a container with staggered items, trigger them
+                                                const items = entry.target.querySelectorAll('.stagger-item');
+                                                items.forEach((item, index) => {
+                                                        setTimeout(() => {
+                                                                item.classList.add('active');
+                                                        }, index * 100);
+                                                });
+                                                observer.unobserve(entry.target);
+                                        }
+                                });
+                        }, observerOptions);
+
+                        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+                });
+        </script>
+</body>
+
+</html>

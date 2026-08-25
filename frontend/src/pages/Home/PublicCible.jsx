@@ -17,35 +17,44 @@ import { useRevealStagger } from '../../motion';
 
 const PUBLICS = [
   {
-    famille: 'INSTITUTIONS PUBLIQUES',
+    famille: 'Institutions publiques',
     segment: 'INSTITUTION',
     details: ['Ministères', 'Collectivités territoriales', 'Mairies', 'Institutions de jeunesse'],
   },
   {
-    famille: 'ORGANISATIONS INTERNATIONALES',
+    famille: 'Organisations internationales',
     segment: 'ORGANISATION INTERNATIONALE',
     details: ['ONG', 'Agences de développement', 'Organisations de coopération'],
   },
   {
-    famille: 'ENTREPRISES',
+    famille: 'Entreprises',
     segment: 'ENTREPRISE',
     details: ['PME', 'Grandes entreprises', 'Start-up', 'Agences de communication'],
   },
   {
-    famille: 'JEUNESSE',
+    famille: 'Jeunesse',
     segment: 'JEUNE PORTEUR DE PROJET',
     details: ['Étudiants', 'Jeunes entrepreneurs', 'Porteurs de projets', 'Créatifs', 'Associations'],
   },
   {
-    famille: 'PARTENAIRES',
+    famille: 'Partenaires',
     segment: 'PARTENAIRE',
     details: ['Sponsors', 'Investisseurs', 'Incubateurs', "Organisateurs d'événements"],
   },
   {
-    famille: 'MÉDIAS',
+    famille: 'Médias',
     segment: 'MÉDIA',
     details: ['Presse', 'Télévision', 'Radio', 'Blogs', 'Influenceurs'],
   },
+];
+
+const ACCENTS = [
+  { color: 'purple', border: 'border-purple-200 hover:border-purple-500', glow: 'glow-purple', bg: 'bg-purple-500', text: 'text-purple-600', pulse: 'dot-pulse-purple' },
+  { color: 'emerald', border: 'border-emerald-200 hover:border-emerald-500', glow: 'glow-emerald', bg: 'bg-emerald-500', text: 'text-emerald-600', pulse: 'dot-pulse-emerald' },
+  { color: 'cyan', border: 'border-cyan-200 hover:border-cyan-500', glow: 'glow-cyan', bg: 'bg-cyan-500', text: 'text-cyan-600', pulse: 'dot-pulse-cyan' },
+  { color: 'amber', border: 'border-amber-200 hover:border-amber-500', glow: 'glow-amber', bg: 'bg-amber-500', text: 'text-amber-600', pulse: 'dot-pulse-amber' },
+  { color: 'rose', border: 'border-rose-200 hover:border-rose-500', glow: 'glow-rose', bg: 'bg-rose-500', text: 'text-rose-600', pulse: 'dot-pulse-rose' },
+  { color: 'teal', border: 'border-teal-200 hover:border-teal-500', glow: 'glow-cyan', bg: 'bg-teal-500', text: 'text-teal-600', pulse: 'dot-pulse-cyan' },
 ];
 
 export function PublicCible() {
@@ -54,33 +63,41 @@ export function PublicCible() {
   useRevealStagger(grilleRef, { itemCount: PUBLICS.length, distance: 56, stagger: 0.07 });
 
   return (
-    <section ref={sectionRef} id="public-cible" className="scroll-mt-[6rem] py-[var(--space-24)]">
-      <div className="container">
+    <section ref={sectionRef} id="public-cible" className="scroll-mt-[6rem] py-24 bg-surface-container-low/50">
+      <div className="max-w-7xl mx-auto px-margin">
         <SectionCartouche label="AVEC QUI JE TRAVAILLE" />
 
-        <div ref={grilleRef} className="grid gap-[var(--space-4)] sm:grid-cols-2 lg:grid-cols-3">
-          {PUBLICS.map(({ famille, segment, details }, i) => (
-            <SiteLink
-              key={famille}
-              href={`/contact?objet=collaboration&segment=${encodeURIComponent(segment)}`}
-              data-reveal-item
-              className="group relative flex flex-col gap-[var(--space-4)] overflow-hidden border-[length:var(--bd)] border-[color:var(--bordure)] p-[var(--space-6)]"
-            >
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 z-0 origin-left scale-x-0 bg-[var(--jaune-signal)] transition-transform duration-[200ms] [transition-timing-function:cubic-bezier(.16,1,.3,1)] group-hover:scale-x-100 group-focus-visible:scale-x-100"
-              />
-              <span className="relative z-10 font-mono text-[length:var(--fs-mono)] tracking-[.1em] opacity-55">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span className="relative z-10 font-[family-name:var(--font-display)] text-[1.375rem] font-bold uppercase leading-[1.05]">
-                {famille}
-              </span>
-              <span className="relative z-10 font-mono text-[length:var(--fs-mono)] uppercase leading-[1.9] tracking-[.04em] opacity-70">
-                {details.join(' · ')}
-              </span>
-            </SiteLink>
-          ))}
+        <div ref={grilleRef} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {PUBLICS.map(({ famille, segment, details }, i) => {
+            const accent = ACCENTS[i % ACCENTS.length];
+            return (
+              <SiteLink
+                key={famille}
+                href={`/contact?objet=collaboration&segment=${encodeURIComponent(segment)}`}
+                data-reveal-item
+                className={`group relative flex flex-col justify-between gap-4 rounded-2xl border bg-surface p-6 card-wave-glow ${accent.border} ${accent.glow} shadow-sm`}
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-mono text-sm font-bold opacity-40 group-hover:opacity-100 transition-opacity">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className={`w-2.5 h-2.5 rounded-full ${accent.bg} ${accent.pulse}`} title={famille} />
+                  </div>
+                  <h3 className={`font-display text-xl font-bold leading-tight mb-2 group-hover:${accent.text} transition-colors`}>
+                    {famille}
+                  </h3>
+                </div>
+                <div className="pt-4 border-t border-outline-variant/40 flex flex-wrap gap-1.5">
+                  {details.map((d) => (
+                    <span key={d} className="text-xs px-2.5 py-1 rounded-md bg-surface-variant/80 text-on-surface-variant font-medium group-hover:bg-surface-variant transition-colors">
+                      {d}
+                    </span>
+                  ))}
+                </div>
+              </SiteLink>
+            );
+          })}
         </div>
       </div>
     </section>
