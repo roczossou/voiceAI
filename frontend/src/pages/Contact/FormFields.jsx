@@ -5,7 +5,7 @@ export const Field = forwardRef(function Field({
 }, ref) {
   const id = `contact-${name}`;
   const errId = `${id}-err`;
-  const sharedClassName = `w-full bg-surface p-4 rounded-[4px] border transition-all outline-none font-body-md text-on-background ${error ? 'border-error-red focus:border-error-red focus:ring-2 focus:ring-error-red/20' : 'border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20'}`;
+  const sharedClassName = `w-full bg-surface px-4 py-3 rounded-xl border transition-all outline-none font-body-md text-on-background ${error ? 'border-error-red focus:border-error-red focus:ring-2 focus:ring-error-red/20' : 'border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20'}`;
 
   return (
     <div className="flex flex-col gap-2">
@@ -75,7 +75,7 @@ export function RadioGroup({
               aria-checked={checked}
               disabled={disabled}
               onClick={() => onChange(optValue)}
-              className={`px-4 py-2 border-2 font-label-lg tracking-wider transition-colors duration-150 ${checked ? 'bg-primary text-on-primary border-primary' : 'bg-surface text-on-surface-variant border-outline-variant hover:border-primary hover:text-primary'
+              className={`px-4 py-2 rounded-full border-2 font-label-lg tracking-wider transition-all duration-150 ${checked ? 'bg-primary text-on-primary border-primary shadow-md scale-[1.03]' : 'bg-surface text-on-surface-variant border-outline-variant hover:border-primary hover:text-primary'
                 } ${disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
             >
               {optLabel}
@@ -96,7 +96,7 @@ export function SubmitButton({ pending, success, children }) {
     <button
       type="submit"
       disabled={pending || success}
-      className={`w-full font-label-lg text-label-lg py-4 px-8 transition-colors flex justify-center items-center gap-2 group disabled:cursor-not-allowed mt-4 ${success ? 'bg-success-green text-on-primary' : 'bg-secondary-container text-on-background hover:bg-secondary'
+      className={`w-full font-label-lg text-label-lg py-4 px-8 rounded-xl transition-all flex justify-center items-center gap-2 group disabled:cursor-not-allowed mt-2 shadow-md hover:shadow-lg hover:scale-[1.01] ${success ? 'bg-success-green text-on-primary' : 'bg-secondary-container text-on-background hover:bg-secondary'
         }`}
     >
       <span>{success ? 'DEMANDE ENREGISTRÉE' : children}</span>

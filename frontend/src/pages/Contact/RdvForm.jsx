@@ -86,7 +86,7 @@ export function RdvForm({ initialType }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-[var(--space-8)]">
+    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
       <input
         type="text"
         name="_gotcha"
@@ -109,7 +109,7 @@ export function RdvForm({ initialType }) {
         />
       </div>
 
-      <div className="grid gap-[var(--space-6)] sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         <Field ref={nomRef} label="Nom" name="nom" required value={fields.nom} onChange={setField('nom')} error={errors.nom} />
         <Field label="Organisation" name="organisation" value={fields.organisation} onChange={setField('organisation')} />
         <Field ref={emailRef} label="E-mail" name="email" type="email" required value={fields.email} onChange={setField('email')} error={errors.email} />
@@ -118,7 +118,7 @@ export function RdvForm({ initialType }) {
 
       <Field ref={objetRef} label="Objet" name="objet" required value={fields.objet} onChange={setField('objet')} error={errors.objet} />
 
-      <div className="grid gap-[var(--space-6)] sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         <Field ref={dateRef} label="Date souhaitée" name="date" type="date" required min={dateMin} value={fields.date} onChange={setField('date')} error={errors.date} />
         <div ref={creneauRef} tabIndex={-1}>
           <RadioGroup
@@ -134,7 +134,7 @@ export function RdvForm({ initialType }) {
 
       <Field ref={messageRef} label="Message" name="message" required textarea value={fields.message} onChange={setField('message')} error={errors.message} />
 
-      <div className="flex flex-col gap-[var(--space-3)]">
+      <div className="flex flex-col gap-2">
         <SubmitButton pending={status === 'pending'} success={status === 'success'}>ENVOYER LA DEMANDE</SubmitButton>
         {status === 'success' && (
           <p aria-live="polite" className="font-mono text-[length:var(--fs-mono)]">
