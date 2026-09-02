@@ -120,20 +120,41 @@ function ServiceGroupe({ label, id, icon, services, index }) {
 
 function ServicesHero() {
   return (
-    <section className="bg-primary text-on-primary pt-[140px] pb-[100px] md:pt-[180px] md:pb-[140px] px-margin-mobile md:px-margin-desktop relative overflow-hidden">
-      <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] bg-gradient-to-tr from-amber-500/20 via-cyan-500/20 to-purple-500/20 rounded-full blur-3xl animate-spin-slow pointer-events-none z-0" />
+    <section className="text-white pt-[140px] pb-[100px] md:pt-[180px] md:pb-[140px] px-margin-mobile md:px-margin-desktop relative overflow-hidden" style={{ backgroundColor: '#1565f5' }}>
+      {/* ===== CODED BACKGROUND ===== */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <svg className="absolute" style={{ top: '5%', left: '60%', width: 350, height: 350 }} viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="ring-services-1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#ff2d00" />
+              <stop offset="100%" stopColor="#ff7000" />
+            </radialGradient>
+          </defs>
+          <circle cx="110" cy="110" r="80" stroke="url(#ring-services-1)" strokeWidth="44" />
+        </svg>
+        <svg className="absolute" style={{ bottom: '-30%', right: '-10%', width: 700, height: 700 }} viewBox="0 0 820 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="ring-services-2" cx="40%" cy="40%" r="60%">
+              <stop offset="0%" stopColor="#ffd000" />
+              <stop offset="100%" stopColor="#ff6200" />
+            </radialGradient>
+          </defs>
+          <circle cx="410" cy="410" r="300" stroke="url(#ring-services-2)" strokeWidth="170" />
+        </svg>
+      </div>
+      {/* ===== END BACKGROUND ===== */}
+
       <div className="max-w-max-width mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
         <div className="lg:col-span-8">
           <div className="hero-anim-badge">
-            <span className="inline-flex items-center gap-2 bg-secondary-container text-on-secondary text-xs font-bold px-4 py-1.5 rounded-full tracking-widest mb-6 border border-black/20 shadow-md">
-              {/* <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 dot-pulse-emerald" /> */}
+            <span className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-4 py-1.5 rounded-full tracking-widest mb-6 border border-white/20 shadow-md">
               SOLUTIONS &amp; EXPERTISES
             </span>
           </div>
-          <h1 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-primary leading-none mb-6">
-            Ce que je prends  <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-secondary-container to-purple-300">en charge.</span>
+          <h1 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-white leading-none mb-6">
+            Ce que je prends <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-400">en charge.</span>
           </h1>
-          <p className="font-body-lg text-body-lg text-primary-fixed-dim ">
+          <p className="font-body-lg text-body-lg text-white/90">
             Des solutions sur-mesure pour donner vie à vos projets, de la conception stratégique à l'exécution terrain.
           </p>
         </div>

@@ -108,27 +108,54 @@ export function ProjetsPage() {
 
   return (
     <SiteLayout>
-      <main className="pb-[160px] px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto pt-[120px] md:pt-[140px]">
-        {/* Header Section — conservé tel quel (première section) */}
-        <header className="mb-xl flex flex-col justify-between items-start gap-lg border-b border-outline-variant pb-lg relative overflow-hidden">
+      {/* Hero Section */}
+      <section className="text-white pt-[140px] pb-[80px] md:pt-[180px] md:pb-[100px] relative overflow-hidden" style={{ backgroundColor: '#1565f5' }}>
+        {/* ===== CODED BACKGROUND ===== */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <svg className="absolute" style={{ top: '-5%', right: '10%', width: 400, height: 400 }} viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="ring-projets-1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#ff2d00" />
+                <stop offset="100%" stopColor="#ff7000" />
+              </radialGradient>
+            </defs>
+            <circle cx="110" cy="110" r="80" stroke="url(#ring-projets-1)" strokeWidth="44" />
+          </svg>
+          <svg className="absolute" style={{ bottom: '-30%', left: '-10%', width: 700, height: 700 }} viewBox="0 0 820 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="ring-projets-2" cx="40%" cy="40%" r="60%">
+                <stop offset="0%" stopColor="#ffd000" />
+                <stop offset="100%" stopColor="#ff6200" />
+              </radialGradient>
+            </defs>
+            <circle cx="410" cy="410" r="300" stroke="url(#ring-projets-2)" strokeWidth="150" />
+          </svg>
+        </div>
+        {/* ===== END BACKGROUND ===== */}
+
+        <div className="px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto relative z-10">
           <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-end gap-md mb-sm">
             <div className="w-full md:shrink-0">
-              <div className="inline-flex items-center gap-2 bg-secondary-container text-on-secondary font-label-bold text-[11px] px-md py-xs rounded-full tracking-widest mb-sm shadow-sm">
-                {/* <span className="w-2 h-2 rounded-full bg-emerald-500 dot-pulse-emerald" /> */}
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md text-white font-label-bold text-[11px] px-md py-xs rounded-full tracking-widest mb-sm shadow-md border border-white/20">
                 PORTFOLIO &amp; SHOWCASE
               </div>
-              <h1 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-sm tracking-tighter">
-                Projets et <br /><span className="text-secondary-container">Réalisations</span>
+              <h1 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-white mb-sm tracking-tighter">
+                Projets et <br /><span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-400">Réalisations</span>
               </h1>
-              <p className="font-body-lg text-body-lg text-on-surface-variant w-full leading-relaxed">
+              <p className="font-body-lg text-body-lg text-white/90 w-full leading-relaxed">
                 Une collection de réalisations, projets et collaborations, illustrant ma méthodologie et mon engagement à créer de la valeur.
               </p>
             </div>
-
-            <p className="font-label-bold text-[11px] text-primary bg-primary/10 px-md py-sm rounded-xl border border-primary/20 shrink-0 tracking-wider" aria-live="polite">
+            <p className="font-label-bold text-[11px] text-white bg-white/10 px-md py-sm rounded-xl border border-white/20 shrink-0 tracking-wider" aria-live="polite">
               [{filtered.length}] RÉALISATION{filtered.length > 1 ? 'S' : ''}
             </p>
           </div>
+        </div>
+      </section>
+
+      <main className="pb-[160px] px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto pt-lg md:pt-xl">
+        {/* Filters */}
+        <header className="mb-xl flex flex-col justify-between items-start gap-lg border-b border-outline-variant pb-lg relative z-20">
 
           <div className="w-full flex flex-col gap-md">
             <div className="flex flex-wrap gap-sm" role="radiogroup" aria-label="Nature">

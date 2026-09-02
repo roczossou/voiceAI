@@ -48,8 +48,8 @@ export function Methodologie() {
                       <span className="material-symbols-outlined text-[18px]">{icon}</span>
                     </div>
                     <div>
-                      <p className="font-label-bold text-[12px] text-on-surface tracking-wider">{titre}</p>
-                      <p className="font-body-sm text-body-sm text-on-surface-variant">{desc}</p>
+                      <p className="font-label-bold  text-body-sm  text-on-surface tracking-wider">{titre}</p>
+                      <p className="font-body-sm text-[12px] text-on-surface-variant">{desc}</p>
                     </div>
                   </li>
                 ))}

@@ -106,7 +106,7 @@ export function HomePage() {
                 <img alt="Portrait of Chabel ANANOUNON" className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" src={portrait} />
                 <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-surface/90 backdrop-blur-md text-on-surface border border-outline-variant rounded-full px-md py-sm flex items-center gap-sm shadow-xl whitespace-nowrap z-20">
                   {/* <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 dot-pulse-emerald inline-block" /> */}
-                  <span className="font-label-bold text-label-bold text-emerald-700">Méthodes Éprouvées</span>
+                  {/* <span className="font-label-bold text-label-bold text-emerald-700">Méthodes Éprouvées</span> */}
                 </div>
               </div>
             </div>
@@ -223,11 +223,34 @@ export function HomePage() {
       </section>
 
       {/* Compétences & Stack technique */}
-      <section className="py-xl bg-gradient-to-b from-surface-container-low to-surface border-t border-outline-variant/50 reveal">
-        <div className="max-w-7xl mx-auto px-margin">
-          <div className="mb-lg border-l-4 border-primary pl-md stagger-item">
-            <h2 className="font-headline-lg text-headline-lg font-bold text-on-surface">Compétences &amp; Stack technique</h2>
-            <p className="font-body-md text-body-md text-on-surface-variant mt-sm ">
+      <section className="relative overflow-hidden py-xl border-t border-outline-variant/50 reveal" style={{ backgroundColor: '#1565f5' }}>
+        {/* ===== CODED BACKGROUND ===== */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <svg className="absolute" style={{ top: '-10%', left: '70%', width: 400, height: 400 }} viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="ring-homecomp-1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#ff2d00" />
+                <stop offset="100%" stopColor="#ff7000" />
+              </radialGradient>
+            </defs>
+            <circle cx="110" cy="110" r="80" stroke="url(#ring-homecomp-1)" strokeWidth="44" />
+          </svg>
+          <svg className="absolute" style={{ bottom: '-30%', left: '-20%', width: 800, height: 800 }} viewBox="0 0 820 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="ring-homecomp-2" cx="40%" cy="40%" r="60%">
+                <stop offset="0%" stopColor="#ffd000" />
+                <stop offset="100%" stopColor="#ff6200" />
+              </radialGradient>
+            </defs>
+            <circle cx="410" cy="410" r="300" stroke="url(#ring-homecomp-2)" strokeWidth="150" />
+          </svg>
+        </div>
+        {/* ===== END BACKGROUND ===== */}
+
+        <div className="max-w-7xl mx-auto px-margin relative z-10">
+          <div className="mb-lg border-l-4 border-amber-400 pl-md stagger-item">
+            <h2 className="font-headline-lg text-headline-lg font-bold text-white">Compétences &amp; Stack technique</h2>
+            <p className="font-body-md text-body-md text-white/90 mt-sm ">
               Un arsenal complet alliant maîtrise créative, outils de pointe et méthodologies stratégiques de gestion de projet.
             </p>
           </div>
@@ -245,15 +268,17 @@ export function HomePage() {
                   {/* <span className="w-2.5 h-2.5 rounded-full bg-purple-500 dot-pulse-purple" title="UI/UX & Design" /> */}
                 </div>
                 <h3 className="font-headline-md text-body-lg font-bold text-on-surface mb-xs group-hover:text-purple-600 transition-colors">Création &amp; Design</h3>
-                <p className="font-body-sm text-on-surface-variant mb-md">Identités visuelles, UI/UX et contenus graphiques haute conversion.</p>
+                <p className="font-body-sm text-on-surface-variant mb-md">Identités visuelles et contenus graphiques haute conversion.</p>
               </div>
               <div className="flex flex-wrap gap-xs pt-sm border-t border-purple-100">
-                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">Figma</span>
-                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">Photoshop</span>
-                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">Illustrator</span>
-                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">InDesign</span>
-                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">Premiere Pro</span>
-                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">Canva Pro</span>
+                {/*PixelLab, Pixelcut, Pinterest, Vector Ink, Photoroom, Effaceur magique, Zarc */}
+                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">PixelLab</span>
+                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">Pixelcut</span>
+                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">Pinterest</span>
+                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">Vector Ink</span>
+                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">Photoroom</span>
+                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">Effaceur magique</span>
+                <span className="bg-purple-500/10 text-purple-700 font-label-bold text-[11px] px-sm py-xs rounded-lg border border-purple-200/50">Zarc</span>
               </div>
             </div>
 
@@ -412,15 +437,13 @@ export function HomePage() {
                 <div>
                   <span className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white font-label-bold text-[10px] px-3 py-1 rounded-full mb-sm border border-white/30">
                     <span className="w-2 h-2 rounded-full bg-amber-400 dot-pulse-amber" />
-                    <span>Masterclass Exclusive</span>
+                    <span> Exclusivité</span>
                   </span>
-                  <h3 className="font-headline-md text-headline-md font-bold text-white">Design System &amp; Stratégie</h3>
-                  <p className="font-body-sm text-body-sm text-white/90 mt-xs">Apprenez la méthode pour créer des interfaces qui captent l'attention et convertissent.</p>
+                  <h3 className="font-headline-md text-headline-md font-bold text-white"> ProduitDigits </h3>
+                  <p className="font-body-sm text-body-sm text-white/90 mt-xs">Découvrez mes produits et nouveautés.</p>
                 </div>
                 <div className="flex-shrink-0 bg-surface rounded-xl p-sm border border-outline-variant shadow-xl flex items-center gap-sm">
-                  <div className="line-through text-on-surface-variant font-body-sm text-body-sm">5000F</div>
-                  <div className="text-amber-600 font-headline-md text-[20px] font-bold">1515F</div>
-                  <button className="bg-amber-500 hover:bg-amber-600 text-white font-label-bold text-[12px] px-md py-sm rounded-full ml-sm transition-all shadow-md">S'inscrire</button>
+                  <button className="bg-amber-500 hover:bg-amber-600 text-white font-label-bold text-[12px] px-md py-sm rounded-full ml-sm transition-all shadow-md">Voir plus </button>
                 </div>
               </div>
             </div>
@@ -496,24 +519,25 @@ export function HomePage() {
       </section>
 
       {/* Impact Metrics */}
+
       <section className="py-xl bg-gradient-to-b from-surface to-surface-container-low border-t border-outline-variant/50 reveal">
         <div className="max-w-7xl mx-auto px-margin text-center">
           <h2 className="font-headline-lg text-headline-lg font-bold text-on-surface mb-lg stagger-item">Impact</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-md">
             <div className="p-md stagger-item bg-surface rounded-xl border border-outline-variant/50 shadow-sm">
-              <h3 className="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">20+</h3>
+              <h3 className="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">3000+</h3>
               <p className="font-body-sm text-on-surface-variant mt-2">Projets Réalisés</p>
             </div>
             <div className="p-md stagger-item bg-surface rounded-xl border border-outline-variant/50 shadow-sm">
-              <h3 className="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">15+</h3>
+              <h3 className="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">7+</h3>
               <p className="font-body-sm text-on-surface-variant mt-2">Événements Organisés</p>
             </div>
             <div className="p-md stagger-item bg-surface rounded-xl border border-outline-variant/50 shadow-sm">
-              <h3 className="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">500+</h3>
+              <h3 className="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">30+</h3>
               <p className="font-body-sm text-on-surface-variant mt-2">Personnes Formées</p>
             </div>
             <div className="p-md stagger-item bg-surface rounded-xl border border-outline-variant/50 shadow-sm">
-              <h3 className="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">5+</h3>
+              <h3 className="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">4+</h3>
               <p className="font-body-sm text-on-surface-variant mt-2">Années d'Expérience</p>
             </div>
             <div className="p-md stagger-item bg-surface rounded-xl border border-outline-variant/50 shadow-sm">
@@ -521,8 +545,8 @@ export function HomePage() {
               <p className="font-body-sm text-on-surface-variant mt-2">Partenaires</p>
             </div>
             <div className="p-md stagger-item bg-surface rounded-xl border border-outline-variant/50 shadow-sm">
-              <h3 className="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">3+</h3>
-              <p className="font-body-sm text-on-surface-variant mt-2">Distinctions</p>
+              <h3 className="font-headline-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container font-extrabold">50+</h3>
+              <p className="font-body-sm text-on-surface-variant mt-2">Jeunes accompagnés</p>
             </div>
           </div>
         </div>

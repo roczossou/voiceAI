@@ -14,8 +14,8 @@ export function Footer() {
 
           {/* Marque + tagline */}
           <div className="md:col-span-4 lg:col-span-4">
-            <Link to="/" className="inline-block font-headline-lg text-headline-md font-extrabold text-on-surface mb-sm leading-tight hover:text-primary transition-colors">
-              CHABEL<br />ANANOUNON
+            <Link to="/" className="inline-block  font-headline-lg text-headline-md font-extrabold text-on-surface mb-sm leading-tight hover:text-primary transition-colors">
+              Chabel<br />ANANOUNON
             </Link>
             <p className="font-body-md text-on-surface-variant  mt-sm">
               Entrepreneur · Leader jeunesse<br />
@@ -24,7 +24,7 @@ export function Footer() {
           </div>
 
           {/* Colonnes de navigation */}
-          <div className="md:col-span-8 lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-md">
+          <div className="md:col-span-8 lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-md">
             {NAV_COLUMNS.map((col) => (
               <div key={col.title}>
                 <p className="font-label-bold text-[12px] text-primary tracking-wider mb-sm">{col.title}</p>

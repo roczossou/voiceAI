@@ -1,5 +1,5 @@
 import React from 'react';
-import portraitImg from '../../assets/portrait-cutout.png';
+import portraitImg from '../../assets/portrait2.png';
 
 const METIERS = [
   'Entrepreneur',
@@ -11,15 +11,52 @@ const METIERS = [
 
 export function AProposHero() {
   return (
-    <section className="relative w-full min-h-[90vh] py-24 flex items-center bg-primary overflow-hidden">
-      {/* Background Watermark & Animated Glow Ring */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[16vw] font-display-lg font-black text-white/5 whitespace-nowrap pointer-events-none select-none z-0">
-        PARCOURS
+    <section className="relative w-full min-h-[90vh] py-24 flex items-center overflow-hidden" style={{ backgroundColor: '#1565f5' }}>
+      {/* ===== CODED BACKGROUND ===== */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* Background Watermark */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[16vw] font-display-lg font-black text-white/5 whitespace-nowrap pointer-events-none select-none z-0">
+          PARCOURS
+        </div>
+
+        {/* Small ring — haut gauche — gradient rouge-orange */}
+        <svg
+          className="absolute"
+          style={{ top: '-10%', left: '-5%', width: 400, height: 400 }}
+          viewBox="0 0 220 220"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <radialGradient id="ring-apropos-1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#ff2d00" />
+              <stop offset="100%" stopColor="#ff7000" />
+            </radialGradient>
+          </defs>
+          <circle cx="110" cy="110" r="80" stroke="url(#ring-apropos-1)" strokeWidth="40" />
+        </svg>
+
+        {/* Large ring — bas droite — gradient jaune-orange */}
+        <svg
+          className="absolute"
+          style={{ bottom: '-40%', right: '-15%', width: 700, height: 700 }}
+          viewBox="0 0 820 820"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <radialGradient id="ring-apropos-2" cx="40%" cy="40%" r="60%">
+              <stop offset="0%" stopColor="#ffd000" />
+              <stop offset="100%" stopColor="#ff6200" />
+            </radialGradient>
+          </defs>
+          <circle cx="410" cy="410" r="300" stroke="url(#ring-apropos-2)" strokeWidth="150" />
+        </svg>
       </div>
-      <div className="absolute top-[5%] right-[5%] w-[450px] h-[450px] bg-gradient-to-tr from-purple-500/20 via-cyan-500/20 to-amber-500/20 rounded-full blur-3xl animate-spin-slow pointer-events-none z-0" />
+      {/* ===== END BACKGROUND ===== */}
 
       {/* Asymmetric Color Block / Backdrop */}
-      <div className="absolute inset-y-0 right-0 w-1/3 bg-secondary-container/20 backdrop-blur-3xl hidden lg:block transform -skew-x-12 translate-x-16 z-0"></div>
+      <div className="absolute inset-y-0 right-0 w-1/3 bg-white/5 backdrop-blur-3xl hidden lg:block transform -skew-x-12 translate-x-16 z-0"></div>
 
       <div className="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop relative z-10 w-full mt-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -96,9 +133,7 @@ export function AProposHero() {
               <img alt="Portrait Chabel" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src={portraitImg} fetchPriority="high" />
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary-container rounded-full z-10 blur-xl opacity-60"></div>
-            <div className="absolute top-12 -right-6 w-24 h-24 border-2 border-black/20 rounded-full z-30 flex items-center justify-center bg-surface/90 backdrop-blur-md shadow-2xl">
-              <span className="font-label-sm text-label-sm text-on-surface text-center font-bold">ZOU<br />BÉNIN</span>
-            </div>
+           
           </div>
 
         </div>

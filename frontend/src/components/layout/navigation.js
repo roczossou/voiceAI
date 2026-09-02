@@ -19,27 +19,17 @@ export const NAV_COLUMNS = [
     links: [
       { label: 'Services', href: '/services' },
       { label: 'Projets & réalisations', href: '/projets' },
-      { label: 'Galerie', href: '/projets?mode=galerie' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Prendre rendez-vous', href: '/contact?objet=rdv' },
     ],
   },
   {
     title: 'INITIATIVES',
     links: [
-      { label: 'AndroCréa', href: '/androcrea' },
-      { label: "DIGIT'S CRÉA AWARDS", href: '/digits-crea-awards' },
-      { label: 'Leadership & engagement', href: '/leadership' },
+      { label: 'AndroCréa', href: 'https://androcrea.pythonanywhere.com' },
+      { label: "DIGIT'S CRÉA AWARDS", href: 'https://www.digitscreaawards.com' },
     ],
-  },
-  {
-    title: 'CONTENUS',
-    links: [
-      { label: 'Blog', href: '/blog' },
-      { label: 'Ressources', href: '/ressources' },
-      { label: 'Médias', href: '/medias' },
-      { label: 'Témoignages', href: '/temoignages' },
-    ],
-  },
+  }
 ];
 
 // Raccourcis du header. BLOG ajouté le 2026-08-03 : la page existait mais

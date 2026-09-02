@@ -8,6 +8,7 @@ const ACADEMIQUE = [
   'CAP Électricité',
   'BAC Technique F3',
   'Licence Professionnelle en Maintenance des Systèmes Industriels',
+  'Diplôme de Technicien',
 ];
 
 const FORMATIONS_COMPLEMENTAIRES = [
@@ -126,8 +127,19 @@ export function Parcours() {
   const { data: competences = [] } = useQuery({ queryKey: ['competences'], queryFn: fetchCompetences });
 
   return (
-    <section ref={sectionRef} id="parcours" className="py-xl bg-gradient-to-b from-surface-container-low to-surface border-t border-outline-variant/50">
-      <div className="max-w-7xl mx-auto px-margin flex flex-col gap-lg">
+    <section ref={sectionRef} id="parcours" className="relative overflow-hidden py-xl bg-gradient-to-b from-surface-container-low to-surface border-t border-outline-variant/50">
+      {/* ===== CODED BACKGROUND ===== */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-40">
+        {/* Glow Orb - Top Left */}
+        <div className="absolute top-[5%] left-[-10%] w-[600px] h-[600px] bg-purple-500/30 rounded-full blur-[120px]"></div>
+        {/* Glow Orb - Middle Right */}
+        <div className="absolute top-[40%] right-[-10%] w-[700px] h-[700px] bg-emerald-500/20 rounded-full blur-[120px]"></div>
+        {/* Glow Orb - Bottom Left */}
+        <div className="absolute bottom-[-5%] left-[5%] w-[500px] h-[500px] bg-amber-500/30 rounded-full blur-[120px]"></div>
+      </div>
+      {/* ===== END BACKGROUND ===== */}
+
+      <div className="max-w-7xl mx-auto px-margin flex flex-col gap-lg relative z-10">
 
         {/* Section header */}
         <div className="border-l-4 border-primary pl-md">
@@ -143,7 +155,7 @@ export function Parcours() {
             <div className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center">
               <span className="material-symbols-outlined text-[20px]">school</span>
             </div>
-            <h3 className="font-headline-md text-body-lg font-bold text-on-surface">Académique</h3>
+            <h3 className="font-headline-md text-body-lg font-bold text-on-surface">Formation Académique</h3>
           </div>
           <div className="flex flex-wrap gap-sm">
             {ACADEMIQUE.map((item, i) => <TagBorne key={item} accent={i}>{item}</TagBorne>)}
@@ -183,36 +195,61 @@ export function Parcours() {
         </div>
 
         {/* Compétences */}
-        <div className="bg-gradient-to-br from-primary to-primary-container rounded-xl p-lg shadow-xl">
-          <div className="mb-lg border-l-4 border-secondary-container pl-md">
-            <h3 className="font-headline-md text-headline-md font-bold text-on-primary">Compétences</h3>
+        <div className="relative overflow-hidden bg-[#1565f5] rounded-xl p-lg shadow-xl mt-lg">
+          {/* ===== CODED BACKGROUND ===== */}
+          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <svg className="absolute" style={{ top: '-10%', right: '-10%', width: 400, height: 400 }} viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="ring-parcours-comp-1" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#ff2d00" />
+                  <stop offset="100%" stopColor="#ff7000" />
+                </radialGradient>
+              </defs>
+              <circle cx="110" cy="110" r="80" stroke="url(#ring-parcours-comp-1)" strokeWidth="44" />
+            </svg>
+            <svg className="absolute" style={{ bottom: '-30%', left: '-20%', width: 600, height: 600 }} viewBox="0 0 820 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="ring-parcours-comp-2" cx="40%" cy="40%" r="60%">
+                  <stop offset="0%" stopColor="#ffd000" />
+                  <stop offset="100%" stopColor="#ff6200" />
+                </radialGradient>
+              </defs>
+              <circle cx="410" cy="410" r="300" stroke="url(#ring-parcours-comp-2)" strokeWidth="150" />
+            </svg>
           </div>
-          {competences.length > 0 ? (
-            <div className="grid gap-lg md:grid-cols-2">
-              {CATEGORIES_COMPETENCES.map(({ key, label, icon }, catIdx) => {
-                const items = competences.filter((c) => c.categorie === key);
-                if (items.length === 0) return null;
-                const acc = CAT_ACCENTS[catIdx % CAT_ACCENTS.length];
-                return (
-                  <div key={key} className="bg-white/10 backdrop-blur-sm rounded-xl p-md border border-white/20">
-                    <div className="flex items-center gap-sm mb-md pb-sm border-b border-white/20">
-                      <div className="w-8 h-8 bg-secondary-container text-on-secondary rounded-lg flex items-center justify-center">
-                        <span className="material-symbols-outlined text-[16px]">{icon}</span>
+          {/* ===== END BACKGROUND ===== */}
+
+          <div className="relative z-10">
+            <div className="mb-lg border-l-4 border-amber-400 pl-md">
+              <h3 className="font-headline-md text-headline-md font-bold text-white">Compétences</h3>
+            </div>
+            {competences.length > 0 ? (
+              <div className="grid gap-lg md:grid-cols-2">
+                {CATEGORIES_COMPETENCES.map(({ key, label, icon }, catIdx) => {
+                  const items = competences.filter((c) => c.categorie === key);
+                  if (items.length === 0) return null;
+                  const acc = CAT_ACCENTS[catIdx % CAT_ACCENTS.length];
+                  return (
+                    <div key={key} className="bg-white/10 backdrop-blur-sm rounded-xl p-md border border-white/20">
+                      <div className="flex items-center gap-sm mb-md pb-sm border-b border-white/20">
+                        <div className="w-8 h-8 bg-amber-400 text-amber-900 rounded-lg flex items-center justify-center">
+                          <span className="material-symbols-outlined text-[16px]">{icon}</span>
+                        </div>
+                        <h4 className="font-label-bold text-[12px] text-white tracking-wider">{label}</h4>
                       </div>
-                      <h4 className="font-label-bold text-[12px] text-on-primary tracking-wider">{label}</h4>
+                      {items.map((c) => <CompetenceItem key={c.id} competence={c} />)}
                     </div>
-                    {items.map((c) => <CompetenceItem key={c.id} competence={c} />)}
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="bg-white/10 rounded-xl p-lg text-center border border-white/20">
-              <span className="font-label-bold text-[12px] text-primary-fixed-dim tracking-wider">
-                COMPÉTENCES — À COMPLÉTER DANS L'ADMIN
-              </span>
-            </div>
-          )}
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="bg-white/10 rounded-xl p-lg text-center border border-white/20">
+                <span className="font-label-bold text-[12px] text-white/50 tracking-wider">
+                  COMPÉTENCES — À COMPLÉTER DANS L'ADMIN
+                </span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>
