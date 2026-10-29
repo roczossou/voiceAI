@@ -1,12 +1,52 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Pays: FR
 Nom: Ellis
 Prenom: Billie
+Genre: Homme
+Date de naissance: 2001
+Nationalite: Francaise
+Origine: Francaise
+Etat-civil: Celibataire
+Taille: 175 cm
+Poids: 70 kg
+Couleur des yeux: Vert
+Couleur des cheveux: Chatain
+Code postale: 31000
+Ville: Toulouse
+Adresse postale:
+Telephone:
 Gmail: billieellis7001@gmail.com
 Mot de passe: Ellis50@1
-Adresse postale:
-Code postale: 31000
-Téléphone:
-Date de naissance: 2001
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Baccalaureat
+Historique professionnel: Etudiant, petits boulots occasionnels
+Competences: Bureautique, service clientele
+Situation financière: Etudiant, ressources modestes
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Amitie, liberte, honnetete
+Traits de personality: Ouvert, curieux, sociable
+Motivations: Reussir ses etudes, devenir independant
+Mecanismes de gestion du stress: Sport, musique, sorties avec des amis
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Vit chez ses parents ou en colocation
+Statut marital: Celibataire
+Reseau amical: Groupe d'amis etudiants
+Affiliations: Aucun
+Integration communautaire: Vie de quartier etudiante
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Vie d'etudiant, cours et sorties
+Routines: Cours le jour, etudes le soir
+Alimentation: Repas simples, restauration universitaire occasionnelle
+Etat de santé: Bonne sante
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Musique, cinema, jeux video
+Passions: Concerts, festivals
+Opinions: Ouvert d'esprit, peu engage politiquement
+Goûts culturels: Pop rock, films americains, series
+# === TRACE NUMERIQUE ===
+Activite en ligne: Reseaux sociaux, streaming video, jeux en ligne
+Historique de navigation: YouTube, Spotify, Instagram
+Empreinte technologique: Smartphone, ordinateur portable
 Age:
 Info:

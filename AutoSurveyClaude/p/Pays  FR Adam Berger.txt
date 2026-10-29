@@ -1,18 +1,58 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Pays: FR
 Nom: Berger
 Prenom: Adem
-Gmail: adamberger900@hotmail.com
-Mot de passe: @Berger32
-Adresse postale:
+Genre: Homme
+Date de naissance: 28 5 2002
+Nationalite: Francaise
+Origine: Francaise
+Etat-civil: Celibataire
+Taille: 180 cm
+Poids: 75 kg
+Couleur des yeux: Marron
+Couleur des cheveux: Noir
 Code postale: 13001
 Ville: Marseille
-Date de naissance: 28 5 2002
-Age:
+Adresse postale:
+Telephone:
+Gmail: adamberger900@hotmail.com
+Mot de passe: @Berger32
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Baccalaureat, etudes superieures en cours
+Historique professionnel: Etudiant, petits jobs etudiants
+Competences: Bureautique, langues etrangeres
+Situation financière: Etudiant, budget serre
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Liberte, justice, ouverture
+Traits de personality: Curieux, engages, dialogue
+Motivations: Reussir ses etudes, voyager
+Mecanismes de gestion du stress: Sport, musique, amis
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Vit en colocation ou chez ses parents
+Statut marital: Celibataire
+Reseau amical: Amis etudiants, voisins
+Affiliations: Aucun parti politique
+Integration communautaire: Vie marseillaise
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Vie d'etudiant a Marseille
+Routines: Cours, bibliotheque, sorties
+Alimentation: Mediterraneen, plats faits maison
+Etat de santé: Bonne sante
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Lecture, politique, musique
+Passions: Actualite, debates
+Opinions: Interesse par l'immigration et la securite
+Goûts culturels: Le Monde, romans, cinema francais
+# === TRACE NUMERIQUE ===
+Activite en ligne: Presse en ligne, reseaux sociaux
+Historique de navigation: Le monde, sites d'info, blogs
+Empreinte technologique: Smartphone, ordinateur portable
 Article que je lis souvent: Le monde
-Pourquoi vous considérez-vous comme proche des idées de l'extrême droite: Je partage certaines de leurs idées sur l'immigration et la sécurité.
+Pourquoi vous considérez-vous comme proche des idées de l'extreme droite: Je partage certaines de leurs idées sur l'immigration et la securite.
 Quel est votre code postal de résidence: 13001
-Avez-vous des commentaires à faire sur ce sondage: Le sondage est clair et facile à remplir.
-Avez-vous des commentaires à faire sur ce sondage optionnel: Le sondage est clair et facile à remplir.
-Quel est votre livre préféré: Je lis souvent des romans
-Souhaitez-vous nous faire part de quelque chose: Le sondage est clair et facile à remplir.
+Avez-vous des commentaires à faire sur ce sondage: Le sondage est clair et facile a remplir.
+Avez-vous des commentaires à faire sur ce sondage optionnel: Le sondage est clair et facile a remplir.
+Quel est votre livre prefere: Je lis souvent des romans
+Souhaitez-vous nous faire part de quelque chose: Le sondage est clair et facile a remplir.
+Age:

@@ -1,21 +1,62 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Pays: DE Femme
 Nom: Schütte
 Prenom: Heidrun
+Genre: Femme
+Date de naissance: 2002- 09 - 16
+Nationalite: Allemande
+Origine: Allemande
+Etat-civil: Celibataire
+Taille: 168 cm
+Poids: 60 kg
+Couleur des yeux: Vert
+Couleur des cheveux: Blond
+Code postale: 21029
+Ville: Hamburg
+Adresse postale:
+Telephone: Honor - Asus
 Gmail: schutteheidrun3@outlook.de
 Mot de passe: Heidrun877&&
-Adresse postale:
-Code postale: 21029
-Telephone: Honor - Asus
-Date de naissance: 2002- 09 - 16
-Ville:
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Etudes scolaires terminees en 2020
+Historique professionnel: Jeune actif, petits boulots
+Competences: Sport, bureautique, service clientele
+Situation financière: Revenu net 3000-3500
 Revenu net: 3000-3500
-Préférée: Dortmund
+Travail: Non précisé
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Justice sociale, solidarite, egalite
+Traits de personality: Engagee, ouverte, reflechie
+Motivations: Defendre la justice sociale, militer pour le SPD
+Mecanismes de gestion du stress: Sport (Map My Fitness), television, lecture
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Vit seule a Hamburg
+Statut marital: Celibataire
+Reseau amical: Amis politiques, collegues
+Affiliations: SPD
+Integration communautaire: Vie de quartier a Hamburg
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Active, engagee politiquement
+Routines: Travail, sport, actualite politique
+Alimentation: Norma (supermarche), repas simples
+Etat de santé: Bonne sante
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Politique, sport, lecture
+Passions: Engagement SPD, justice sociale
+Opinions: Gauche, proche du SPD
+Goûts culturels: taz, Spiegel Online, cinema (2-5 fois par an)
+# === TRACE NUMERIQUE ===
+Activite en ligne: Presse en ligne, reseaux sociaux, sites d'info
+Historique de navigation: taz, spiegel.de, sites politiques
+Empreinte technologique: Smartphone Android, ordinateur Windows
+Point: 8835
+# === REPONSES SONDAGE ===
+Préférée: Dortmound
 Alimentation: Norma
 Assureur: AXA
 Va au cinéma: 2-5 fois par an
 Appli de sport: Map My Fitness
-Point: 8835
 Pourquoi penchez-vous vers le SPD: J'apprécie leur politique sociale.
 Quel parti avez-vous choisi aux élections fédérales de 2025: SPD
 Quel parti avez-vous choisi aux élections fédérales de 2021: SPD

@@ -1,34 +1,82 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Titre: YouGov (DE) - Social media 16+yo Samuel-Kolb
 Nom et Prenom: Samuel Kolb
+Genre: Homme
 Date de Naissance: 2002 - 08 16
+Nationalite: Allemande
+Origine: Allemande (passe migratoire: Oui)
+Etat-civil: célibataire
+Taille: 172 cm
+Poids: 65 kg
+Couleur des yeux: Marron
+Couleur des cheveux: Chatain teinté, fins, longueur des oreilles
 Adresse: Herrenpfad-Süd 12, 41334 Nettetal, Allemagne/North Rhine-Westphalia Nordrhein-Westfalen
+Code postale: 41334
+Ville: Nettetal
 Mail: samuelkolb1@outlook.com
 Mot de passe: Kolb8770
+Telephone: Samsung
+# === PARCOURS DE VIE ===
+Niveau d'étude: Licence, diplôme (FH), formation master, écoles techniques (techniciens, etc.)
+Profession: télécommunications
+Historique professionnel: Jeune actif dans les télécommunications
+Competences: Telecommunications, technique, relation client
+Situation financière: Revenu mensuel entre EUR 1.000 et EUR 1.500, vie modeste
+Ménage: 1
+Revenu: menage: / perso: EUR 1.000 bis unter EUR 1.500 / Patrimoine:
+Voiture: 1 Audi ménage / perso / prochaine
+Enfants -18: 0 menage: / perso:
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Famille, travail, independance
+Traits de personality: Serieux, travailleur, sociable
+Motivations: Evoluer dans les telecommunications, stabilite financiere
+Mecanismes de gestion du stress: Sport, musique, promenade avec son chien
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Vit seul ou en colocation
+Statut marital: célibataire
+Reseau amical: Collegues de travail, amis
+Affiliations: droite/CDU/CSU vote: CDU
+Integration communautaire: Vie de quartier a Nettetal
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Jeune actif, routine travail-maison
+Routines: Travail, repas, soirées libres
+Alimentation: Repas simples, courses courantes
+Etat de santé: Bonne sante, possede un chien
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Politique, musique, animaux
+Passions: Politique (CDU/CSU), son chien, streaming audio
+Opinions: Droite, proche de la CDU/CSU
+Goûts culturels: Musique en streaming, series
+# === TRACE NUMERIQUE ===
+Activite en ligne: Reseaux sociaux, streaming audio, achats en ligne
+Historique de navigation: Plateformes de streaming (Spotify), sites d'info, messagerie
+Empreinte technologique: Smartphone Samsung, ordinateur
+# === REPONSES SONDAGE ===
 Niveau d'étude: Licence, diplôme (FH), formation master, écoles techniques (techniciens, etc.)
 Profession: télécommunications
 Etat civil: célibataire
 Ménage: 1
 Revenu: menage: / perso: EUR 1.000 bis unter EUR 1.500 / Patrimoine:
-Voiture: 1 Audi ménage / perso / prochaine
-Enfants -18: 0 menage: / perso:
-Politique: droite/CDU/CSU vote: CDU
-Animal domestique: Chien
-Voyage:
-Plateformes utilisées:
-Assurance: Assurance habitation/AXA
-Gaz et Électricité:
+Voiture : 1 Audi ménage / perso / prochaine
+Enfants -18 : 0 menage: / perso:
+Politique : droite/CDU/CSU vote: CDU
+Animal domestique : Chien
+Voyage :
+Platformes utilisées :
+Assurance : Assurance habitation/AXA
+Gaz et Électricité :
 Appareil utilisé: Samsung
 Année de fin d'études secondaires:
-Etes-vous un grand-parent:
+Êtes-vous un grand-parent:
 Religion: catholique
-Langues étrangères: Anglais
+Langues étrangère: Anglais
 Nombre de voyage de plaisir:
-Heures passé répondre à des sondages:
+Heures passé répondre à des sondage:
 Compagnies aériennes: United Airlines
-Sujet intéressant: Politik
-Marque de mouchoir: Tempo
+Sujet Interressant: Politik
+Marque de Mouchoir : Tempo
 Service de streaming audio (par ex. Spotify):
 Je prends des décisions en matière d'assurance seul ou presque seul
 cheveux fins longueur des oreilles teinté
-Avez-vous un passé migratoire? Oui
+Avez-vous un passé migratoire ? Oui

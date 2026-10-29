@@ -1,17 +1,58 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Pays: DE
 Nom: Lindner
 Prenom: Benjamin
+Genre: Homme
+Date de naissance: 2001- 03- 19
+Nationalite: Allemande
+Origine: Allemande
+Etat-civil: Celibataire
+Taille: 176 cm
+Poids: 70 kg
+Couleur des yeux: Bleu
+Couleur des cheveux: Blond
+Code postale: 38118
+Ville: Braunschweig
+Adresse postale:
+Telephone: Android Infinix - Dell
 Gmail: lindnerbenjamin99@outlook.de
 Mot de passe: Benjamin55&&
-Adresse postale:
-Code postale: 38118
-Telephone: Android Infinix - Dell
-Date de naissance: 2001- 03- 19
-Ville:
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Etudes secondaires terminees en 2019
+Historique professionnel: Jeune actif, premier emploi
+Competences: Bureautique, service clientele
+Situation financière: Revenu de jeune actif, vie stable
+Travail: Non précisé
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Justice sociale, egalite, solidarite
+Traits de personality: Engage, optimiste, reflechi
+Motivations: Defendre le pouvoir d'achat, le logement abordable
+Mecanismes de gestion du stress: Sport, sorties, lecture
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Vit seul a Braunschweig
+Statut marital: Celibataire
+Reseau amical: Collegues, amis du quartier
+Affiliations: SPD (non membre)
+Integration communautaire: Vie de quartier a Braunschweig
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Actif, jeune adulte
+Routines: Travail, actualite, sport occasionnel
+Alimentation: Repas simples, courses
+Etat de santé: Bonne sante, consomme de l'alcool
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Politique, economie, logement
+Passions: Debats politiques, justice sociale
+Opinions: Proche du SPD, gauche
+Goûts culturels: Süddeutsche Zeitung, Spiegel Online
+# === TRACE NUMERIQUE ===
+Activite en ligne: Presse en ligne, reseaux sociaux, sites d'info
+Historique de navigation: spiegel.de, sueddeutsche.de, sites politiques
+Empreinte technologique: Ordinateur Windows, smartphone Android
+Point: 5685
+# === REPONSES SONDAGE ===
 Assurance: maladie
 Parti préféré: SPD (non membre)
-Point: 5685
 Alcool: oui
 Dans quel pays vivez-vous: Allemagne
 Dites-vous que l'Allemagne va actuellement: Sur la mauvaise voie

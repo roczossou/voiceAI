@@ -1,0 +1,58 @@
+# Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
+Pays: DE
+Nom: Benz
+Prenom: Lothar
+Genre: Femme
+Date de naissance: 15 3 1985
+Nationalite: Allemande
+Origine: Allemande
+Etat-civil: Mariee
+Taille: 165 cm
+Poids: 60 kg
+Couleur des yeux: Marron
+Couleur des cheveux: Blond
+Code postale: 10117
+Ville: Berlin
+Adresse postale:
+Telephone:
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Etudes scolaires terminees en 2020
+Historique professionnel: Non précisé
+Competences: Bureautique, vie domestique
+Situation financière: Revenu modeste, vie de couple
+Travail: Non précisé
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Famille, solidarite, justice sociale
+Traits de personality: Engagee, calme, reflechie
+Motivations: Defendre la justice sociale, vie familiale stable
+Mecanismes de gestion du stress: Lecture, promenade, temps en famille
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Mariee, vit avec son conjoint
+Statut marital: Mariee
+Reseau amical: Voisins, connaissances du quartier
+Affiliations: SPD
+Integration communautaire: Vie de quartier a Berlin
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Routine maison-famille, semaines tranquilles
+Routines: Menage, repas, courses
+Alimentation: Repas simples faits maison
+Etat de santé: Bonne sante generale
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Politique sociale, lecture, marche
+Passions: Engagement SPD, justice sociale
+Opinions: Gauche, proche du SPD
+Goûts culturels: Romans, television allemande
+# === TRACE NUMERIQUE ===
+Activite en ligne: Presse en ligne, recherche d'info
+Historique de navigation: Sites d'info allemands, messagerie
+Empreinte technologique: Smartphone, ordinateur familial
+# === REPONSES SONDAGE ===
+Pourquoi penchez-vous vers le SPD: Je teile leurs valeurs sociales.
+Quel parti avez-vous choisi aux élections fédérales de 2025: SPD
+Quelle est votre opinion sur le sujet le plus important: La justice sociale.
+Que devrait-on faire à ce sujet: Le gouvernement devrait faire plus pour la justice sociale.
+Dans quel arrondissement ou ville indépendante vivez-vous: Berlin
+Quel est le code postal de votre lieu de résidence: 10117
+En quelle année avez-vous terminé vos études scolaires: 2020
+Combien d'heures avez-vous passé la semaine dernière à répondre à des enquêtes: 2

@@ -1,12 +1,49 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Pays: DE
 Nom: Benz
 Prenom: Lothar
-Gmail:
-Mot de passe:
+Genre: Homme
+Date de naissance: 15 3 1985
+Nationalite: Allemande
+Origine: Allemande
+Etat-civil: Marie
+Taille: 178 cm
+Poids: 82 kg
+Couleur des yeux: Marron
+Couleur des cheveux: Chatain
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Apprentissage termine (CAP/BEP)
+Historique professionnel: Technicien de maintenance dans une entreprise locale
+Competences: Maintenance informatique, bureautique, petits travaux
+Situation financière: Salaire moyen, vie stable
+Code postale: 22001
+Ville: Hamburg
 Adresse postale:
-Code postale:
-Telephone:
-Date de naissance:
-Ville:
+Telephone: 040 1234567
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Travail, famille, stabilite
+Traits de personality: Calme, fiable, reserve
+Motivations: Subvenir aux besoins de sa famille, retraite tranquille
+Mecanismes de gestion du stress: Marche, bricolage, silence
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Marie, vit avec son conjoint
+Statut marital: Marie
+Reseau amical: Quelques amis proches du quartier
+Affiliations: Aucun parti politique
+Integration communautaire: Participation occasionnelle aux fetes du quartier
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Routine travail-maison, semaines tranquilles
+Routines: Lever tôt, repas du soir en famille
+Alimentation: Repas classiques faits maison, peu de restaurant
+Etat de santé: Bonne santé generale, pas de maladie chronique
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Bricolage, jardinage, television
+Passions: Football (regarder les matchs)
+Opinions: Pragmatique, peu engage dans les debats publiques
+Goûts culturels: Musique classique a la radio, films allemands du dimanche soir
+# === TRACE NUMERIQUE ===
+Activite en ligne: Recherches pratiques, achats occasionnels
+Historique de navigation: Sites de bricolage, presse locale, météo
+Empreinte technologique: Smartphone Android basique, ordinateur familialWindows
 Point: 8310

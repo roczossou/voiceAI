@@ -1,15 +1,56 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Pays: DE Beckmann Reinhardt
 Nom: Beckmann
 Prenom: Reinhardt
+Genre: Homme
+Date de naissance: 2002 10 24
+Nationalite: Allemande
+Origine: Allemande
+Etat-civil: Celibataire
+Taille: 182 cm
+Poids: 76 kg
+Couleur des yeux: Vert
+Couleur des cheveux: Chatain
+Code postale: 86153
+Ville: Augsburg
+Adresse postale:
+Telephone: Infinix Fujitsu
 Gmail: beckmannreinhardt@gmail.com
 Mot de passe: Reinhardt700@
-Adresse postale:
-Code postale: 86153
-Telephone: Infinix Fujitsu
-Date de naissance: 2002 10 24
-Ville:
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Etudes secondaires terminees en 2020
+Historique professionnel: Développeur de logiciels ou programmeur informatique
+Competences: Programmation, developpement logiciel, informatique
+Situation financière: Salaire de developpeur junior, vie stable
 Travail: Développeur de logiciels ou programmeur informatique
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Progres, environnement, autonomie
+Traits de personality: Analyse, calme, independant
+Motivations: Evoluer dans la tech, contribuer au climat
+Mecanismes de gestion du stress: Sport, velo, television
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Vit seul a Augsburg
+Statut marital: Celibataire
+Reseau amical: Collegues de travail, amis en ligne
+Affiliations: Aucun parti politique (n'a pas vote en 2025)
+Integration communautaire: Quartier d'Augsburg
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Routine developpeur, soirees devant la television
+Routines: Travail sur ordinateur, velo le week-end
+Alimentation: Repas simples, achats chez IKEA et Bauhaus
+Etat de santé: Bonne sante, peur de hauteur partiellement
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Informatique, velo, television
+Passions: Developpement logiciel, sports de longue distance (peu interesse)
+Opinions: Soucieux du climat, pragmatique
+Goûts culturels: Television (Fahri sucht das Glück), series, shopping IKEA
+# === TRACE NUMERIQUE ===
+Activite en ligne: Achats en ligne, recherche de produits, sites de bricolage
+Historique de navigation: IKEA, Bauhaus, Hornbach, Depot, toom BauMarkt
+Empreinte technologique: Ordinateur Infinix Fujitsu, smartphone
+Point: 86153
+# === REPONSES SONDAGE ===
 Peur de hauteur: partiellement
 Pourquoi n'avez-vous pas voté aux élections fédérales de 2025: Je n'avais pas le temps.
 Quel parti avez-vous choisi aux élections fédérales de 2021: SPD
@@ -58,7 +99,7 @@ Quelles activités avez-vous faites le week-end dernier: Aucune des réponses
 Quelles des activités suivantes avez-vous faites le week-end: Aucune des réponses
 Quelles marques de nutrition sportive connaissez-vous: Myprotein; Ironmaxx
 Quelles marques de nutrition sportive avez-vous: Myprotein
-Quelles marques de nutrition sportive envisageriez-vous: Myprotein
+Quelles marques de nutrition sportive envisagez-vous: Myprotein
 Quelles marques de nutrition sportive avez-vous vues: Aucune des réponses
 À quel point connaissez-vous les marques de nutrition sportive Myprotein: Pas du tout familier
 Quel est votre avis sur les marques que vous connaissez: Je ne sais pas
@@ -87,7 +128,7 @@ Quelle option décrit le mieux votre connaissance de cet événement: Je connais
 Myprotein est un sponsor officiel de l'événement sportif: Non
 Quels types de vêtements de sport avez-vous: Vêtements pour hommes
 Quelles marques de vêtements de sport avez-vous vues: Adidas
-Quelles marques de vêtements de sport envisageriez-vous: Puma
+Quelles marques de vêtements de sport envisagez-vous: Puma
 Quelles marques de vêtements de sport avez-vous vues: Puma
 Quelles marques de vêtements de sport associez-vous: Puma
 À quelle fréquence utilisez-vous chaque média: Non applicable - Je n'utilise pas cette plateforme médiatique.

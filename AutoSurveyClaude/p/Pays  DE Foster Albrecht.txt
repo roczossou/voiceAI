@@ -1,16 +1,54 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Pays: DE
 Nom: Forster
 Prenom: Albrecht
+Genre: Homme
+Date de naissance: 2002-08-21
+Nationalite: Allemande
+Origine: Allemande
+Etat-civil: Marie (sa femme née le 12 4 2003)
+Taille: 175 cm
+Poids: 73 kg
+Couleur des yeux: Marron
+Couleur des cheveux: Chatain
+Code postale: 22529
+Ville: Hamburg
+Adresse postale:
+Telephone:
 Gmail: forsteralbrecht643@hotmail.com
 Mot de passe: Albrecht771@
-Adresse postale:
-Code postale: 22529
-Telephone:
-Date de naissance: 2002-08-21 sa femme a 12 4 2003
-Ville:
-Hobbies: musiques, sport
-Politique: 6
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Etudes secondaires terminees en 2020
+Historique professionnel: Non précisé
+Competences: Bricolage, vie domestique
+Situation financière: Vie de couple, revenu modeste
+Travail: Non précisé
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Famille, solidarite, democratie sociale
+Traits de personality: Calme, familial, reflechi
+Motivations: Prendre soin de sa famille, vie stable
+Mecanismes de gestion du stress: Musique, sport, bois
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Marie, vit avec sa femme a Hamburg
+Statut marital: Marie
+Reseau amical: Voisins, connaissances du quartier
+Affiliations: SPD
+Integration communautaire: Vie de quartier a Hamburg
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Vie de couple, semaines tranquilles
+Routines: Travail, maison, musique
+Alimentation: Repas faits maison, produits Tempo
+Etat de santé: Bonne sante
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Musique, sport, politique
+Passions: Pop Jazz, concerts
+Opinions: Proche des idées du SPD
+Goûts culturels: Musique Pop Jazz, concerts (2-4 par an)
+# === TRACE NUMERIQUE ===
+Activite en ligne: Presse, reseaux sociaux, recherche d'infos
+Historique de navigation: Sites d'info locaux, messagerie
+Empreinte technologique: Ordinateur, smartphone
 Fournisseur internet: Telecom + mobile + television
 Bois: oui
 Marque de mouchoir: Tempo
@@ -19,6 +57,9 @@ Musique: Pop Jazz
 Concert de l'année dernière: 2-4
 Fournisseur d'électricité: E.ON
 Banque: OpenBankHamburg
+Point: 5685
+# === REPONSES SONDAGE ===
+Politique: 6
 Pourquoi penchez-vous vers le SPD: Je soutiens les valeurs sociales-démocrates.
 Quel parti avez-vous choisi aux élections fédérales de 2021: SPD
 Quelle est votre opinion sur le sujet le plus important: Je pense que l'économie est le sujet le plus important.

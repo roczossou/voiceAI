@@ -1,23 +1,63 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Pays: DE
 Nom: Altmann
 Prenom: Markus
+Genre: Homme
+Date de naissance: 2003-06-20
+Nationalite: Allemande
+Origine: Allemande
+Etat-civil: Celibataire
+Taille: 180 cm
+Poids: 78 kg
+Couleur des yeux: Marron
+Couleur des cheveux: Blond
+Code postale: 22525
+Ville: Altona
+Adresse postale:
+Telephone:
 Gmail: altmannmarkus00@outlook.com
 Mot de passe: Markus877&@
-Adresse postale:
-Code postale: 22525
-Telephone:
-Date de naissance: 2003-06-20
-Ville: Altona
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Etudes scolaires terminees en 2021
+Historique professionnel: Autres activités liées au personnel (système éducatif)
+Competences: Accueil, administratif, education
+Situation financière: Revenu net 3500-4000
+Travail: Autres activités liées au personnel (système éducatif)
+Revenu net: 3500-4000
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Education, solidarite, justice
+Traits de personality: Ouvert, genereux, engages
+Motivations: Aider les autres, travailler dans l'education
+Mecanismes de gestion du stress: Sport, television, sorties
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Vit seul a Hamburg
+Statut marital: Celibataire
+Reseau amical: Collegues, voisins
+Affiliations: SPD
+Integration communautaire: Vie de quartier a Altona/Hamburg
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Actif, vie urbaine a Hamburg
+Routines: Travail, sport le soir, television
+Alimentation: Norma (supermarche), repas simples
+Etat de santé: Bonne sante
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Football, television, marques de sport
+Passions: Holstein Kiel, activewear
+Opinions: Interessé par le sport et l'education
+Goûts culturels: Television, streaming Disney+, series (The Mentalist)
+# === TRACE NUMERIQUE ===
+Activite en ligne: Reseaux sociaux, achats en ligne, streaming
+Historique de navigation: Idealo, PAYBACK, Check24, Immobilienscout24
+Empreinte technologique: Smartphone Android, ordinateur Windows
+Point: 7085
+# === REPONSES SONDAGE ===
 Marque de mouchoir: Tempo
 Journaux: Express Welt
 Animal: nom du chien Golf
 A terminé ses études scolaires: 2021
-Travail: Autres activités liées au personnel (système éducatif)
-Net: 3500-4000
 Alimentation: Norma
 Va au cinéma: 2-5 fois par an
-Point: 7085
 Pourquoi penchez-vous vers le SPD: Je trouve les positions sociales de la SPD convaincantes.
 Quel parti avez-vous choisi aux élections fédérales de 2025: SPD
 Quelle est votre opinion sur le sujet le plus important: L'éducation
@@ -33,7 +73,7 @@ Quelle option décrit le mieux votre connaissance de cet événement: Je connais
 Avez-vous entendu parler du parrainage de Hyrox par Myprotein: Non
 Quels types de vêtements de sport avez-vous: Vêtements pour hommes
 Quelles marques de vêtements de sport connaissez-vous: Nike
-Quelles marques de vêtements de sport envisageriez-vous: Nike
+Quelles marques de vêtements de sport envisagez-vous: Nike
 Quelles marques de vêtements de sport avez-vous vues: Nike
 Quelles marques de vêtements de sport associez-vous: Adidas
 À quelle fréquence utilisez-vous chaque média: 2 bis 6 Mal pro Woche

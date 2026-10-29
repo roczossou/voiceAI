@@ -1,19 +1,61 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Pays: DE femme
 Nom: Christ
 Prenom: Gerda
+Genre: Femme
+Date de naissance: 2003-05-18
+Nationalite: Allemande
+Origine: Allemande
+Etat-civil: Celibataire
+Taille: 165 cm
+Poids: 58 kg
+Couleur des yeux: Marron
+Couleur des cheveux: Blond
+Code postale: 21149
+Ville: Hamburg
+Adresse postale:
+Telephone: Samsung
 Gmail: christgerda800@hotmail.com
 Mot de passe: Gerda799@&&
-Adresse postale:
-Code postale: 21149
-Telephone: Samsung
-Date de naissance: 2003-05-18
-Ville:
-Chien: Pilo
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Etudes secondaires terminees en 2021
+Historique professionnel: Jeune actif, petits boulots
+Competences: Bureautique, service clientele
+Situation financière: Revenu net 3000-3500, revenu du ménage 6000-6500
 Revenu net: 3000 -3500 Revenu: 6000-6500
+Travail: Non précisé
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Justice sociale, état social, solidarite
+Traits de personality: Engagee, critique, reflechie
+Motivations: Defendre le logement abordable, les salaires justes
+Mecanismes de gestion du stress: Actualite, television, promenade avec son chien
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Vit seule ou en colocation a Hamburg
+Statut marital: Celibataire
+Reseau amical: Amis, collegues
+Affiliations: SPD (vote)
+Integration communautaire: Vie de quartier a Hamburg
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Active, interessée par la politique
+Routines: Travail, actualite, promenade avec Pilo
+Alimentation: Repas simples, courses
+Etat de santé: Bonne sante, fume L&M
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Politique, lecture, animaux
+Passions: Politique sociale, son chien Pilo
+Opinions: Gauche, proche du SPD
+Goûts culturels: Bild, television, streaming
+# === TRACE NUMERIQUE ===
+Activite en ligne: Presse en ligne, reseaux sociaux
+Historique de navigation: bild.de, sites d'info allemands
+Empreinte technologique: Ordinateur Windows, smartphone Android
+Chien: Pilo
 Origine migratoire: non
 Cigarette: L&M
 Abonnements journaux: bild welt payant
+Point: 9080
+# === REPONSES SONDAGE ===
 Dans quel pays vivez-vous: Allemagne
 Dites-vous que l'Allemagne va actuellement: Sur la mauvaise voie
 Avez-vous fait l'une de ces choses au cours des 12 derniers mois: Soutenu ou critiqué publiquement une exigence politique

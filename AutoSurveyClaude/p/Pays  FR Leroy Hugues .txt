@@ -1,18 +1,82 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Pays: FR
 Nom: Leroy
 Prenom: Hugues
-Gmail: leroyhugues877@outlook.com
-Mot de passe: Hugues655@
-Adresse postale: 130 Av. Daumesnil, 75012 Paris, France
+Genre: Homme
+Date de naissance: 23 4 2002
+Nationalite: Francaise
+Origine: Francaise
+Etat-civil: Celibataire
+Taille: 178 cm
+Poids: 74 kg
+Couleur des yeux: Marron
+Couleur des cheveux: Chatain
 Code postale: 75012
 Ville: Paris
-Date de naissance: 23 4 2002
-Ville:
+Adresse postale: 130 Av. Daumesnil, 75012 Paris, France
+Telephone:
+Gmail: leroyhugues877@outlook.com
+Mot de passe: Hugues655@
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Baccalaureat
+Historique professionnel: Jeune actif, premier emploi
+Competences: Bureautique, vente, service clientele
+Situation financière: Salaire d'entree de vie, loyer a Paris
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Travail, independance, amitie
+Traits de personality: Sociable, actif, optimiste
+Motivations: Evoluer professionnellement, vivre a Paris
+Mecanismes de gestion du stress: Sport, sorties, cinema
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Vit seul a Paris
+Statut marital: Celibataire
+Reseau amical: Collègues, amis du quartier
+Affiliations: Le centre
+Integration communautaire: Vie du 12e arrondissement
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Actif, vie urbaine parisienne
+Routines: Travail, salle de sport, repas dehors occasionnels
+Alimentation: Restauration rapide et plats prepares, quelques repas faits maison
+Etat de santé: Bonne sante, possede un chien
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Sport, cinema, politique
+Passions: Football, debates politiques
+Opinions: Le centre, proches de certaines idées sur l'economie et la securite
+Goûts culturels: Films d'action, musique pop
+# === TRACE NUMERIQUE ===
+Activite en ligne: Reseaux sociaux, actualite, achats en ligne
+Historique de navigation: Sites d'info, reseaux sociaux, plateformes de streaming
+Empreinte technologique: Smartphone, ordinateur portable/de bureau
+dans_quel_pays_habitez-vous: France
+dites-vous_que_vous_suivez_la_politique_et_les_decisions_du_gouvernement: Assez souvent
+certaines_personnes_sinteressent_a_la_politique_quil_y_ait_d: Assez souvent
+que_vous_suivez_la_politique_et_les_decisions_du_gouvernement: Assez souvent
+direz-vous_quactuellement_dans_votre_pays_les_choses_vont: Je n'ai pas d'avis
+dans_lensemble_pensez-vous_que_leconomie_sameliore_ou_se_degrade: Je n'ai pas d'avis
+avez-vous_participe_a_lune_de_ces_activites_au_cours_de_lannee: Voter
+avez-vous_fait_du_benevolat_pour_lun_des_types_dorganisation: Education
+avez-vous_une_opinion_positive_ou_negative_des_personnalites_politiques: Je ne connais pas cette personnalite
+dune_maniere_generale_de_quel_bord_politique_vous_sentez-vous_proche: Le centre
+pourquoi_vous_consideres_comme_proche_des_idees_de_la_droite: Je partage certaines de leurs idées sur l'economie et la securite.
+etes-vous_membre_dun_parti_politique: Aucun
+pour_montrer_que_etes_attentif_veuillez_selectionner_tout_ce_qui_s_applique: Totalement en accord
+quel_est_votre_code_postal_de_residence: 75012
+parmi_les_villes_suivantes_lesquelles_sont_des_capitales_europeennes: Londres
+quel_type_dappareil_utilisez-vous_actuellement_pour_repondre: Ordinateur portable/de bureau
+quel_type_dordinateur_portable_ou_de_bureau_utilisez-vous_actuellement: Ordinateur Windows
+possédez-vous_actuellement_une_voiture_ou_quelquun_de_votre_foyer: Oui
+combien_de_vehicules_possédez-vous_au_sein_de_votre_foyer: 1
+quelle_marque_de_voiture_possédez-vous: Renault
+avez-vous_des_enfants: Non
+avez-vous_des_petits-enfants: Non
+avez-vous_des_chiens_ou_des_chats: Oui j'ai un ou plusieurs chiens
+quel_est_le_nom_de_votre_vos_chiens_ou_de_votre_vos_chats: Loki
+quel_age_avez-vous: 15-24 ans
+en_quelle_annee_avez-vous_termine_vos_etudes_secondaires: 2020
+dans_lensemble_avez-vous_trouve_le_questionnaire_ennuyeux_ou_interessant: 5
+avez-vous_rencontre_des_problemes_techniques_au_cours_de_ce_sondage: Non
+note_globale_du_questionnaire_1_a_9: 5
 Info:
-Les Républicains (LR)
-célibataire
-pas d'enfants
 chien: Loki
-pas de voitures
 Assurance: AXA

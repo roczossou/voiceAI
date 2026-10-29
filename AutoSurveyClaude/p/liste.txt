@@ -1,0 +1,37 @@
+Nom : Beckmann    
+Prenom : Reinhardt 
+point : 9435
+------------------
+Nom : Lindner   
+Prenom : Benjamin  
+point : 5685
+------------------
+Nom : Altmann   
+Prenom : Markus 
+point : 4935
+-----------------
+Nom : Christ   
+Prenom : Gerda  
+point : 9080
+-----------------
+Nom : Schütte     
+Prenom : Heidrun 
+point: 7810
+----------------
+Nom et Prénom: Samuel Kolb
+point : 5310
+----------------
+Nom et Prénom: Martin Schwarz 
+point : 4935
+----------------
+Nom : Benz   
+Prenom : Lothar  
+point : 8310
+------------------
+Nom : Bartels
+Prenom : Gunnar 
+point : 5560
+------------------
+Nom : Forster  
+Prenom : Albrecht
+point : 9310

@@ -1,18 +1,57 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Pays: DE Bartels Gunnar
 Nom: Bartels
 Prenom: Gunnar
-Gmail: bartelsgunnar31@gmail.com
-Mot de passe: Gunnar@000
-Adresse postale:
-Code postale: 77955
-Telephone: Honor - Asus
+Genre: Homme
 Date de naissance: 2003 09 25
+Nationalite: Allemande
+Origine: Allemande
+Etat-civil: Celibataire
+Taille: 178 cm
+Poids: 72 kg
+Couleur des yeux: Bleu
+Couleur des cheveux: Chatain
+Code postale: 77955
 Ville:
 Etat: Baden-W..
 Arrondissement: Ortenaukreis
+Adresse postale:
+Telephone: Honor - Asus
+Gmail: bartelsgunnar31@gmail.com
+Mot de passe: Gunnar@000
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Etudes scolaires terminees en 2021
+Historique professionnel: Administrateur système, premier emploi
+Competences: Administration reseau, support informatique, systemes Windows
+Situation financière: Jeune actif, revenu stable
 Travail: Administrateur système
-Assurance: ERGO/DKV - maladies et automobile
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Travail, independance, stabilite
+Traits de personality: Rigoureux, curieux, reserve
+Motivations: Evoluer dans l'informatique, autonomie financiere
+Mecanismes de gestion du sport: Informatique, jeux video, lecture
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Vit seul ou en colocation
+Statut marital: Celibataire
+Reseau amical: Collegues de travail, amis en ligne
+Affiliations: Aucun parti politique
+Integration communautaire: Quartier d'Ortenaukreis
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Routine travail-informatique, semaine classique
+Routines: Lever, travail sur ordinateur, soiree librea
+Alimentation: Repas simples, plats prepares occasionnels
+Etat de santé: Bonne sante
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Informatique, politique, lecture
+Passions: Technologie, jeux video
+Opinions: Neutre, interesse par l'economie
+Goûts culturels: Bild, presse allemande, series
+# === TRACE NUMERIQUE ===
+Activite en ligne: Sites d'info, reseaux sociaux, forums informatiques
+Historique de navigation: Bild.de, sites technologiques, messagerie
+Empreinte technologique: Ordinateur portable Windows, smartphone Android
+# === REPONSES SONDAGE ===
 Dans quel pays vivez-vous: Allemagne
 Dites-vous que l'Allemagne va actuellement: Je ne suis pas sûr
 Comment vous êtes-vous impliqué démocratiquement au cours des 12 derniers mois: J'ai voté

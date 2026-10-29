@@ -1,12 +1,57 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Titre: YouGov (DE) 18-24yo Martin-Schwarz
 Nom et Prenom: Martin Schwarz
+Genre: Homme
 Date de Naissance: 2004 6 21
+Nationalite: Allemande
+Origine: Allemande
+Etat-civil: célibataire
+Taille: 175 cm
+Poids: 68 kg
+Couleur des yeux: Marron
+Couleur des cheveux: Chatain
 Adresse: Robert-Hesse-Straße 1, 30827 Garbsen, Allemagne/Niedersachsen
+Code postale: 30827
+Ville: Garbsen
 Mail: martinschwarz111@outlook.com
 Mot de passe: Schwarz778
+Telephone: Infinix-Asus
+# === PARCOURS DE VIE ===
 Niveau d'étude: Licence, diplôme (FH), formation master, écoles techniques (techniciens, etc.)
 Profession:
+Historique professionnel: Etudiant, premier emploi ou stage
+Competences: Bureautique, langues, informatique de base
+Situation financière: Revenu personnel sous EUR 500, dépendance partielle famille
+Ménage: 1
+Revenu: menage: / perso: / Patrimoine: unter EUR 500
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Egalite, solidarite, liberte
+Traits de personality: Ouvert, reflechi, engage
+Motivations: Reussir ses etudes, militer pour ses convictions
+Mecanismes de gestion du stress: Sport, musique, sorties avec des amis
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Vit seul
+Statut marital: célibataire
+Reseau amical: Camarades de promotion, voisins
+Affiliations: SPD Nom membre, gauche/Die Linke
+Integration communautaire: Vie de quartier a Garbsen/Hannover
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Etudiant/jeune actif, vie studieuse
+Routines: Cours, etudes, repas simples
+Alimentation: Repas faits maison, restauration occasionnelle
+Etat de santé: Bonne sante
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Art et culture, politique, musique
+Passions: Visites de musees, concerts, lecture
+Opinions: Gauche, proche du SPD et de Die Linke
+Goûts culturels: Art contemporain, musique, cinema d'auteur
+# === TRACE NUMERIQUE ===
+Activite en ligne: Reseaux sociaux, presse, recherche d'info
+Historique de navigation: Sites d'actualite, plateformes culturelles, messagerie
+Empreinte technologique: Appareil Infinix-Asus, smartphone
+# === REPONSES SONDAGE ===
+Date de Naissance: 2004 6 21
 Etat civil: célibataire
 Ménage: 1
 Revenu: menage: / perso: / Patrimoine: unter EUR 500
@@ -22,11 +67,11 @@ Appareil utilisé: Infinix-Asus
 Année de fin d'études secondaires:
 Etes-vous un grand-parent: Non
 Religion: islamique
-Langues étrangères:
+Langues étrangère:
 Nombre de voyage de plaisir:
-Heures passé répondre à des sondages:
+Heures passé répondre à des sondage:
 Compagnies aériennes:
-Sujet intéressant: Art et culture
+Sujet Interressant: Art et culture
 Parti: SPD Nom membre
 Marque de chocolat: Ritter Sport
 Quel parti avez-vous choisi aux élections fédérales de 2025: SPD

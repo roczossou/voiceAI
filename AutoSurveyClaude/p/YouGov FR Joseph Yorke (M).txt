@@ -1,12 +1,52 @@
 # Profil utilisateur AutoSurvey
+# === IDENTITE ET DEMOGRAPHIE ===
 Pays: FR
 Nom: Yorke
 Prenom: Joseph
+Genre: Homme
+Date de naissance: 2004
+Nationalite: Francaise
+Origine: Francaise
+Etat-civil: Celibataire
+Taille: 172 cm
+Poids: 65 kg
+Couleur des yeux: Bleu
+Couleur des cheveux: Blond
+Code postale: 75001
+Ville: Paris
+Adresse postale:
+Telephone:
 Gmail: josephyorke4@hotmail.com
 Mot de passe: Yorke@500
-Adresse postale:
-Code postale: 75001
-Téléphone:
-Date de naissance: 2004
+# === PARCOURS DE VIE ===
+Niveau d'etudes: Lycee en cours ou termine recemment
+Historique professionnel: Lyceen, aucun emploi stable
+Competences: Bureautique de base
+Situation financière: Dependance familiale, argent de poche
+# === SPHERE PSYCHOLOGIQUE ===
+Valeurs fondamentales: Famille, respect, avenir
+Traits de personality: Timide, reflechi, serieux
+Motivations: Reussir ses examens, trouver sa voie
+Mecanismes de gestion du stress: Lecture, marche, jeux video
+# === ENVIRONNEMENT SOCIAL ===
+Situation familiale: Vit avec ses parents
+Statut marital: Celibataire
+Reseau amical: Quelques camarades de classe
+Affiliations: Aucun
+Integration communautaire: Vie de quartier parisienne
+# === HABITUDES ET QUOTIDIEN ===
+Mode de vie: Vie de lyceen/etudiant a Paris
+Routines: Cours, bibliotheque, devoirs
+Alimentation: Repas familiaux, cantine
+Etat de santé: Bonne sante
+# === PREFERENCES ET LOISIRS ===
+Centres d'interet: Lecture, histoire, jeux video
+Passions: Histoire, musees
+Opinions: Reserve, observe plus qu'il ne participe
+Goûts culturels: Romans, films historiques, musique classique
+# === TRACE NUMERIQUE ===
+Activite en ligne: Recherches scolaires, reseaux sociaux legers
+Historique de navigation: Wikipédia, sites educatifs
+Empreinte technologique: Smartphone, ordinateur familial
 Age:
 Info:
