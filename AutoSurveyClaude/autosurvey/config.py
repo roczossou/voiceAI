@@ -44,6 +44,9 @@ HISTORY_SIZE = 8  # nombre d'actions récentes envoyées au modèle
 ANSWERS_IN_PROMPT = 40  # nombre de réponses déjà données envoyées au modèle
 START_COUNTDOWN = 3  # secondes avant de piloter la souris (temps de mettre le sondage au premier plan)
 
+# --- Nombre de requêtes Claude pour questions tableau / menu déroulant ---
+CLAUDE_TABLEAU_REQUESTS = 6  # nombre de requêtes Claude quand disposition est tableau/menu_deroulant
+
 # --- Chemins ------------------------------------------------------------------
 PROFILE_PATH = ROOT / "profile.txt"
 MEMORY_FILE = ROOT / "memoire.json"

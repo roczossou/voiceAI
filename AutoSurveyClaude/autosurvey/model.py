@@ -645,21 +645,58 @@ class VisionModel:
                 return True
         return False
 
-    def decide(self, frame: Frame, system: str, user_text: str) -> list[dict[str, Any]]:
+    def _run_claude_for(self, frame: Frame, system: str, user_text: str, count: int) -> list[dict[str, Any]]:
+        """Exécute `count` requêtes Claude et renvoie les actions du dernier appel."""
+        if self._claude is None:
+            raise ModelError("Claude n'est pas disponible")
+        self._activate_claude_temporary(count)
+        text = self._claude.decide(frame, system, user_text)
+        self._last_model_used = "claude"
+        if self._claude_remaining > 0:
+            self._claude_remaining -= 1
+        actions = parse_action(text)
+        for action in actions:
+            if action.get("action") == "done" and action.get("status") == "stuck":
+                self._record_stuck(True)
+                break
+        else:
+            self._record_stuck(False)
+        return actions
+
+    def decide(self, frame: Frame, system: str, user_text: str, disposition: str | None = None) -> list[dict[str, Any]]:
         """Envoie d'abord la capture à Nemotron, puis bascule sur Claude si besoin.
 
         Nemotron est toujours sollicité en premier. Claude prend le relais uniquement
         si :
-        - Nemotron n'est pas disponible,
+        - le profil indique une disposition 'tableau' ou 'menu_deroulant' (champ explicite),
         - Nemotron répond 'done' avec status 'stuck' (bloqué),
-        - le parsage de la réponse Nemotron échoue après toutes les tentatives,
-        - la réponse de Nemotron indique une question en tableau / multi-actions
-          que Nemotron n'a pas su résoudre (pluriel, plusieurs cases à cocher).
+        - le parsage de la réponse Nemotron échoue après toutes les tentatives.
         Le modèle Nemotron n'a aucune connaissance de Claude : c'est le code qui décide.
         """
-        # Nemotron en premier pour tout.
         if self._nemotron is None and self._claude is None:
             raise ModelError("Aucun modèle disponible pour prendre une décision")
+
+        # Si le profil indique une disposition tableau / menu deroulant,
+        # Nemotron repond quand meme en premier, puis Claude prend le relais
+        # pour CLAUDE_TABLEAU_REQUESTS requêtes.
+        if disposition in ("tableau", "menu_deroulant") and self._claude is not None:
+            if self._nemotron is not None:
+                self._rate_limiter.wait()
+                png_bytes = base64.b64decode(frame.b64)
+                text = self._nemotron.decide(png_bytes, system, user_text)
+                try:
+                    nemotron_actions = parse_action(text)
+                    self._last_model_used = "nemotron"
+                except InvalidAction:
+                    nemotron_actions = []
+                    self._last_model_used = "nemotron"
+                log.info("disposition %s : Nemotron a repondu, bascule sur Claude pour %d requetes",
+                         disposition, config.CLAUDE_TABLEAU_REQUESTS)
+                return self._run_claude_for(frame, system, user_text, config.CLAUDE_TABLEAU_REQUESTS)
+            # Pas de Nemotron : Claude directement.
+            return self._run_claude_for(frame, system, user_text, config.CLAUDE_TABLEAU_REQUESTS)
+
+        # Pas de disposition speciale : Nemotron en premier pour tout.
         if self._nemotron is None:
             # Pas de Nemotron : on utilise directement Claude.
             self._rate_limiter.wait()
@@ -700,14 +737,7 @@ class VisionModel:
                 # Dernier échec : bascule sur Claude une fois.
                 if self._claude is not None:
                     log.warning("bascule sur Claude après échec de parsage Nemotron")
-                    text = self._claude.decide(frame, system, user_text)
-                    self._last_model_used = "claude"
-                    try:
-                        actions = parse_action(text)
-                    except InvalidAction as exc2:
-                        raise ModelError(f"aucune réponse valide après bascule sur Claude: {exc2}") from exc2
-                    self._record_stuck(False)
-                    return actions
+                    return self._run_claude_for(frame, system, user_text, 1)
                 raise ModelError(f"aucune réponse valide de Nemotron: {last_error}")
 
             # Parsage réussi : on garde les actions et on sort de la boucle de retry.
@@ -722,31 +752,14 @@ class VisionModel:
         for action in nemotron_actions:
             if action.get("action") == "done" and action.get("status") == "stuck":
                 log.warning("Nemotron bloqué (stuck), bascule sur Claude")
-                if self._claude is not None and self._claude_remaining <= 0:
-                    self._activate_claude_temporary(6)
-                text = self._claude.decide(frame, system, user_text)
-                self._last_model_used = "claude"
-                if self._claude_remaining > 0:
-                    self._claude_remaining -= 1
-                actions_claude = parse_action(text)
-                self._record_stuck(True)
-                return actions_claude
-                break
+                return self._run_claude_for(frame, system, user_text, config.CLAUDE_TABLEAU_REQUESTS)
 
         # Si la réponse de Nemotron indique un tableau / multi-actions non résolu,
         # bascule sur Claude qui est plus robuste pour les grilles.
         if self._is_tableau_response(nemotron_actions):
             if self._claude is not None:
                 log.warning("Question tableau détectée, bascule sur Claude")
-                if self._claude_remaining <= 0:
-                    self._activate_claude_temporary(6)
-                text = self._claude.decide(frame, system, user_text)
-                self._last_model_used = "claude"
-                if self._claude_remaining > 0:
-                    self._claude_remaining -= 1
-                actions_claude = parse_action(text)
-                self._record_stuck(False)
-                return actions_claude
+                return self._run_claude_for(frame, system, user_text, config.CLAUDE_TABLEAU_REQUESTS)
 
         # Pas de bascule : on retourne la réponse de Nemotron telle quelle.
         # Détection de boucle pour les étapes suivantes.
