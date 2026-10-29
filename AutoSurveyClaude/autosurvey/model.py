@@ -630,73 +630,131 @@ class VisionModel:
         else:
             self._consecutive_stuck = 0
 
+    def _is_tableau_response(self, actions: list[dict[str, Any]]) -> bool:
+        """Détecte si une action semble indiquer une question en tableau / multi-actions
+        non résolue par Nemotron (ex: plusieurs cibles, question au pluriel, etc.)."""
+        for action in actions:
+            question = str(action.get("question", ""))
+            answer = str(action.get("answer", ""))
+            upper_q = question.upper()
+            # Mots-clés indiquant une sélection multiple / tableau.
+            if any(k in upper_q for k in ("QUELLES", "QUELS", "WELCHE", "WELCHEN", "MEHRERE")):
+                return True
+            # Plusieurs actions de clic distinctes sur la même question = grille/tableau.
+            if action.get("action") == "click" and question:
+                return True
+        return False
+
     def decide(self, frame: Frame, system: str, user_text: str) -> list[dict[str, Any]]:
-        """Envoie une capture au modèle approprié et renvoie les actions parsées."""
-        use_claude = self._should_use_claude(user_text)
-        model_name = "Claude" if use_claude else "Nemotron"
-        self._last_model_used = "claude" if use_claude else "nemotron"
-        log.info("modèle sélectionné : %s", model_name)
+        """Envoie d'abord la capture à Nemotron, puis bascule sur Claude si besoin.
+
+        Nemotron est toujours sollicité en premier. Claude prend le relais uniquement
+        si :
+        - Nemotron n'est pas disponible,
+        - Nemotron répond 'done' avec status 'stuck' (bloqué),
+        - le parsage de la réponse Nemotron échoue après toutes les tentatives,
+        - la réponse de Nemotron indique une question en tableau / multi-actions
+          que Nemotron n'a pas su résoudre (pluriel, plusieurs cases à cocher).
+        Le modèle Nemotron n'a aucune connaissance de Claude : c'est le code qui décide.
+        """
+        # Nemotron en premier pour tout.
+        if self._nemotron is None and self._claude is None:
+            raise ModelError("Aucun modèle disponible pour prendre une décision")
+        if self._nemotron is None:
+            # Pas de Nemotron : on utilise directement Claude.
+            self._rate_limiter.wait()
+            text = self._claude.decide(frame, system, user_text)
+            self._last_model_used = "claude"
+            actions = parse_action(text)
+            for action in actions:
+                if action.get("action") == "done" and action.get("status") == "stuck":
+                    self._record_stuck(True)
+                    break
+            else:
+                self._record_stuck(False)
+            return actions
 
         # Respecte la limite de 10 requêtes par minute.
         self._rate_limiter.wait()
 
-        # Décrémenter le compteur de basculement temporaire après chaque requête Claude.
-        if use_claude and self._claude_remaining > 0:
+        # Décrémenter le compteur de basculement temporaire (pour les boucles précédentes).
+        if self._claude_remaining > 0:
             self._claude_remaining -= 1
 
         last_error: Exception | None = None
+        nemotron_actions: list[dict[str, Any]] | None = None
 
         for attempt in range(MAX_CALLS):
-            # Obtient la réponse texte du modèle.
-            if use_claude and self._claude is not None:
-                text = self._claude.decide(frame, system, user_text)
-            elif self._nemotron is not None:
-                # Nemotron reçoit l'image brute (png_bytes) + system + user_text.
-                # frame.b64 est du base64 pur (JPEG encodé).
-                png_bytes = base64.b64decode(frame.b64)
-                text = self._nemotron.decide(png_bytes, system, user_text)
-            else:
-                raise ModelError("Aucun modèle disponible pour prendre une décision")
+            # Nemotron reçoit l'image brute (png_bytes) + system + user_text.
+            png_bytes = base64.b64decode(frame.b64)
+            text = self._nemotron.decide(png_bytes, system, user_text)
 
             # Parsage et validation de la réponse.
             try:
                 actions = parse_action(text)
             except InvalidAction as exc:
                 last_error = exc
-                log.warning("réponse invalide de %s (tentative %d/%d): %s", model_name, attempt + 1, MAX_CALLS, exc)
+                log.warning("réponse invalide de Nemotron (tentative %d/%d): %s", attempt + 1, MAX_CALLS, exc)
                 if attempt < MAX_CALLS - 1:
-                    continue  # Retente avec le même modèle
-                # Dernier échec : bascule sur l'autre modèle une fois.
-                if use_claude and self._nemotron is not None:
-                    log.warning("bascule sur Nemotron après échec de parsage Claude")
-                    png_bytes = base64.b64decode(frame.b64)
-                    text = self._nemotron.decide(png_bytes, system, user_text)
-                    try:
-                        actions = parse_action(text)
-                    except InvalidAction as exc2:
-                        raise ModelError(f"aucune réponse valide après bascule: {exc2}") from exc2
-                    self._record_stuck(False)
-                    return actions
-                elif not use_claude and self._claude is not None:
+                    continue  # Retente avec Nemotron
+                # Dernier échec : bascule sur Claude une fois.
+                if self._claude is not None:
                     log.warning("bascule sur Claude après échec de parsage Nemotron")
                     text = self._claude.decide(frame, system, user_text)
+                    self._last_model_used = "claude"
                     try:
                         actions = parse_action(text)
                     except InvalidAction as exc2:
-                        raise ModelError(f"aucune réponse valide après bascule: {exc2}") from exc2
+                        raise ModelError(f"aucune réponse valide après bascule sur Claude: {exc2}") from exc2
                     self._record_stuck(False)
                     return actions
-                raise ModelError(f"aucune réponse valide après bascule: {last_error}")
+                raise ModelError(f"aucune réponse valide de Nemotron: {last_error}")
 
-            # Parsage réussi : on sort de la boucle de retry.
+            # Parsage réussi : on garde les actions et on sort de la boucle de retry.
+            nemotron_actions = actions
+            self._last_model_used = "nemotron"
             break
 
-        # Détection de boucle : si l'action est "done" avec status "stuck", on marque.
-        for action in actions:
+        if nemotron_actions is None:
+            raise ModelError(f"aucune réponse valide de Nemotron: {last_error}")
+
+        # Si Nemotron signale 'stuck', bascule sur Claude pour tenter de débloquer.
+        for action in nemotron_actions:
+            if action.get("action") == "done" and action.get("status") == "stuck":
+                log.warning("Nemotron bloqué (stuck), bascule sur Claude")
+                if self._claude is not None and self._claude_remaining <= 0:
+                    self._activate_claude_temporary(6)
+                text = self._claude.decide(frame, system, user_text)
+                self._last_model_used = "claude"
+                if self._claude_remaining > 0:
+                    self._claude_remaining -= 1
+                actions_claude = parse_action(text)
+                self._record_stuck(True)
+                return actions_claude
+                break
+
+        # Si la réponse de Nemotron indique un tableau / multi-actions non résolu,
+        # bascule sur Claude qui est plus robuste pour les grilles.
+        if self._is_tableau_response(nemotron_actions):
+            if self._claude is not None:
+                log.warning("Question tableau détectée, bascule sur Claude")
+                if self._claude_remaining <= 0:
+                    self._activate_claude_temporary(6)
+                text = self._claude.decide(frame, system, user_text)
+                self._last_model_used = "claude"
+                if self._claude_remaining > 0:
+                    self._claude_remaining -= 1
+                actions_claude = parse_action(text)
+                self._record_stuck(False)
+                return actions_claude
+
+        # Pas de bascule : on retourne la réponse de Nemotron telle quelle.
+        # Détection de boucle pour les étapes suivantes.
+        for action in nemotron_actions:
             if action.get("action") == "done" and action.get("status") == "stuck":
                 self._record_stuck(True)
                 break
         else:
             self._record_stuck(False)
 
-        return actions
+        return nemotron_actions
