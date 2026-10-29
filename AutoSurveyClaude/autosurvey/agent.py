@@ -82,17 +82,6 @@ class SurveyAgent:
                     keys.add(k.strip())
         return keys
 
-    def _profile_disposition(self) -> str | None:
-        """Renvoie la valeur du champ 'disposition' du profil (tableau / menu_deroulant) ou None."""
-        if not self.profile_path.exists():
-            return None
-        for raw in self.profile_path.read_text(encoding="utf-8").splitlines():
-            line = raw.strip()
-            if line and not line.startswith("#") and ":" in line:
-                k, _, v = line.partition(":")
-                if k.strip().lower() == "disposition":
-                    return v.strip().lower()
-        return None
 
     def _update_profile_from_action(self, action: dict[str, Any]) -> None:
         """Met à jour le profil si l'action apporte une information nouvelle.
@@ -148,9 +137,8 @@ class SurveyAgent:
             if system is None:
                 system = system_prompt(frame.width, frame.height, self.profile_text)
 
-            disposition = self._profile_disposition()
             try:
-                actions = self.model.decide(frame, system, self._user_text(), disposition=disposition)
+                actions = self.model.decide(frame, system, self._user_text())
             except ModelError as exc:
                 invalid_streak += 1
                 log.error("modèle indisponible (%d/%d): %s", invalid_streak, config.MAX_INVALID_RESPONSES, exc)

@@ -150,6 +150,7 @@ def _validate_one_action(data: dict[str, Any]) -> dict[str, Any]:
     data.setdefault("question", "")
     data.setdefault("answer", "")
     data.setdefault("reason", "")
+    data.setdefault("disposition", "")
     return data
 
 
@@ -296,7 +297,18 @@ Les informations enregistrées dans le profil doivent toujours être en françai
 
 === QUESTIONS EN TABLEAU / DISPOSITION SPÉCIALE ===
 
-Quand une question demande plusieurs réponses d'un coup (grille de cases à cocher, plusieurs options, sélection multiple), utilise le FORMAT TABLEAU JSON multi-actions avec un objet par case/option à cocher. Chaque objet doit avoir ses propres coordonnées x, y et ses propres champs "question", "answer", "reason". Ne sélectionne qu'une seule option par objet. Si Nemotron ne peut pas traiter ce type de question, laisse Claude prendre le relais (il est plus robuste pour les grilles et multi-actions).
+Quand une question demande plusieurs réponses d'un coup (grille de cases à cocher, plusieurs options, sélection multiple), utilise le FORMAT TABLEAU JSON multi-actions avec un objet par case/option à cocher. Chaque objet doit avoir ses propres coordonnées x, y et ses propres champs "question", "answer", "reason". Ne sélectionne qu'une seule option par objet.
+
+Chaque réponse doit aussi inclure un champ "disposition" :
+- "disposition": "tableau" quand la question est une grille / sélection multiple / plusieurs cases à cocher
+- "disposition": "menu_deroulant" quand la question est un menu déroulant / liste déroulante
+- "disposition": "" (vide) pour une question classique à réponse unique
+
+Si Nemotron ne peut pas traiter ce type de question, laisse Claude prendre le relais (il est plus robuste pour les grilles et multi-actions).
+
+=== VARIATION DES RÉPONSES ===
+
+Ne sois pas trop neutre et ne réponds pas trop souvent "je ne sais pas". Quand une question appelle un avis, une préférence ou un choix, donne une réponse claire et plausible, même si tu dois la varier d'une fois à l'autre. Reste cohérent avec le profil mais n'hésite pas à varier les réponses quand il est nécessaire de choisir une option parmi plusieurs. Ne laisse jamais une question sans réponse quand une sélection est requise.
 """
 
 
@@ -663,42 +675,35 @@ class VisionModel:
             self._record_stuck(False)
         return actions
 
-    def decide(self, frame: Frame, system: str, user_text: str, disposition: str | None = None) -> list[dict[str, Any]]:
+    def _has_disposition(self, actions: list[dict[str, Any]]) -> str | None:
+        """Renvoie la valeur de 'disposition' si une action la contient,
+        sinon None."""
+        for action in actions:
+            disp = str(action.get("disposition", "")).strip().lower()
+            if disp in ("tableau", "menu_deroulant"):
+                return disp
+        return None
+
+    def decide(self, frame: Frame, system: str, user_text: str) -> list[dict[str, Any]]:
         """Envoie d'abord la capture à Nemotron, puis bascule sur Claude si besoin.
 
-        Nemotron est toujours sollicité en premier. Claude prend le relais uniquement
-        si :
-        - le profil indique une disposition 'tableau' ou 'menu_deroulant' (champ explicite),
+        Nemotron est toujours sollicité en premier. Le modèle Nemotron n'a aucune
+        connaissance de Claude : c'est le code qui décide.
+
+        Claude prend le relais uniquement si :
+        - une action de Nemotron contient le champ "disposition": "tableau" ou
+          "disposition": "menu_deroulant" (champ retourné par le modèle dans sa réponse JSON),
         - Nemotron répond 'done' avec status 'stuck' (bloqué),
         - le parsage de la réponse Nemotron échoue après toutes les tentatives.
-        Le modèle Nemotron n'a aucune connaissance de Claude : c'est le code qui décide.
+
+        Quand le bascule a lieu, Claude est sollicité pour
+        CLAUDE_TABLEAU_REQUESTS requêtes.
         """
         if self._nemotron is None and self._claude is None:
             raise ModelError("Aucun modèle disponible pour prendre une décision")
 
-        # Si le profil indique une disposition tableau / menu deroulant,
-        # Nemotron repond quand meme en premier, puis Claude prend le relais
-        # pour CLAUDE_TABLEAU_REQUESTS requêtes.
-        if disposition in ("tableau", "menu_deroulant") and self._claude is not None:
-            if self._nemotron is not None:
-                self._rate_limiter.wait()
-                png_bytes = base64.b64decode(frame.b64)
-                text = self._nemotron.decide(png_bytes, system, user_text)
-                try:
-                    nemotron_actions = parse_action(text)
-                    self._last_model_used = "nemotron"
-                except InvalidAction:
-                    nemotron_actions = []
-                    self._last_model_used = "nemotron"
-                log.info("disposition %s : Nemotron a repondu, bascule sur Claude pour %d requetes",
-                         disposition, config.CLAUDE_TABLEAU_REQUESTS)
-                return self._run_claude_for(frame, system, user_text, config.CLAUDE_TABLEAU_REQUESTS)
-            # Pas de Nemotron : Claude directement.
-            return self._run_claude_for(frame, system, user_text, config.CLAUDE_TABLEAU_REQUESTS)
-
-        # Pas de disposition speciale : Nemotron en premier pour tout.
+        # Pas de Nemotron : on utilise directement Claude.
         if self._nemotron is None:
-            # Pas de Nemotron : on utilise directement Claude.
             self._rate_limiter.wait()
             text = self._claude.decide(frame, system, user_text)
             self._last_model_used = "claude"
@@ -747,6 +752,15 @@ class VisionModel:
 
         if nemotron_actions is None:
             raise ModelError(f"aucune réponse valide de Nemotron: {last_error}")
+
+        # Si une action de Nemotron contient disposition=tableau ou menu_deroulant,
+        # bascule sur Claude pour CLAUDE_TABLEAU_REQUESTS requêtes.
+        disposition = self._has_disposition(nemotron_actions)
+        if disposition in ("tableau", "menu_deroulant"):
+            if self._claude is not None:
+                log.warning("disposition %s detectee dans la reponse Nemotron, bascule sur Claude pour %d requetes",
+                            disposition, config.CLAUDE_TABLEAU_REQUESTS)
+                return self._run_claude_for(frame, system, user_text, config.CLAUDE_TABLEAU_REQUESTS)
 
         # Si Nemotron signale 'stuck', bascule sur Claude pour tenter de débloquer.
         for action in nemotron_actions:
