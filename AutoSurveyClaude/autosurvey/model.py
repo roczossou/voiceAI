@@ -297,14 +297,14 @@ Les informations enregistrées dans le profil doivent toujours être en françai
 
 === QUESTIONS EN TABLEAU / DISPOSITION SPÉCIALE ===
 
-Quand une question demande plusieurs réponses d'un coup (grille de cases à cocher, plusieurs options, sélection multiple), utilise le FORMAT TABLEAU JSON multi-actions avec un objet par case/option à cocher. Chaque objet doit avoir ses propres coordonnées x, y et ses propres champs "question", "answer", "reason". Ne sélectionne qu'une seule option par objet.
+Quand une question demande plusieurs réponses d'un coup (grille de cases à cocher, plusieurs options, sélection multiple, menu déroulant), utilise le FORMAT TABLEAU JSON multi-actions avec un objet par case/option à cocher. Chaque objet doit avoir ses propres coordonnées x, y et ses propres champs "question", "answer", "reason". Ne sélectionne qu'une seule option par objet.
 
-Chaque réponse doit aussi inclure un champ "disposition" :
+Chaque réponse DOIT inclure le champ "disposition" :
 - "disposition": "tableau" quand la question est une grille / sélection multiple / plusieurs cases à cocher
 - "disposition": "menu_deroulant" quand la question est un menu déroulant / liste déroulante
 - "disposition": "" (vide) pour une question classique à réponse unique
 
-Si Nemotron ne peut pas traiter ce type de question, laisse Claude prendre le relais (il est plus robuste pour les grilles et multi-actions).
+IMPORTANT : quand tu réponds "disposition": "tableau" ou "disposition": "menu_deroulant", NE sélectionne aucune option toi-même. Le système va ignorer ton action et passer la main à un autre modèle pour exécuter. Ton seul rôle est de signaler la disposition correcte.
 
 === VARIATION DES RÉPONSES ===
 
@@ -754,13 +754,16 @@ class VisionModel:
             raise ModelError(f"aucune réponse valide de Nemotron: {last_error}")
 
         # Si une action de Nemotron contient disposition=tableau ou menu_deroulant,
-        # bascule sur Claude pour CLAUDE_TABLEAU_REQUESTS requêtes.
+        # on N'EXECUTE PAS l'action de Nemotron : on passe directement a Claude
+        # pour CLAUDE_TABLEAU_REQUESTS requêtes.
         disposition = self._has_disposition(nemotron_actions)
         if disposition in ("tableau", "menu_deroulant"):
             if self._claude is not None:
-                log.warning("disposition %s detectee dans la reponse Nemotron, bascule sur Claude pour %d requetes",
+                log.warning("disposition %s detectee : action Nemotron ignoree, bascule directe sur Claude pour %d requetes",
                             disposition, config.CLAUDE_TABLEAU_REQUESTS)
                 return self._run_claude_for(frame, system, user_text, config.CLAUDE_TABLEAU_REQUESTS)
+            # Pas de Claude disponible : on execute Nemotron en dernier recours.
+            log.warning("disposition %s mais Claude indisponible, execution Nemotron en dernier recours", disposition)
 
         # Si Nemotron signale 'stuck', bascule sur Claude pour tenter de débloquer.
         for action in nemotron_actions:
