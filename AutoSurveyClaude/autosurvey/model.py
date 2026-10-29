@@ -203,8 +203,26 @@ def parse_action(text: str) -> list[dict[str, Any]]:
     raise InvalidAction("la réponse n'est pas un objet JSON ni un tableau d'actions")
 
 
-def system_prompt(width: int, height: int, profile_text: str) -> str:
-    """Prompt système complet. Constant pendant un sondage : c'est lui qui est mis en cache."""
+def system_prompt(width: int, height: int, profile_text: str, model_type: str = "nemotron") -> str:
+    """Prompt système complet. Constant pendant un sondage : c'est lui qui est mis en cache.
+
+    model_type: "nemotron" ou "claude". La section DISPOSITION n'est affichée
+    que pour Nemotron (il doit signaler sans executer). Claude recoit un prompt
+    standard et execute normalement quand il prend le relais.
+    """
+    if model_type == "nemotron":
+        disposition_section = """=== QUESTIONS EN TABLEAU / DISPOSITION SPÉCIALE ===
+
+Quand une question demande plusieurs réponses d'un coup (grille de cases à cocher, plusieurs options, sélection multiple, menu déroulant), utilise le FORMAT TABLEAU JSON multi-actions avec un objet par case/option à cocher. Chaque objet doit avoir ses propres coordonnées x, y et ses propres champs "question", "answer", "reason". Ne sélectionne qu'une seule option par objet.
+
+Chaque réponse DOIT inclure le champ "disposition" :
+- "disposition": "tableau" quand la question est une grille / sélection multiple / plusieurs cases à cocher
+- "disposition": "menu_deroulant" quand la question est un menu déroulant / liste déroulante
+- "disposition": "" (vide) pour une question classique à réponse unique
+
+Quand tu réponds "disposition": "tableau" ou "disposition": "menu_deroulant", NE sélectionne aucune option toi-même. Le système va ignorer ton action et passer la main à un autre modèle pour exécuter. Ton seul rôle est de signaler la disposition correcte."""
+    else:
+        disposition_section = ""
     return f"""Tu pilotes un ordinateur Windows pour remplir un sondage en ligne.
 Tu reçois une capture d'écran ({width}x{height}). Tu choisis une ou plusieurs actions à exécuter.
 
@@ -295,16 +313,7 @@ Règles :
 
 Les informations enregistrées dans le profil doivent toujours être en français, quelle que soit la langue du sondage ou de la personne. Traduisez-les si nécessaire.
 
-=== QUESTIONS EN TABLEAU / DISPOSITION SPÉCIALE ===
-
-Quand une question demande plusieurs réponses d'un coup (grille de cases à cocher, plusieurs options, sélection multiple, menu déroulant), utilise le FORMAT TABLEAU JSON multi-actions avec un objet par case/option à cocher. Chaque objet doit avoir ses propres coordonnées x, y et ses propres champs "question", "answer", "reason". Ne sélectionne qu'une seule option par objet.
-
-Chaque réponse DOIT inclure le champ "disposition" :
-- "disposition": "tableau" quand la question est une grille / sélection multiple / plusieurs cases à cocher
-- "disposition": "menu_deroulant" quand la question est un menu déroulant / liste déroulante
-- "disposition": "" (vide) pour une question classique à réponse unique
-
-Quand tu réponds "disposition": "tableau" ou "disposition": "menu_deroulant", tu DOIS aussi sélectionner les cases/options appropriées avec des clics (un objet par case à cocher, ou un clic sur le menu puis sur l'option choisie). Ne te contente pas de signaler : exécute la sélection. Le système décidera s'il exécute ton action ou passe la main à un autre modèle.
+{disposition_section}
 
 === VARIATION DES RÉPONSES ===
 
@@ -584,6 +593,9 @@ class VisionModel:
         self._consecutive_stuck = 0  # compteur de détection de boucle
         self._claude_remaining = 0  # nombre de requêtes restantes sur Claude avant retour à Nemotron
         self._last_model_used: str | None = None  # "nemotron" ou "claude"
+        self._profile_text: str | None = None  # texte du profil pour reconstruire le prompt de Claude
+        self.screen_width: int | None = None
+        self.screen_height: int | None = None
 
     @property
     def last_model_used(self) -> str | None:
@@ -658,11 +670,20 @@ class VisionModel:
         return False
 
     def _run_claude_for(self, frame: Frame, system: str, user_text: str, count: int) -> list[dict[str, Any]]:
-        """Exécute `count` requêtes Claude et renvoie les actions du dernier appel."""
+        """Exécute `count` requêtes Claude et renvoie les actions du dernier appel.
+
+        Claude reçoit un prompt SANS la section "disposition" (c'est une instruction
+        Nemotron uniquement). Il execute normalement : il clique sur les cases
+        de la grille, ouvre les menus deroulants, etc.
+        """
         if self._claude is None:
             raise ModelError("Claude n'est pas disponible")
+        # Reconstruire un prompt Claude sans la section disposition.
+        claude_system = system_prompt(
+            frame.width, frame.height, self._profile_text or "", model_type="claude"
+        )
         self._activate_claude_temporary(count)
-        text = self._claude.decide(frame, system, user_text)
+        text = self._claude.decide(frame, claude_system, user_text)
         self._last_model_used = "claude"
         if self._claude_remaining > 0:
             self._claude_remaining -= 1
@@ -703,9 +724,13 @@ class VisionModel:
             raise ModelError("Aucun modèle disponible pour prendre une décision")
 
         # Pas de Nemotron : on utilise directement Claude.
+        # Claude reçoit un prompt sans la section disposition.
         if self._nemotron is None:
             self._rate_limiter.wait()
-            text = self._claude.decide(frame, system, user_text)
+            claude_system = system_prompt(
+                frame.width, frame.height, self._profile_text or "", model_type="claude"
+            )
+            text = self._claude.decide(frame, claude_system, user_text)
             self._last_model_used = "claude"
             actions = parse_action(text)
             for action in actions:

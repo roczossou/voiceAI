@@ -55,6 +55,7 @@ class SurveyAgent:
         self.profile_text = load_profile(profile_path)
         self.dry_run = dry_run
         self.model = VisionModel()
+        self.model.profile_text = self.profile_text
 
     def _save_profile_entry(self, key: str, value: str) -> None:
         """Ajoute ou met à jour une entrée clé: valeur dans le fichier de profil."""
