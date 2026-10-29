@@ -304,7 +304,7 @@ Chaque réponse DOIT inclure le champ "disposition" :
 - "disposition": "menu_deroulant" quand la question est un menu déroulant / liste déroulante
 - "disposition": "" (vide) pour une question classique à réponse unique
 
-IMPORTANT : quand tu réponds "disposition": "tableau" ou "disposition": "menu_deroulant", NE sélectionne aucune option toi-même. Le système va ignorer ton action et passer la main à un autre modèle pour exécuter. Ton seul rôle est de signaler la disposition correcte.
+Quand tu réponds "disposition": "tableau" ou "disposition": "menu_deroulant", tu DOIS aussi sélectionner les cases/options appropriées avec des clics (un objet par case à cocher, ou un clic sur le menu puis sur l'option choisie). Ne te contente pas de signaler : exécute la sélection. Le système décidera s'il exécute ton action ou passe la main à un autre modèle.
 
 === VARIATION DES RÉPONSES ===
 
