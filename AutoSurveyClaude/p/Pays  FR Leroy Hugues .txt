@@ -1,0 +1,18 @@
+# Profil utilisateur AutoSurvey
+Pays: FR
+Nom: Leroy
+Prenom: Hugues
+Gmail: leroyhugues877@outlook.com
+Mot de passe: Hugues655@
+Adresse postale: 130 Av. Daumesnil, 75012 Paris, France
+Code postale: 75012
+Ville: Paris
+Date de naissance: 23 4 2002
+Ville:
+Info:
+Les Républicains (LR)
+célibataire
+pas d'enfants
+chien: Loki
+pas de voitures
+Assurance: AXA

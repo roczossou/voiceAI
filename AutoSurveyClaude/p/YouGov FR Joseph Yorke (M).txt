@@ -1,0 +1,12 @@
+# Profil utilisateur AutoSurvey
+Pays: FR
+Nom: Yorke
+Prenom: Joseph
+Gmail: josephyorke4@hotmail.com
+Mot de passe: Yorke@500
+Adresse postale:
+Code postale: 75001
+Téléphone:
+Date de naissance: 2004
+Age:
+Info:

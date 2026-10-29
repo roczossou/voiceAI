@@ -1,0 +1,12 @@
+# Profil utilisateur AutoSurvey
+Pays: DE
+Nom: Benz
+Prenom: Lothar
+Gmail:
+Mot de passe:
+Adresse postale:
+Code postale:
+Telephone:
+Date de naissance:
+Ville:
+Point: 8310
