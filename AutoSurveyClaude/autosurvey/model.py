@@ -293,6 +293,10 @@ Règles :
 {profile_text}
 
 Les informations enregistrées dans le profil doivent toujours être en français, quelle que soit la langue du sondage ou de la personne. Traduisez-les si nécessaire.
+
+=== QUESTIONS EN TABLEAU / DISPOSITION SPÉCIALE ===
+
+Quand une question demande plusieurs réponses d'un coup (grille de cases à cocher, plusieurs options, sélection multiple), utilise le FORMAT TABLEAU JSON multi-actions avec un objet par case/option à cocher. Chaque objet doit avoir ses propres coordonnées x, y et ses propres champs "question", "answer", "reason". Ne sélectionne qu'une seule option par objet. Si Nemotron ne peut pas traiter ce type de question, laisse Claude prendre le relais (il est plus robuste pour les grilles et multi-actions).
 """
 
 
@@ -603,8 +607,17 @@ class VisionModel:
             return True
         if self._consecutive_stuck > 0:
             return True
-        # Détecte si l'historique mentionne des multi-actions ou des grilles.
-        if "TABLEAU" in user_text.upper() or "MULTI-ACTIONS" in user_text.upper():
+        # Détecte si l'historique ou la question actuelle mentionne un tableau,
+        # une grille, plusieurs cases à cocher, ou une disposition spéciale.
+        upper = user_text.upper()
+        tableau_keywords = [
+            "TABLEAU", "MULTI-ACTIONS", "GRILLE", "COCHER PLUSIEURS",
+            "PLUSIEURS CASES", "PLUSIEURS OPTIONS", "QUELLES", "QUELS",
+            "WELCHE", "WELCHEN", "MEHRERE", "AUSWÄHLEN", "ANZUKREUZEN",
+            "CASES À COCHER", "CASES A COCHER", "OPTIONS MULTIPLES",
+            "CHOIX MULTIPLE", "SELECTIONNER PLUSIEURS", "QUELLES OPTIONS",
+        ]
+        if any(k in upper for k in tableau_keywords):
             return True
         return False
 
