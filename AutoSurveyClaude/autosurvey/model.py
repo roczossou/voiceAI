@@ -461,6 +461,7 @@ class _NemotronClient:
                     messages=messages,
                     temperature=0.6,
                     max_tokens=config.NIM_MAX_TOKENS,
+                    extra_body={"chat_template_kwargs": {"enable_thinking": False}},
                 )
                 content = resp.choices[0].message.content or ""
                 return content
