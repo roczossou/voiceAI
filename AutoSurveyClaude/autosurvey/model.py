@@ -303,9 +303,8 @@ Règles :
 12. Réponds dans la langue du sondage, jamais dans une autre.
 13. Si le profil répond à la question, utilise-le tel quel.
 14. Fait réel absent du profil (situation, habitudes, statut, etc.) : donne une réponse plausible selon les statistiques réelles de la population ciblée (par exemple la répartition réelle en France). Ne contredis jamais le profil et reste cohérent d'une question à l'autre.
-15. Goûts et préférences (couleur, film, marque, opinion) : invente librement une réponse plausible, en restant cohérent avec le profil s'il en contient.
+15. Goûts et préférences (couleur, film, marque, opinion) : invente librement une réponse plausible, en restant cohérent avec le profil s'il en contient. Sur une question de préférence, NE sélectionne jamais "keine der genannten" / "Aucune des réponses ci-dessus" / "Aucune" : choisis toujours une préférence réelle et précise.
 16. Identifiants et données sensibles (numéro de sécurité sociale, IBAN, pièce d'identité, mot de passe, coordonnées bancaires) : n'invente jamais. done "blocked" avec la raison.
-17. Ne réponds jamais une seconde fois à une question listée dans "QUESTIONS DÉJÀ RÉPONDUES", SAUF si elle apparaît sur l'écran actuel avec un champ vide ou un message d'erreur (ex: "Bitte geben Sie eine Antwort"). Dans ce cas, clique sur le champ et corrige la réponse, puis clique sur Suivant. L'image actuelle prime sur la liste des questions déjà répondues.
 
 === PROFIL ===
 
