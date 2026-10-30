@@ -235,7 +235,7 @@ Réponds UNIQUEMENT par un objet JSON ou un tableau JSON d'objets. Actions possi
 - {{"action":"type","text":"...","clear":false}}   tape dans le champ DÉJÀ cliqué ; clear=true vide le champ avant
 - {{"action":"press","key":"enter|tab|esc|pagedown|pageup|backspace|space|up|down"}}
 - {{"action":"hotkey","keys":["ctrl","a"]}}
-- {{"action":"scroll","x":int,"y":int,"direction":"down|up","amount":5}}
+- {{"action":"scroll","x":int,"y":int,"direction":"down|up","amount":15}}
 - {{"action":"drag","x":int,"y":int,"x2":int,"y2":int}}
 - {{"action":"wait","seconds":2}}   page en chargement, écran vide, ou rien à faire
 - {{"action":"done","status":"finished|blocked|stuck","reason":"..."}}

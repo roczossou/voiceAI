@@ -181,7 +181,7 @@ class SurveyAgent:
                     log.warning("boucle détectée sur %s, défilement forcé", action["action"])
                     action = {
                         "action": "scroll", "x": frame.width // 20, "y": frame.height // 2,
-                        "direction": "down", "amount": 5, "question": "", "answer": "",
+                        "direction": "down", "amount": 15, "question": "", "answer": "",
                         "reason": "boucle détectée : défilement forcé",
                     }
 
