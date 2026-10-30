@@ -67,8 +67,8 @@ log = logging.getLogger("autosurvey")
 MAX_CALLS = 3  # tentatives par étape avant bascule sur l'autre modèle
 BACKOFF = [3, 6, 12, 20, 30]  # secondes entre tentatives après erreur API
 
-# Limite : maximum 10 requêtes API par minute.
-RATE_LIMIT_MAX_CALLS = 10
+# Limite : maximum 30 requêtes API par minute.
+RATE_LIMIT_MAX_CALLS = 30
 RATE_LIMIT_PERIOD = 60.0  # secondes
 
 
